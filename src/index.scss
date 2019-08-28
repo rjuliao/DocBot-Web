@@ -1,6 +1,6 @@
 $main-color: rgb(243,21,4);
 $hcolor: rgb(70, 226, 140);
-$font: Arial, sans-serif;
+$font: 'Roboto', sans-serif;
 
 /* Color Theme Swatches in Hex */
 $logo-1-hex: #D92588;
@@ -26,4 +26,10 @@ nav{
     background-color: $logo-3-hex;
     padding: 0;
     margin: 5px;
+}
+
+body{
+    background-color: $logo-5-hex;
+    height: 100%;
+    font-family: $font;
 }
