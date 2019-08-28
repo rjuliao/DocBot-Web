@@ -5,7 +5,7 @@ Apliativo web del lado de médico que le ayuda a gestionas los avances del pacie
 
 `One web to rule the all`<br>
     `one web to find them`<br>
-    `on web to bring the all`<br>
+    `on web to bring them all`<br>
     `and in the database bing them`<br>
 
 

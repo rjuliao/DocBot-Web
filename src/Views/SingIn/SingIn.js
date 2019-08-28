@@ -49,7 +49,7 @@ export default function SingIn(){
                                 <Typography variant="h6" className={classes.fonts}>
                                     Contraseña
                                 </Typography>
-                                <InputBase placeholder="Password"/>
+                                <InputBase placeholder="Password" type="password"/>
                                 <CardActions>
                                     <Button className={classes.button}>Iniciar Sesión</Button>
                                     <Button className={classes.button}>Registrarse</Button>
