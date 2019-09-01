@@ -1,0 +1,45 @@
+$main-color: rgb(243,21,4);
+$hcolor: rgb(70, 226, 140);
+$font: 'Roboto', sans-serif;
+
+/* Color Theme Swatches in Hex */
+$logo-1-hex: #D92588;
+$logo-2-hex: #F299CA;
+$logo-3-hex: #5D29A6;
+$logo-4-hex: #8760BF;
+$logo-5-hex: #F2F2F2;
+
+
+
+@mixin reset {
+    margin: 5px;
+    padding: 0;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+
+body {
+    background-color: $logo-5-hex;
+    height: 100%;
+    font-family: $font;
+}
+
+a {
+    text-decoration: none;
+}
+
+#root {
+    height: 100%;
+}

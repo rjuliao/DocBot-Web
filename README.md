@@ -10,12 +10,25 @@ Apliativo web del lado de médico que le ayuda a gestionas los avances del pacie
 
 
 
+
 ### Librerias que usa el proyecto
 
 * Material-UI 
 * React Router
-* Bootstrap
+* Node SASS
+* Recompose
+* uuid
+* Validate.js
+* History
+* Clxs
+* Chart.js
 
+
+## PARA EJECUTAR CORRECTAMENTE EL PROYECTO USTED DEBE:
+
+Instalar las dependencias del proyeto por medio de :
+
+### `npm install`
 
 In the project directory, you can run:
 
