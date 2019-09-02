@@ -14,18 +14,20 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { Facebook as FacebookIcon, Google as GoogleIcon } from '../../icons';
+import bcimage from './bgImage/logo.png';
+import botic from './bgImage/logo-3.png';
 
 
 const schema = {
   email: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'es obligatorio' },
     email: true,
     length: {
       maximum: 64
     }
   },
   password: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'es obligatorio' },
     length: {
       maximum: 128
     }
@@ -51,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: 'url(/images/auth.jpg)',
+    //backgroundImage: ,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
@@ -61,16 +63,10 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '600px'
   },
   quoteText: {
-    color: theme.palette.white,
+    color: '#D92588',
     fontWeight: 300
   },
-  name: {
-    marginTop: theme.spacing(3),
-    color: theme.palette.white
-  },
-  bio: {
-    color: theme.palette.white
-  },
+  
   contentContainer: {},
   content: {
     height: '100%',
@@ -107,7 +103,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
+    color: '#D92588',
   },
   socialButtons: {
     marginTop: theme.spacing(3)
@@ -116,13 +113,16 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1)
   },
   sugestion: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
+    color: '#D92588',
   },
   textField: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
+    color: '#D92588',
   },
   signInButton: {
-    margin: theme.spacing(2, 0)
+    margin: theme.spacing(2, 0),
+    color: '#D92588',
   }
 }));
 
@@ -196,23 +196,9 @@ const SignIn = props => {
                 className={classes.quoteText}
                 variant="h1"
               >
-                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                they sold out High Life.
+                <img src={botic} width={88} /> es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
               </Typography>
-              <div className={classes.person}>
-                <Typography
-                  className={classes.name}
-                  variant="body1"
-                >
-                  Takamaru Ayako
-                </Typography>
-                <Typography
-                  className={classes.bio}
-                  variant="body2"
-                >
-                  Manager at inVision
-                </Typography>
-              </div>
+              
             </div>
           </div>
         </Grid>
@@ -237,13 +223,13 @@ const SignIn = props => {
                   className={classes.title}
                   variant="h2"
                 >
-                  Sign in
+                  Iniciar Sesión
                 </Typography>
                 <Typography
-                  color="textSecondary"
+                  color="#F299CA"
                   gutterBottom
                 >
-                  Sign in with social media
+                  Iniciar sesión con redes sociales
                 </Typography>
                 <Grid
                   className={classes.socialButtons}
@@ -258,7 +244,7 @@ const SignIn = props => {
                       variant="contained"
                     >
                       <FacebookIcon className={classes.socialIcon} />
-                      Login with Facebook
+                      Login con Facebook
                     </Button>
                   </Grid>
                   <Grid item>
@@ -268,7 +254,7 @@ const SignIn = props => {
                       variant="contained"
                     >
                       <GoogleIcon className={classes.socialIcon} />
-                      Login with Google
+                      Login con Google
                     </Button>
                   </Grid>
                 </Grid>
@@ -278,7 +264,7 @@ const SignIn = props => {
                   color="textSecondary"
                   variant="body1"
                 >
-                  or login with email address
+                  ó inicar sesión con un correo electrónico
                 </Typography>
                 <TextField
                   className={classes.textField}
@@ -287,7 +273,7 @@ const SignIn = props => {
                   helperText={
                     hasError('email') ? formState.errors.email[0] : null
                   }
-                  label="Email address"
+                  label="Email"
                   name="email"
                   onChange={handleChange}
                   type="text"
@@ -301,7 +287,7 @@ const SignIn = props => {
                   helperText={
                     hasError('password') ? formState.errors.password[0] : null
                   }
-                  label="Password"
+                  label="Contraseña"
                   name="password"
                   onChange={handleChange}
                   type="password"
@@ -310,26 +296,26 @@ const SignIn = props => {
                 />
                 <Button
                   className={classes.signInButton}
-                  color="primary"
+                  color="#5D29A6"
                   disabled={!formState.isValid}
                   fullWidth
                   size="large"
                   type="submit"
                   variant="contained"
                 >
-                  Sign in now
+                  INICIAR SESIÓN
                 </Button>
                 <Typography
-                  color="textSecondary"
+                  color="#D92588"
                   variant="body1"
                 >
-                  Don't have an account?{' '}
+                  Nuevo en Botic?{' '}
                   <Link
                     component={RouterLink}
                     to="/sign-up"
                     variant="h6"
                   >
-                    Sign up
+                    Registrarme
                   </Link>
                 </Typography>
               </form>
