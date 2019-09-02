@@ -9,12 +9,15 @@ import {
   IconButton,
   TextField,
   Link,
-  Typography
+  Typography,
+  Card,
+  CardMedia,
+  CardContent
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { Facebook as FacebookIcon, Google as GoogleIcon } from '../../icons';
-import bcimage from './bgImage/logo.png';
+import bcimage from './bgImage/background.jpg';
 import botic from './bgImage/logo-3.png';
 
 
@@ -53,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    //backgroundImage: ,
+    backgroundImage: 'url(./bgImage/logo.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
@@ -190,14 +193,23 @@ const SignIn = props => {
           item
           lg={5}
         >
+          <Card >
+            <CardMedia
+              component="img"
+              image={bcimage}  
+            />
+            <CardContent className={classes.quoteInner}>
+              <Typography
+                  className={classes.quoteText}
+                  variant="h1"
+                >
+                  <img src={botic} width={88} /> es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
+                </Typography>
+            </CardContent>
+          </Card>
           <div className={classes.quote}>
             <div className={classes.quoteInner}>
-              <Typography
-                className={classes.quoteText}
-                variant="h1"
-              >
-                <img src={botic} width={88} /> es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
-              </Typography>
+              
               
             </div>
           </div>
@@ -225,47 +237,7 @@ const SignIn = props => {
                 >
                   Iniciar Sesión
                 </Typography>
-                <Typography
-                  color="#F299CA"
-                  gutterBottom
-                >
-                  Iniciar sesión con redes sociales
-                </Typography>
-                <Grid
-                  className={classes.socialButtons}
-                  container
-                  spacing={2}
-                >
-                  <Grid item>
-                    <Button
-                      color="primary"
-                      onClick={handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      <FacebookIcon className={classes.socialIcon} />
-                      Login con Facebook
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      onClick={handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      <GoogleIcon className={classes.socialIcon} />
-                      Login con Google
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Typography
-                  align="center"
-                  className={classes.sugestion}
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  ó inicar sesión con un correo electrónico
-                </Typography>
+                
                 <TextField
                   className={classes.textField}
                   error={hasError('email')}

@@ -11,38 +11,43 @@ import {
   Link,
   FormHelperText,
   Checkbox,
-  Typography
+  Typography,
+  Card,
+  CardMedia,
+  CardContent
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import bcimage from './bgImage/background.jpg';
+import botic from './bgImage/logo-3.png';
 
 const schema = {
   firstName: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
       maximum: 32
     }
   },
   lastName: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
       maximum: 32
     }
   },
   email: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'Obligatorio' },
     email: true,
     length: {
       maximum: 64
     }
   },
   password: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
       maximum: 128
     }
   },
   policy: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: false, message: 'Obligatorio' },
     checked: true
   }
 };
@@ -76,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '600px'
   },
   quoteText: {
-    color: theme.palette.white,
+    color: '#D92588',
     fontWeight: 300
   },
   name: {
@@ -122,9 +127,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
+    color: '#D92588',
     marginTop: theme.spacing(3)
   },
   textField: {
+    color: '#D92588',
     marginTop: theme.spacing(2)
   },
   policy: {
@@ -204,29 +211,22 @@ const SignUp = props => {
           item
           lg={5}
         >
-          <div className={classes.quote}>
-            <div className={classes.quoteInner}>
+          <Card >
+            <CardMedia
+              component="img"
+              image={bcimage}  
+            />
+            <CardContent className={classes.quoteInner}>
               <Typography
-                className={classes.quoteText}
-                variant="h1"
-              >
-                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                they sold out High Life.
-              </Typography>
-              <div className={classes.person}>
-                <Typography
-                  className={classes.name}
-                  variant="body1"
+                  className={classes.quoteText}
+                  variant="h1"
                 >
-                  Takamaru Ayako
+                  <img src={botic} width={88} /> es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
                 </Typography>
-                <Typography
-                  className={classes.bio}
-                  variant="body2"
-                >
-                  Manager at inVision
-                </Typography>
-              </div>
+            </CardContent>
+          </Card>
+          <div className={classes.quote}>
+            <div className={classes.quoteInner}> 
             </div>
           </div>
         </Grid>
@@ -251,13 +251,13 @@ const SignUp = props => {
                   className={classes.title}
                   variant="h2"
                 >
-                  Create new account
+                  Regristarme
                 </Typography>
                 <Typography
                   color="textSecondary"
                   gutterBottom
                 >
-                  Use your email to create new account
+                  Usa tu e-mail para crear una nueva cuenta en Botic
                 </Typography>
                 <TextField
                   className={classes.textField}
@@ -266,7 +266,7 @@ const SignUp = props => {
                   helperText={
                     hasError('firstName') ? formState.errors.firstName[0] : null
                   }
-                  label="First name"
+                  label="Nombre"
                   name="firstName"
                   onChange={handleChange}
                   type="text"
@@ -280,7 +280,7 @@ const SignUp = props => {
                   helperText={
                     hasError('lastName') ? formState.errors.lastName[0] : null
                   }
-                  label="Last name"
+                  label="Apellido"
                   name="lastName"
                   onChange={handleChange}
                   type="text"
@@ -294,7 +294,7 @@ const SignUp = props => {
                   helperText={
                     hasError('email') ? formState.errors.email[0] : null
                   }
-                  label="Email address"
+                  label="E-mail"
                   name="email"
                   onChange={handleChange}
                   type="text"
@@ -308,7 +308,7 @@ const SignUp = props => {
                   helperText={
                     hasError('password') ? formState.errors.password[0] : null
                   }
-                  label="Password"
+                  label="Contraseña"
                   name="password"
                   onChange={handleChange}
                   type="password"
@@ -328,7 +328,7 @@ const SignUp = props => {
                     color="textSecondary"
                     variant="body1"
                   >
-                    I have read the{' '}
+                    He leido y acepto los {' '}
                     <Link
                       color="primary"
                       component={RouterLink}
@@ -336,7 +336,7 @@ const SignUp = props => {
                       underline="always"
                       variant="h6"
                     >
-                      Terms and Conditions
+                      Terminos y condiciones
                     </Link>
                   </Typography>
                 </div>
@@ -354,19 +354,19 @@ const SignUp = props => {
                   type="submit"
                   variant="contained"
                 >
-                  Sign up now
+                  Registrarme
                 </Button>
                 <Typography
                   color="textSecondary"
                   variant="body1"
                 >
-                  Have an account?{' '}
+                  ¿Tienes una cuenta?{' '}
                   <Link
                     component={RouterLink}
                     to="/sign-in"
                     variant="h6"
                   >
-                    Sign in
+                    Inicia sesión
                   </Link>
                 </Typography>
               </form>
