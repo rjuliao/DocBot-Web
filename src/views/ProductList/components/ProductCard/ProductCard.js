@@ -36,6 +36,9 @@ const useStyles = makeStyles(theme => ({
   statsIcon: {
     color: theme.palette.icon,
     marginRight: theme.spacing(1)
+  },
+  quote: {
+    color: '#D92588'
   }
 }));
 
@@ -61,6 +64,7 @@ const ProductCard = props => {
           align="center"
           gutterBottom
           variant="h4"
+          className={classes.quote}
         >
           {product.title}
         </Typography>
@@ -86,19 +90,7 @@ const ProductCard = props => {
               display="inline"
               variant="body2"
             >
-              Updated 2hr ago
-            </Typography>
-          </Grid>
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <GetAppIcon className={classes.statsIcon} />
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-              {product.totalDownloads} Downloads
+              Ingresada en enero
             </Typography>
           </Grid>
         </Grid>

@@ -2,12 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { Typography, Link } from '@material-ui/core';
+import { Typography, Link, Grid } from '@material-ui/core';
+import logo from './images/headerlogo_un.png';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
-  }
+  },
+  link: {
+    color: '#D92588',
+  },
+  logoun: {
+    width: 150,
+  },
+  grid: {
+    height: '100%'
+  },
 }));
 
 const Footer = props => {
@@ -24,17 +35,29 @@ const Footer = props => {
         &copy;{' '}
         <Link
           component="a"
-          href="https://devias.io/"
           target="_blank"
+          className={classes.link}
         >
-          Devias IO
+          Botic!
         </Link>
         . 2019
       </Typography>
-      <Typography variant="caption">
-        Created with love for the environment. By designers and developers who
-        love to work together in offices!
-      </Typography>
+      <div>
+        <Grid className={classes.grid} container>
+          <Grid item>
+            <Typography variant="caption">
+              Creado por estudiantes de ingeniería de sistemas en colaboración con estudiantes de medicina.<br/>
+              Universidad del Norte.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} style={{textAlign: "right"}}>
+            <img
+              src={logo}
+              className={classes.logoun}
+            />
+          </Grid>
+        </Grid> 
+      </div>
     </div>
   );
 };

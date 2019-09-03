@@ -242,9 +242,7 @@ const SignIn = props => {
                   className={classes.textField}
                   error={hasError('email')}
                   fullWidth
-                  helperText={
-                    hasError('email') ? formState.errors.email[0] : null
-                  }
+                  
                   label="Email"
                   name="email"
                   onChange={handleChange}
@@ -256,9 +254,7 @@ const SignIn = props => {
                   className={classes.textField}
                   error={hasError('password')}
                   fullWidth
-                  helperText={
-                    hasError('password') ? formState.errors.password[0] : null
-                  }
+                  
                   label="Contraseña"
                   name="password"
                   onChange={handleChange}

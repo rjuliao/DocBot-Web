@@ -263,9 +263,7 @@ const SignUp = props => {
                   className={classes.textField}
                   error={hasError('firstName')}
                   fullWidth
-                  helperText={
-                    hasError('firstName') ? formState.errors.firstName[0] : null
-                  }
+                  
                   label="Nombre"
                   name="firstName"
                   onChange={handleChange}
@@ -277,9 +275,7 @@ const SignUp = props => {
                   className={classes.textField}
                   error={hasError('lastName')}
                   fullWidth
-                  helperText={
-                    hasError('lastName') ? formState.errors.lastName[0] : null
-                  }
+                  
                   label="Apellido"
                   name="lastName"
                   onChange={handleChange}
@@ -291,9 +287,7 @@ const SignUp = props => {
                   className={classes.textField}
                   error={hasError('email')}
                   fullWidth
-                  helperText={
-                    hasError('email') ? formState.errors.email[0] : null
-                  }
+                  
                   label="E-mail"
                   name="email"
                   onChange={handleChange}
@@ -305,9 +299,7 @@ const SignUp = props => {
                   className={classes.textField}
                   error={hasError('password')}
                   fullWidth
-                  helperText={
-                    hasError('password') ? formState.errors.password[0] : null
-                  }
+                 
                   label="Contraseña"
                   name="password"
                   onChange={handleChange}

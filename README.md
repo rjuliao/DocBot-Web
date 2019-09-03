@@ -26,13 +26,11 @@ Apliativo web del lado de médico que le ayuda a gestionas los avances del pacie
 
 ## PARA EJECUTAR CORRECTAMENTE EL PROYECTO USTED DEBE:
 
-Instalar las dependencias del proyeto por medio de :
+Descargar el proyecto y luego instalar las dependencias del proyeto por medio de :
 
 ### `npm install`
 
-In the project directory, you can run:
-
-### `npm start`
+Luego, estando en la carpeta del proyecto, usted podrá hacer `npm start` para desplegar el servidor con el proyecto.<br>
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

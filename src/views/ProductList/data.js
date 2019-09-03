@@ -3,27 +3,27 @@ import uuid from 'uuid/v1';
 export default [
   {
     id: uuid(),
-    title: 'Dropbox',
+    title: 'Maria la de barrio',
     description:
-      'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
+      'Enferma a casua del amor que no le diste bb',
     imageUrl: '/images/products/product_1.png',
     totalDownloads: '594',
     updatedAt: '27/03/2019'
   },
   {
     id: uuid(),
-    title: 'Medium Corporation',
+    title: 'Paula Maldonado',
     description:
-      'Medium is an online publishing platform developed by Evan Williams, and launched in August 2012.',
+      'Bateadora profesional, qye viva la vida y el perreo uwu',
     imageUrl: '/images/products/product_2.png',
     totalDownloads: '625',
     createdAt: '31/03/2019'
   },
   {
     id: uuid(),
-    title: 'Slack',
+    title: 'BB-CITAAAA',
     description:
-      'Slack is a cloud-based set of team collaboration tools and services, founded by Stewart Butterfield.',
+      'Lo nuestro es un secreto, que nadie se entere uwu',
     imageUrl: '/images/products/product_3.png',
     totalDownloads: '857',
     createdAt: '03/04/2019'
