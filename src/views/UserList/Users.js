@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductList = () => {
+const Users = () => {
   const classes = useStyles();
 
   const [products] = useState(mockData);
@@ -61,4 +61,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default Users;

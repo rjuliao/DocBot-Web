@@ -1,2 +1,2 @@
-export { default as UsersTable } from './UsersTable';
-export { default as UsersToolbar } from './UsersToolbar';
+export { default as ProductCard } from './ProductCard';
+export { default as ProductsToolbar } from './ProductsToolbar';
