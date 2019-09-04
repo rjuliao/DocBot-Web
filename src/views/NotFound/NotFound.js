@@ -15,6 +15,12 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     maxWidth: '100%',
     width: 560
+  },
+  quoteText: {
+    color: '#D92588'
+  },
+  quote: {
+    color: '#F299CA'
   }
 }));
 
@@ -34,18 +40,12 @@ const NotFound = () => {
           xs={12}
         >
           <div className={classes.content}>
-            <Typography variant="h1">
-              404: The page you are looking for isn’t here
+            <Typography variant="h1" className={classes.quoteText}>
+              404: La página por la que estas buscando no existe
             </Typography>
-            <Typography variant="subtitle2">
-              You either tried some shady route or you came here by mistake.
-              Whichever it is, try using the navigation
+            <Typography variant="subtitle2" className={classes.quote}>
+              Probablemente escribiste algo mal. Te recomendamos usar la barra de navegación para evitar incovenientes
             </Typography>
-            <img
-              alt="Under development"
-              className={classes.image}
-              src="/images/undraw_page_not_found_su7k.svg"
-            />
           </div>
         </Grid>
       </Grid>
