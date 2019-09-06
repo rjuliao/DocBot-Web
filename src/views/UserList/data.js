@@ -14,7 +14,7 @@ export default [
     id: uuid(),
     title: 'Paula Maldonado',
     description:
-      'Bateadora profesional, qye viva la vida y el perreo uwu',
+      'Ingeniera dfghjkloiuh uytghj',
     imageUrl: '/images/products/product_2.png',
     totalDownloads: '625',
     createdAt: '31/03/2019'
