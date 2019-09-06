@@ -3,11 +3,12 @@ $hcolor: rgb(70, 226, 140);
 $font: 'Roboto', sans-serif;
 
 /* Color Theme Swatches in Hex */
-$logo-1-hex: #D92588;
-$logo-2-hex: #F299CA;
-$logo-3-hex: #5D29A6;
-$logo-4-hex: #8760BF;
-$logo-5-hex: #F2F2F2;
+$Nueva-Gama-1-hex: #F4F6F8;
+$Nueva-Gama-2-hex: #1438A6;
+$Nueva-Gama-3-hex: #3F51B5;
+$Nueva-Gama-4-hex: #77CFF2;
+$Nueva-Gama-5-hex: #FFCD42;
+
 
 
 
@@ -31,7 +32,7 @@ html {
   
 
 body {
-    background-color: $logo-5-hex;
+    background-color: $Nueva-Gama-1-hex;
     height: 100%;
     font-family: $font;
 }

@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   addButton: {
-    backgroundColor: '#5D29A6',
+    backgroundColor: '#1438A6',
     color: '#F2F2F2',
   },
   searchInput: {

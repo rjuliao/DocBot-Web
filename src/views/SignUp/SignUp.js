@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '600px'
   },
   quoteText: {
-    color: '#D92588',
+    color: '#3F51B5',
     fontWeight: 300
   },
   name: {
@@ -127,11 +127,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
-    color: '#D92588',
+    color: '#1438A6',
     marginTop: theme.spacing(3)
   },
   textField: {
-    color: '#D92588',
+    color: '#1438A6',
     marginTop: theme.spacing(2)
   },
   policy: {

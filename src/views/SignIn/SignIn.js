@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '600px'
   },
   quoteText: {
-    color: '#D92588',
+    color: '#3F51B5',
     fontWeight: 300
   },
   
@@ -107,7 +107,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     marginTop: theme.spacing(3),
-    color: '#D92588',
+    color: '#1438A6',
   },
   socialButtons: {
     marginTop: theme.spacing(3)

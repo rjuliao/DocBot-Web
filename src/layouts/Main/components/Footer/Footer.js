@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4)
   },
   link: {
-    color: '#D92588',
+    color: '#3F51B5',
   },
   logoun: {
     width: 150,

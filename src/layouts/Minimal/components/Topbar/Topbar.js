@@ -9,7 +9,7 @@ import logo from './images/logo-3.png';
 const useStyles = makeStyles(() => ({
   root: {
     boxShadow: 'none',
-    backgroundColor:  '#5D29A6',
+    backgroundColor:  '#1438A6',
   },
   imageprop: {
     width: 88,

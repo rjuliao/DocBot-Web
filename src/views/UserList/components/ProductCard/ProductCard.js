@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1)
   },
   quote: {
-    color: '#D92588'
+    color: '#1438A6'
   }
 }));
 
