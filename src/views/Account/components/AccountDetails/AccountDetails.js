@@ -38,18 +38,49 @@ const AccountDetails = props => {
     });
   };
 
-  const states = [
+  
+
+  const id = [
     {
-      value: 'alabama',
-      label: 'Alabama'
+      value: "empty"
     },
     {
-      value: 'new-york',
-      label: 'New York'
+      value: 'cc',
+      label: 'Cedula de Ciudadania'
     },
     {
-      value: 'san-francisco',
-      label: 'San Francisco'
+      value: 'ti',
+      label: 'Tarjeta de Identidad'
+    },
+    {
+      value: 'rc',
+      label: 'Registro Civl'
+    },
+    {
+      value: 'pst',
+      label: 'Pasaporte'
+    },
+    {
+      value: 'ce',
+      label: 'Cédula Extranjeria'
+    }
+  ];
+
+  const sexo = [
+    {
+      value: "empty"
+    },
+    {
+      value: 'm',
+      label: 'Masculino'
+    },
+    {
+      value: 'm',
+      label: 'Femenino'
+    },
+    {
+      value: 'o',
+      label: 'Otro'
     }
   ];
 
@@ -63,8 +94,8 @@ const AccountDetails = props => {
         noValidate
       >
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          subheader="Datos personales"
+          title="Crear nuevo paciente"
         />
         <Divider />
         <CardContent>
@@ -79,13 +110,12 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
+                helperText=""
+                label="Nombres"
                 margin="dense"
                 name="firstName"
                 onChange={handleChange}
                 required
-                value={values.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -96,12 +126,11 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                label="Last name"
+                label="Apellidos"
                 margin="dense"
                 name="lastName"
                 onChange={handleChange}
                 required
-                value={values.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -112,12 +141,32 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                label="Email Address"
+                label="Fecha de Nacimiento"
+                margin="dense"
+                name="b-day"
+                onChange={handleChange}
+                required
+                type="date"
+                defaultValue=""
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="E-mail"
                 margin="dense"
                 name="email"
                 onChange={handleChange}
                 required
-                value={values.email}
                 variant="outlined"
               />
             </Grid>
@@ -128,7 +177,7 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                label="Phone Number"
+                label="Número de celular"
                 margin="dense"
                 name="phone"
                 onChange={handleChange}
@@ -144,18 +193,18 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                label="Select State"
+                label="Tipo de doc. indentidad"
                 margin="dense"
-                name="state"
+                name="id"
                 onChange={handleChange}
                 required
                 select
                 // eslint-disable-next-line react/jsx-sort-props
                 SelectProps={{ native: true }}
-                value={values.state}
+                
                 variant="outlined"
               >
-                {states.map(option => (
+                {id.map(option => (
                   <option
                     key={option.value}
                     value={option.value}
@@ -172,24 +221,155 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                label="Country"
+                label="No. documento de identidad"
                 margin="dense"
-                name="country"
+                name="idnumber"
                 onChange={handleChange}
                 required
-                value={values.country}
+                type="number"
                 variant="outlined"
               />
             </Grid>
           </Grid>
         </CardContent>
         <Divider />
+        <CardHeader
+          subheader="Perfil del paciente"
+        />
+        <CardContent>
+          <Grid 
+            container
+            spacing={3}
+          >
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Centro de Salud"
+                  margin="dense"
+                  name="centro-salud"
+                  onChange={handleChange}
+                  required
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+              <TextField
+                fullWidth
+                label="Fecha de Ingreso"
+                margin="dense"
+                name="fecha-ingresp"
+                onChange={handleChange}
+                required
+                type="date"
+                defaultValue=""
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
+            <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Peso"
+                  margin="dense"
+                  name="centro-salud"
+                  onChange={handleChange}
+                  required
+                  type="number"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Altura"
+                  margin="dense"
+                  name="altura"
+                  onChange={handleChange}
+                  required
+                  type="number"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+              <TextField
+                fullWidth
+                label="Sexo"
+                margin="dense"
+                name="sexo"
+                onChange={handleChange}
+                required
+                select
+                // eslint-disable-next-line react/jsx-sort-props
+                SelectProps={{ native: true }}
+                
+                variant="outlined"
+              >
+                {sexo.map(option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+          </Grid>
+        </CardContent>
+        <Divider/>
+        <CardContent>
+          <Grid
+            container   
+            spacing={3}
+          >
+            <Grid
+              item
+              
+              xs={12}
+            >
+              <TextField
+                  fullWidth
+                  label="Contexto clínico en el ingreso actual"
+                  margin="dense"
+                  multiline
+                  rowsMax="6"
+                  name="contexto-inicial"
+                  onChange={handleChange}
+                  margin="normal"
+                  required
+                  variant="outlined"
+                />
+            </Grid>
+          </Grid>
+        </CardContent>
         <CardActions>
           <Button
             color="primary"
             variant="contained"
           >
-            Save details
+            Crear Paciente
           </Button>
         </CardActions>
       </form>

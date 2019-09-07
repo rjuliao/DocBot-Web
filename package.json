@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.3.3",
     "@material-ui/icons": "^4.2.1",
+    "@material-ui/pickers": "^3.2.5",
     "@material-ui/styles": "^4.3.3",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",

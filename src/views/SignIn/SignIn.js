@@ -15,8 +15,6 @@ import {
   CardContent
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
-import { Facebook as FacebookIcon, Google as GoogleIcon } from '../../icons';
 import bcimage from './bgImage/background.jpg';
 import botic from './bgImage/logo-3.png';
 

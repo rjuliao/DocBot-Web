@@ -4,8 +4,8 @@ import { IconButton, Grid, Typography } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-import { ProductsToolbar, ProductCard } from './components';
-import mockData from './data';
+import { UserListToolbar, UserCard } from './components';
+import mockData from './data-user';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,25 +25,25 @@ const useStyles = makeStyles(theme => ({
 const Users = () => {
   const classes = useStyles();
 
-  const [products] = useState(mockData);
+  const [users] = useState(mockData);
 
   return (
     <div className={classes.root}>
-      <ProductsToolbar />
+      <UserListToolbar />
       <div className={classes.content}>
         <Grid
           container
           spacing={3}
         >
-          {products.map(product => (
+          {users.map(user => (
             <Grid
               item
-              key={product.id}
+              key={user.id}
               lg={4}
               md={6}
               xs={12}
             >
-              <ProductCard product={product} />
+              <UserCard user={user} />
             </Grid>
           ))}
         </Grid>

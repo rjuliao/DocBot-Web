@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -8,7 +9,8 @@ import {
   CardActions,
   Typography,
   Grid,
-  Divider
+  Divider,
+  CardActionArea
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -42,8 +44,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductCard = props => {
-  const { className, product, ...rest } = props;
+const UserCard = props => {
+  const { className, user, ...rest } = props;
 
   const classes = useStyles();
 
@@ -52,29 +54,39 @@ const ProductCard = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <CardContent>
-        <div className={classes.imageContainer}>
-          <img
-            alt="Product"
-            className={classes.image}
-            src={product.imageUrl}
-          />
-        </div>
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-          className={classes.quote}
-        >
-          {product.title}
-        </Typography>
-        <Typography
-          align="center"
-          variant="body1"
-        >
-          {product.description}
-        </Typography>
-      </CardContent>
+      <RouterLink to="/dashboard">
+        <CardActionArea>
+          <CardContent>
+            <div className={classes.imageContainer}>
+              <img
+                alt="Product"
+                className={classes.image}
+                
+              />
+            </div>
+            <Typography 
+              align="center"
+              gutterBottom
+              variant="h4"
+              className={classes.quote}
+            >
+              {user.name}
+            </Typography>
+            <Typography
+              align="center"
+              variant="body1"
+            >
+              Edad: {user.age}
+            </Typography>
+            <Typography
+              align="center"
+              variant="body2"
+            >
+              Email: {user.email}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </RouterLink>
       <Divider />
       <CardActions>
         <Grid
@@ -90,7 +102,7 @@ const ProductCard = props => {
               display="inline"
               variant="body2"
             >
-              Ingresada en enero
+              Ingresado en: {user.date}
             </Typography>
           </Grid>
         </Grid>
@@ -99,9 +111,9 @@ const ProductCard = props => {
   );
 };
 
-ProductCard.propTypes = {
+UserCard.propTypes = {
   className: PropTypes.string,
   product: PropTypes.object.isRequired
 };
 
-export default ProductCard;
+export default UserCard;

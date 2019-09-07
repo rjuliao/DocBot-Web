@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductsToolbar = props => {
+const UserListToolbar = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -39,13 +40,14 @@ const ProductsToolbar = props => {
     >
       <div className={classes.row}>
         <span className={classes.spacer} />
-        
-        <Button
-          className={classes.addButton}
-          variant="contained"
-        >
-          Add product
-        </Button>
+        <RouterLink to="/account">
+          <Button
+            className={classes.addButton}
+            variant="contained"
+          >
+            Crear Usuario
+          </Button>
+        </RouterLink>
       </div>
       <div className={classes.row}>
         <SearchInput
@@ -57,8 +59,8 @@ const ProductsToolbar = props => {
   );
 };
 
-ProductsToolbar.propTypes = {
+UserListToolbar.propTypes = {
   className: PropTypes.string
 };
 
-export default ProductsToolbar;
+export default UserListToolbar;
