@@ -54,7 +54,12 @@ const UserCard = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <RouterLink to="/dashboard">
+      <RouterLink 
+        to={{
+          pathname:"/menu",
+          info:{ nombre: "cuando sienta ek boom de este perreo intenso"}
+        }}
+      >
         <CardActionArea>
           <CardContent>
             <div className={classes.imageContainer}>
