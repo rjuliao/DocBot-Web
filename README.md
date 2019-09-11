@@ -1,7 +1,7 @@
 
 # Botic Aplicativo Web
 
-Apliativo web del lado de médico que le ayuda a gestionas los avances del paciente y mantenerlo bajo su control.<br> 
+Aplicativo web del lado de médico que le ayuda a gestionas los avances del paciente y mantenerlo bajo su control absoluto.<br> 
 
 `One web to rule the all`<br>
     `one web to find them`<br>
@@ -13,7 +13,8 @@ Apliativo web del lado de médico que le ayuda a gestionas los avances del pacie
 
 ### Librerias que usa el proyecto
 
-* Material-UI 
+* Material-UI
+* Mongoose
 * React Router
 * Node SASS
 * Recompose
