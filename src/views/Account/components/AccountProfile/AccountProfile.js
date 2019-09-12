@@ -11,16 +11,16 @@ import {
   Typography,
   Divider,
   Button,
-  LinearProgress
+  LinearProgress,
+  Grid
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {},
   details: {
-    display: 'flex'
+    textAlign: 'center',
   },
   avatar: {
-    marginLeft: 'auto',
     height: 110,
     width: 100,
     flexShrink: 0,
@@ -53,41 +53,12 @@ const AccountProfile = props => {
       className={clsx(classes.root, className)}
     >
       <CardContent>
-        <div className={classes.details}>
-          <div>
-            <Typography
-              gutterBottom
-              variant="h2"
-            >
-              John Doe
-            </Typography>
-            <Typography
-              className={classes.locationText}
-              color="textSecondary"
-              variant="body1"
-            >
-              {user.city}, {user.country}
-            </Typography>
-            <Typography
-              className={classes.dateText}
-              color="textSecondary"
-              variant="body1"
-            >
-              {moment().format('hh:mm A')} ({user.timezone})
-            </Typography>
-          </div>
+        <Grid container justify="center" alignItems="center">
           <Avatar
             className={classes.avatar}
             src={user.avatar}
           />
-        </div>
-        <div className={classes.progress}>
-          <Typography variant="body1">Profile Completeness: 70%</Typography>
-          <LinearProgress
-            value={70}
-            variant="determinate"
-          />
-        </div>
+        </Grid>
       </CardContent>
       <Divider />
       <CardActions>
@@ -96,9 +67,8 @@ const AccountProfile = props => {
           color="primary"
           variant="text"
         >
-          Upload picture
+          Cambiar Avatar
         </Button>
-        <Button variant="text">Remove picture</Button>
       </CardActions>
     </Card>
   );

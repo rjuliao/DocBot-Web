@@ -39,21 +39,19 @@ const UserListToolbar = props => {
       className={clsx(classes.root, className)}
     >
       <div className={classes.row}>
+        <SearchInput
+          className={classes.searchInput}
+          placeholder="Buscar Paciente"
+        />
         <span className={classes.spacer} />
         <RouterLink to="/account">
           <Button
             className={classes.addButton}
             variant="contained"
           >
-            Crear Usuario
+            Crear Paciente
           </Button>
         </RouterLink>
-      </div>
-      <div className={classes.row}>
-        <SearchInput
-          className={classes.searchInput}
-          placeholder="Search product"
-        />
       </div>
     </div>
   );

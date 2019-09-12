@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = props => {
-  const { className, ...rest } = props;
+  const { className,  ...rest } = props;
 
   const classes = useStyles();
 

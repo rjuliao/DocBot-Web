@@ -17,6 +17,7 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import bcimage from './bgImage/background.jpg';
 import botic from './bgImage/logo-3.png';
+import { signIn } from '../../services/api';
 
 
 const schema = {
@@ -123,7 +124,6 @@ const useStyles = makeStyles(theme => ({
   },
   signInButton: {
     margin: theme.spacing(2, 0),
-    color: '#D92588',
   }
 }));
 
@@ -153,6 +153,7 @@ const SignIn = props => {
     history.goBack();
   };
 
+  /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {
     event.persist();
 
@@ -171,10 +172,35 @@ const SignIn = props => {
       }
     }));
   };
+  
+  /**
+   * Login del médico
+   * @param {*} email 
+   * @param {*} password 
+   */
+  const login = (email, password) =>{
+    signIn(email,password)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        if (json["login"] == true) {
+          console.log("Ingreso exitoso");
+        } else {
+          console.log("Ingreso Malo xd");
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+        
+      });
+  };
 
+  /****************Acá se toma la información del usuario*********************/
   const handleSignIn = event => {
     event.preventDefault();
-    history.push('/');
+    login(formState.values.email, formState.values.password);
+    //history.push('/');
   };
 
   const hasError = field =>
@@ -219,11 +245,7 @@ const SignIn = props => {
           xs={12}
         >
           <div className={classes.content}>
-            <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
-                <ArrowBackIcon />
-              </IconButton>
-            </div>
+            
             <div className={classes.contentBody}>
               <form
                 className={classes.form}
@@ -262,7 +284,7 @@ const SignIn = props => {
                 />
                 <Button
                   className={classes.signInButton}
-                  color="#5D29A6"
+                  color="primary"
                   disabled={!formState.isValid}
                   fullWidth
                   size="large"

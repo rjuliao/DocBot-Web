@@ -22,14 +22,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Users = () => {
+const Users = props => {
+  const {location} = props;
   const classes = useStyles();
 
   const [users] = useState(mockData);
 
   return (
     <div className={classes.root}>
-      <UserListToolbar />
+      
+      <UserListToolbar  />
       <div className={classes.content}>
         <Grid
           container

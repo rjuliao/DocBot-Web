@@ -6,16 +6,24 @@ import { Link as RouterLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(3)
+    root: { 
+        marginTop: '5px',
     },
     buttonbase: {
         margin: '10px',
         width: 200,
         height: 50,
-        color: '#3F51B5'
+        color: '#F4F6F8'
 
-    }
+    },
+    row: {
+        height: '42px',
+        display: 'flex',
+        alignItems: 'center'
+    },
+    spacer: {
+        flexGrow: 1
+    },
 }));
 
 
@@ -25,67 +33,49 @@ const MenuButtons = props =>{
 
     return(
         <div className={classes.root}>
-            <Card>
-                <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                    spacing={3}
+            <div className={classes.row}>
+                <Button
+                    fullWidth
+                    variant="contained"
+                    size="medium"
+                    color="primary"
+                    className={classes.buttonbase}
                 >
-                    
-                    <Grid
-                        item
-                        xs={3}
+                    Metas
+                </Button>
+                <span className={classes.spacer} />
+                <RouterLink to="/dashboard">
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        size="medium"
+                        color="primary"
+                        className={classes.buttonbase}
                     >
-                        <Button
-                            fullWidth
-                            color="primary"
-                            className={classes.buttonbase}
-                        >
-                            Metas
-                        </Button>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                    >
-                        <RouterLink to="/dashboard">
-                            <Button
-                                fullWidth
-                                color="primary"
-                                className={classes.buttonbase}
-                            >
-                                Gráficos y Avances
-                            </Button>
-                        </RouterLink>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                    >
-                        <Button
-                            fullWidth
-                            color="primary"
-                            className={classes.buttonbase}
-                        >
-                            Paraclínicos
-                        </Button>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                    >
-                        <Button
-                            fullWidth
-                            color="primary"
-                            className={classes.buttonbase}
-                        >
-                            Modelo Bayesiano
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Card>
+                        Gráficos y Avances
+                    </Button>
+                </RouterLink>
+                <span className={classes.spacer} />
+                <Button
+                    fullWidth
+                    variant="contained"
+                    size="medium"
+                    color="primary"
+                    className={classes.buttonbase}
+                >
+                    Paraclínicos
+                </Button>
+                <span className={classes.spacer} />
+                <Button
+                    fullWidth
+                    variant="contained"
+                    size="medium"
+                    color="primary"
+                    className={classes.buttonbase}
+                >
+                    Modelo Bayesiano
+                </Button>
+            </div>
         </div>
     );
 };

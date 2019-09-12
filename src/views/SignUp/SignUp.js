@@ -19,6 +19,7 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import bcimage from './bgImage/background.jpg';
 import botic from './bgImage/logo-3.png';
+import { singUp } from '../../services/api';
 
 const schema = {
   firstName: {
@@ -168,7 +169,8 @@ const SignUp = props => {
       errors: errors || {}
     }));
   }, [formState.values]);
-
+  
+  /**Aquí se guarda la información de los textFields**/
   const handleChange = event => {
     event.persist();
 
@@ -192,9 +194,38 @@ const SignUp = props => {
     history.goBack();
   };
 
+  /**
+   * Se debe comparar que el correo no exista
+   * @param {*} name 
+   * @param {*} lastname 
+   * @param {*} email 
+   * @param {*} password 
+   */
+  const singup = (name, lastname, medicalCenter, email, password) =>{
+    singUp(name, lastname, medicalCenter, email, password)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        if (json["email"] == email) {
+          console.log("BIENVENIDO");
+        } else {
+          console.log("AH?")
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+        
+      });
+  };
+
+  /**Creación del objeto con la información del registro del médico**/
   const handleSignUp = event => {
     event.preventDefault();
-    history.push('/');
+   
+    singup( formState.values.firstName,formState.values.lastName, "0000",
+      formState.values.email,formState.values.password)
+    //history.push();
   };
 
   const hasError = field =>
@@ -249,7 +280,7 @@ const SignUp = props => {
               >
                 <Typography
                   className={classes.title}
-                  variant="h2"
+                  variant="h1"
                 >
                   Regristarme
                 </Typography>
@@ -263,7 +294,6 @@ const SignUp = props => {
                   className={classes.textField}
                   error={hasError('firstName')}
                   fullWidth
-                  
                   label="Nombre"
                   name="firstName"
                   onChange={handleChange}
