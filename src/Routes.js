@@ -14,7 +14,8 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  Menu as PacientMenu
+  Menu as PacientMenu,
+  Metas as Metas
 } from './views';
 
 const Routes = () => {
@@ -42,6 +43,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/users"
+      />
+      <RouteWithLayout
+        component={Metas}
+        exact
+        layout={MainLayout}
+        path="/metas"
       />
       <RouteWithLayout
         component={TypographyView}

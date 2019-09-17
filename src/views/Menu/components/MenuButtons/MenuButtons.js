@@ -34,15 +34,17 @@ const MenuButtons = props =>{
     return(
         <div className={classes.root}>
             <div className={classes.row}>
-                <Button
-                    fullWidth
-                    variant="contained"
-                    size="medium"
-                    color="primary"
-                    className={classes.buttonbase}
-                >
-                    Metas
-                </Button>
+                <RouterLink to="/metas">
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        size="medium"
+                        color="primary"
+                        className={classes.buttonbase}
+                    >
+                        Metas
+                    </Button>
+                </RouterLink>
                 <span className={classes.spacer} />
                 <RouterLink to="/dashboard">
                     <Button

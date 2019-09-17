@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { Button } from '@material-ui/core';
+import {  Button, 
+          ButtonGroup, 
+          Popper, 
+          Grow, 
+          Paper, 
+          MenuList,
+          MenuItem} from '@material-ui/core';
 import { SearchInput } from '../../../../components';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Users from '../../Users';
 
-
+const options = ['Mostrar lista', 'Mostrar detalle'];
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -33,6 +42,8 @@ const UserListToolbar = props => {
 
   const classes = useStyles();
 
+  
+
   return (
     <div
       {...rest}
@@ -43,6 +54,7 @@ const UserListToolbar = props => {
           className={classes.searchInput}
           placeholder="Buscar Paciente"
         />
+        
         <span className={classes.spacer} />
         <RouterLink to="/account">
           <Button

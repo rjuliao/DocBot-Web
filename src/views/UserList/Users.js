@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { IconButton, Grid, Typography } from '@material-ui/core';
+import { IconButton, Grid, Typography, FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-import { UserListToolbar, UserCard } from './components';
+import { UserListToolbar, UserCard, UserTable } from './components';
 import mockData from './data-user';
+import { typography } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,32 +24,59 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Users = props => {
-  const {location} = props;
+  const {location, showinfo} = props;
   const classes = useStyles();
 
   const [users] = useState(mockData);
+
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+  });
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+    console.log(state.checkedB==true)
+  };
 
   return (
     <div className={classes.root}>
       
       <UserListToolbar  />
       <div className={classes.content}>
-        <Grid
-          container
-          spacing={3}
-        >
-          {users.map(user => (
-            <Grid
-              item
-              key={user.id}
-              lg={4}
-              md={6}
-              xs={12}
-            >
-              <UserCard user={user} />
-            </Grid>
-          ))}
-        </Grid>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={state.checkedB}
+              onChange={handleChange('checkedB')}
+              value="checkedB"
+              color="primary"
+            />
+          }
+          label="Ver lista"
+        />
+      </div>
+      <div className={classes.content}>
+        {!state.checkedB?
+          <Grid
+            container
+            spacing={3}
+          >
+            
+              {users.map(user => (
+                <Grid
+                  item
+                  key={user.id}
+                  lg={4}
+                  md={6}
+                  xs={12}
+                > 
+                  <UserCard user={user} />
+                </Grid>
+              ))}
+          </Grid>:
+          <UserTable users={users} />
+        }
       </div>
       <div className={classes.pagination}>
         <Typography variant="caption">1-6 of 20</Typography>
