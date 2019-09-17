@@ -185,8 +185,12 @@ const SignIn = props => {
       })
       .then(json => {
         if (json["login"] == true) {
-          console.log("Ingreso exitoso");
+          localStorage.setItem("name", json["name"]);
+          localStorage.setItem("lastName", json["lastName"]);
+          localStorage.setItem("medicalCenter", json["medicalCenter"]);
+          history.push('/users');
         } else {
+
           console.log("Ingreso Malo xd");
         }
       })
@@ -200,7 +204,6 @@ const SignIn = props => {
   const handleSignIn = event => {
     event.preventDefault();
     login(formState.values.email, formState.values.password);
-    //history.push('/');
   };
 
   const hasError = field =>

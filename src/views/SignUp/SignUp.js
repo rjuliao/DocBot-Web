@@ -209,13 +209,14 @@ const SignUp = props => {
       .then(json => {
         if (json["email"] == email) {
           console.log("BIENVENIDO");
+          history.push('/');
+
         } else {
           console.log("AH?")
         }
       })
       .catch(error => {
         console.log(error.message);
-        
       });
   };
 
@@ -223,9 +224,8 @@ const SignUp = props => {
   const handleSignUp = event => {
     event.preventDefault();
    
-    singup( formState.values.firstName,formState.values.lastName, "0000",
+    singup( formState.values.firstName,formState.values.lastName, "H. UNIVERSIDAD DEL NORTE",
       formState.values.email,formState.values.password)
-    //history.push();
   };
 
   const hasError = field =>

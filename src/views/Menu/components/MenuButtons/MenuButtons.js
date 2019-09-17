@@ -73,7 +73,7 @@ const MenuButtons = props =>{
                     color="primary"
                     className={classes.buttonbase}
                 >
-                    Modelo Bayesiano
+                    Chat Bot
                 </Button>
             </div>
         </div>

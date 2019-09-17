@@ -48,9 +48,12 @@ const Profile = props => {
         className={classes.name}
         variant="h4"
       >
-        {user.name}
+        
+        {localStorage.getItem("name")+" "+ localStorage.getItem("lastName")}
       </Typography>
-      <Typography variant="body2">{user.bio}</Typography>
+      <Typography variant="body2">
+        {localStorage.getItem("medicalCenter")}
+      </Typography>
     </div>
   );
 };
