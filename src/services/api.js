@@ -25,3 +25,43 @@ export function singUp(name, lastName, medicalCenter,  email, password){
         headers: {'Content-Type':'application/json',}
     });
 }
+
+/**
+ * Registar un paciente
+ * @param {*} name 
+ * @param {*} lastName 
+ * @param {*} birthdate 
+ * @param {*} documentType 
+ * @param {*} documentNumber 
+ * @param {*} weight 
+ * @param {*} height 
+ * @param {*} sex 
+ * @param {*} password 
+ * @param {*} clinicalContext 
+ * @param {*} medicalCenter 
+ * @param {*} dateAssociation 
+ * @param {*} idDoctor
+ */
+export function regPaciente(name, lastName, birthdate, documentType, documentNumber, weight, height,
+     sex, password, clinicalContext, medicalCenter, dateAssociation, idDoctor){
+    
+    return fetch('http://localhost:8080/api/patients/',{
+        method: 'POST',
+        body: JSON.stringify({name, lastName, birthdate, documentType, documentNumber, weight, height, 
+            sex, password, clinicalContext, dateAssociation, medicalCenter, idDoctor}),
+        headers: {'Content-Type':'application/json',}
+    });
+    
+}
+
+/**
+ * Obtengo una lista de pacientes a partir del id de doctor
+ * @param {*} idDoctor 
+ */
+export function getPatients(idDoctor){
+    return fetch('http://localhost:8080/api/patients/buscar',{
+        method: 'POST',
+        body: JSON.stringify({idDoctor}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
