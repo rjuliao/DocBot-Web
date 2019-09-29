@@ -15,7 +15,7 @@ import {
   SignIn as SignInView,
   NotFound as NotFoundView,
   Menu as PacientMenu,
-  Metas as Metas
+  Goals as Goals
 } from './views';
 
 const Routes = () => {
@@ -42,13 +42,13 @@ const Routes = () => {
         component={UserListView}
         exact
         layout={MainLayout}
-        path="/users"
+        path="/pacientes"
       />
       <RouteWithLayout
-        component={Metas}
+        component={Goals}
         exact
         layout={MainLayout}
-        path="/metas"
+        path="/goals"
       />
       <RouteWithLayout
         component={TypographyView}
