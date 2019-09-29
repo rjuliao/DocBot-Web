@@ -34,6 +34,12 @@ const schema = {
       maximum: 32
     }
   },
+  centro_medico: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 32
+    }
+  },
   email: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     email: true,
@@ -209,7 +215,7 @@ const SignUp = props => {
       .then(json => {
         if (json["email"] == email) {
           console.log("BIENVENIDO");
-          history.push('/');
+          history.push('/sign-in');
 
         } else {
           console.log("AH?")
@@ -224,7 +230,7 @@ const SignUp = props => {
   const handleSignUp = event => {
     event.preventDefault();
    
-    singup( formState.values.firstName,formState.values.lastName, "H. UNIVERSIDAD DEL NORTE",
+    singup( formState.values.firstName,formState.values.lastName, formState.values.centro_medico,
       formState.values.email,formState.values.password)
   };
 
@@ -311,6 +317,18 @@ const SignUp = props => {
                   onChange={handleChange}
                   type="text"
                   value={formState.values.lastName || ''}
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textField}
+                  error={hasError('centro_medico')}
+                  fullWidth
+                  
+                  label="Centro Médico Afiliado"
+                  name="centro_medico"
+                  onChange={handleChange}
+                  type="text"
+                  value={formState.values.centro_medico || ''}
                   variant="outlined"
                 />
                 <TextField

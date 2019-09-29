@@ -14,7 +14,6 @@ import {
   CardMedia,
   CardContent
 } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import bcimage from './bgImage/background.jpg';
 import botic from './bgImage/logo-3.png';
 import { signIn } from '../../services/api';
@@ -128,7 +127,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignIn = props => {
-  const { history } = props;
+  const { history} = props;
 
   const classes = useStyles();
 
@@ -173,6 +172,10 @@ const SignIn = props => {
     }));
   };
   
+  const hasError = field =>
+    formState.touched[field] && formState.errors[field] ? true : false;
+
+
   /**
    * Login del médico
    * @param {*} email 
@@ -185,10 +188,11 @@ const SignIn = props => {
       })
       .then(json => {
         if (json["login"] == true) {
+          localStorage.setItem("id", json["id"])
           localStorage.setItem("name", json["name"]);
           localStorage.setItem("lastName", json["lastName"]);
           localStorage.setItem("medicalCenter", json["medicalCenter"]);
-          history.push('/users');
+          history.push('/pacientes');
         } else {
 
           console.log("Ingreso Malo xd");
@@ -206,8 +210,7 @@ const SignIn = props => {
     login(formState.values.email, formState.values.password);
   };
 
-  const hasError = field =>
-    formState.touched[field] && formState.errors[field] ? true : false;
+
 
   return (
     <div className={classes.root}>

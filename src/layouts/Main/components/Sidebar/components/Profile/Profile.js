@@ -54,6 +54,7 @@ const Profile = props => {
       <Typography variant="body2">
         {localStorage.getItem("medicalCenter")}
       </Typography>
+      
     </div>
   );
 };

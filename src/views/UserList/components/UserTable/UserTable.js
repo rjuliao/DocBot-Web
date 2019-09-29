@@ -107,17 +107,7 @@ const UserTable = props => {
             <Table>
                 <TableHead>
                     <TableRow>
-                    <TableCell padding="checkbox">
-                        <Checkbox
-                        checked={selectedUsers.length === users.length}
-                        color="primary"
-                        indeterminate={
-                            selectedUsers.length > 0 &&
-                            selectedUsers.length < users.length
-                        }
-                        onChange={handleSelectAll}
-                        />
-                    </TableCell>
+                    <TableCell> </TableCell>
                     <TableCell>Nombre</TableCell>
                     <TableCell>Email</TableCell>
                     <TableCell>Edad</TableCell>
@@ -133,31 +123,22 @@ const UserTable = props => {
                         key={user.id}
                         selected={selectedUsers.indexOf(user.id) !== -1}
                     >
-                        <TableCell padding="checkbox">
-                        <Checkbox
-                            checked={selectedUsers.indexOf(user.id) !== -1}
-                            color="primary"
-                            onChange={event => handleSelectOne(event, user.id)}
-                            value="true"
-                        />
-                        </TableCell>
                         <TableCell>
-                        <div className={classes.nameContainer}>
-                            <RouterLink 
-                                to={{
-                                pathname:"/menu",
-                                info:{ nombre: "cuando sienta ek boom de este perreo intenso"}
-                                }}
+                          <RouterLink 
+                              to={{
+                              pathname:"/menu",
+                              info:{ nombre: user}
+                              }}
                             >
-                                <Fab size="small" color="primary" aria-label="add" className={classes.margin}>
-                                    <AccessibilityIcon />
-                                </Fab>
-                            </RouterLink>
-                            <Typography variant="body1">{user.name}</Typography>
-                        </div>
+                              <Fab size="small" color="primary" aria-label="add" className={classes.margin}>
+                                  <AccessibilityIcon />
+                              </Fab>
+                          </RouterLink>
+                        </TableCell>
+                        <TableCell>              
+                          <Typography variant="body1">{user.name}</Typography>
                         </TableCell>
                         <TableCell>{user.email}</TableCell>
-                    
                         <TableCell>{user.age} años</TableCell>
                         <TableCell>
                         {moment(user.createdAt).format('DD/MM/YYYY')}

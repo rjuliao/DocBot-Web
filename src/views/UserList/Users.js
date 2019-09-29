@@ -3,10 +3,9 @@ import { makeStyles } from '@material-ui/styles';
 import { IconButton, Grid, Typography, FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-
 import { UserListToolbar, UserCard, UserTable } from './components';
 import mockData from './data-user';
-import { typography } from '@material-ui/system';
+import { getPatients } from '../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +26,7 @@ const Users = props => {
   const {location, showinfo} = props;
   const classes = useStyles();
 
-  const [users] = useState(mockData);
+  var [users] = useState(mockData);
 
   const [state, setState] = React.useState({
     checkedA: true,
@@ -39,10 +38,28 @@ const Users = props => {
     console.log(state.checkedB==true)
   };
 
+  const handleUsers = () => {
+    console.log(localStorage.getItem("id"))
+
+    getPatients(localStorage.getItem("id"))
+    .then(response => {
+      return response.json();
+    })  
+    .then(json => {
+      //console.log(JSON.stringify(json));
+      users = json;
+      console.log(users);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+  }
+
+  
+
   return (
-    <div className={classes.root}>
-      
-      <UserListToolbar  />
+    <div className={classes.root} >
+      <UserListToolbar/>
       <div className={classes.content}>
         <FormControlLabel
           control={
@@ -56,13 +73,12 @@ const Users = props => {
           label="Ver lista"
         />
       </div>
-      <div className={classes.content}>
+      <div className={classes.content} onLoad={handleUsers()}>
         {!state.checkedB?
           <Grid
             container
             spacing={3}
           >
-            
               {users.map(user => (
                 <Grid
                   item

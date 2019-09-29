@@ -11,11 +11,6 @@ import {  Button,
           MenuList,
           MenuItem} from '@material-ui/core';
 import { SearchInput } from '../../../../components';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Users from '../../Users';
-
-const options = ['Mostrar lista', 'Mostrar detalle'];
 
 const useStyles = makeStyles(theme => ({
   root: {},

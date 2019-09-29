@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
 
 
 const Menu = props =>{
+    const { location } = props
     const classes = useStyles();
-    console.log("about", props.location.info)
 
     return(
         <div className={classes.root}>
@@ -45,7 +45,7 @@ const Menu = props =>{
                     item
                     xs={12}
                 >
-                    <InformationCard/>
+                    <InformationCard user={location.info.nombre}/>
                 </Grid>
             </Grid>
         </div>

@@ -34,7 +34,7 @@ const MenuButtons = props =>{
     return(
         <div className={classes.root}>
             <div className={classes.row}>
-                <RouterLink to="/metas">
+                <RouterLink to="/goals">
                     <Button
                         fullWidth
                         variant="contained"

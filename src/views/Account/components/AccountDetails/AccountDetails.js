@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import validate from 'validate.js';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -12,77 +14,179 @@ import {
   Button,
   TextField
 } from '@material-ui/core';
+import { regPaciente } from '../../../../services/api';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
+const id = [
+  {
+    value: "empty"
+  },
+  {
+    value: 'cc',
+    label: 'Cedula de Ciudadania'
+  },
+  {
+    value: 'ti',
+    label: 'Tarjeta de Identidad'
+  },
+  {
+    value: 'rc',
+    label: 'Registro Civil'
+  },
+  {
+    value: 'pst',
+    label: 'Pasaporte'
+  },
+  {
+    value: 'ce',
+    label: 'Cédula Extranjeria'
+  }
+];
+
+const sexo = [
+  {
+    value: "empty"
+  },
+  {
+    value: 'm',
+    label: 'Masculino'
+  },
+  {
+    value: 'f',
+    label: 'Femenino'
+  },
+  {
+    value: 'o',
+    label: 'Otro'
+  }
+];
+
+const schema = {
+  name: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 32
+    }
+  },
+  lastName: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 32
+    }
+  },
+  centro_medico: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 32
+    }
+  },
+  idCard: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    email: true,
+    length: {
+      maximum: 15
+    }
+  },
+  peso: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 5
+    }
+  },
+  altura: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 5
+    }
+  }
+};
+
 const AccountDetails = props => {
-  const { className, ...rest } = props;
+  const { history, className, ...rest } = props;
 
   const classes = useStyles();
 
-  const [values, setValues] = useState({
-    firstName: 'Shen',
-    lastName: 'Zhi',
-    email: 'shen.zhi@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
+  const [formState, setFormState] = useState({
+    isValid: false,
+    values: {},
+    touched: {},
+    errors: {}
   });
 
+  useEffect(() => {
+    const errors = validate(formState.values, schema);
+
+    setFormState(formState => ({
+      ...formState,
+      isValid: errors ? false : true,
+      errors: errors || {}
+    }));
+  }, [formState.values]);
+
+ 
+  /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
+    event.persist();
+
+    setFormState(formState => ({
+      ...formState,
+      values: {
+        ...formState.values,
+        [event.target.name]:
+          event.target.type === 'checkbox'
+            ? event.target.checked
+            : event.target.value
+      },
+      touched: {
+        ...formState.touched,
+        [event.target.name]: true
+      }
+    }));
   };
-
   
+  const hasError = field =>
+    formState.touched[field] && formState.errors[field] ? true : false;
 
-  const id = [
-    {
-      value: "empty"
-    },
-    {
-      value: 'cc',
-      label: 'Cedula de Ciudadania'
-    },
-    {
-      value: 'ti',
-      label: 'Tarjeta de Identidad'
-    },
-    {
-      value: 'rc',
-      label: 'Registro Civl'
-    },
-    {
-      value: 'pst',
-      label: 'Pasaporte'
-    },
-    {
-      value: 'ce',
-      label: 'Cédula Extranjeria'
-    }
-  ];
 
-  const sexo = [
-    {
-      value: "empty"
-    },
-    {
-      value: 'm',
-      label: 'Masculino'
-    },
-    {
-      value: 'm',
-      label: 'Femenino'
-    },
-    {
-      value: 'o',
-      label: 'Otro'
-    }
-  ];
+
+  const registro = (name, lastName, b_date, 
+    idtipo, idCard, peso, altura, sexo, psw, 
+    contexto, centre_medico, fecha_ingreso, idDoctor) =>{
+      
+    regPaciente(name, lastName, b_date, idtipo, idCard, peso, altura,
+      sexo, psw, contexto, centre_medico, fecha_ingreso, idDoctor)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        if (json["name"] == name) {
+          console.log("Usuario creado");
+          history.push('/pacientes');
+
+        } else {
+          console.log(".,mn")
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }
+
+
+ 
+  /***************Registro del paciente****************/
+  const handleRegister = event =>{
+    event.preventDefault();
+    registro(formState.values.name, formState.values.lastName, 
+      formState.values.b_day, formState.values.tipoid, formState.values.idnumber,
+      formState.values.peso, formState.values.altura,
+      formState.values.sexo, formState.values.idnumber, formState.values.contexto,
+      formState.values.centro_medico, formState.values.fecha_ingreso, localStorage.getItem("id"));
+
+  }
 
   return (
     <Card
@@ -92,6 +196,7 @@ const AccountDetails = props => {
       <form
         autoComplete="off"
         noValidate
+        onSubmit={handleRegister}
       >
         <CardHeader
           subheader="Datos personales"
@@ -109,12 +214,15 @@ const AccountDetails = props => {
               xs={12}
             >
               <TextField
+              
+                error={hasError('name')}
                 fullWidth
                 helperText=""
                 label="Nombres"
                 margin="dense"
-                name="firstName"
+                name="name"
                 onChange={handleChange}
+                value={formState.values.name || ''}
                 required
                 variant="outlined"
               />
@@ -125,11 +233,13 @@ const AccountDetails = props => {
               xs={12}
             >
               <TextField
+                error={hasError('lastName')}
                 fullWidth
                 label="Apellidos"
                 margin="dense"
                 name="lastName"
                 onChange={handleChange}
+                value={formState.values.lastName || ''}
                 required
                 variant="outlined"
               />
@@ -143,8 +253,9 @@ const AccountDetails = props => {
                 fullWidth
                 label="Fecha de Nacimiento"
                 margin="dense"
-                name="b-day"
+                name="b_day"
                 onChange={handleChange}
+                value={formState.values.b_day || ''}
                 required
                 type="date"
                 defaultValue=""
@@ -152,22 +263,6 @@ const AccountDetails = props => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-              />
-
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="E-mail"
-                margin="dense"
-                name="email"
-                onChange={handleChange}
-                required
-                variant="outlined"
               />
             </Grid>
             <Grid
@@ -181,8 +276,8 @@ const AccountDetails = props => {
                 margin="dense"
                 name="phone"
                 onChange={handleChange}
+                value={formState.values.phone || ''}
                 type="number"
-                value={values.phone}
                 variant="outlined"
               />
             </Grid>
@@ -195,8 +290,9 @@ const AccountDetails = props => {
                 fullWidth
                 label="Tipo de doc. indentidad"
                 margin="dense"
-                name="id"
+                name="tipoid"
                 onChange={handleChange}
+                value={formState.values.tipoid || ''}
                 required
                 select
                 // eslint-disable-next-line react/jsx-sort-props
@@ -225,6 +321,7 @@ const AccountDetails = props => {
                 margin="dense"
                 name="idnumber"
                 onChange={handleChange}
+                value={formState.values.idnumber || ''}
                 required
                 type="number"
                 variant="outlined"
@@ -248,10 +345,12 @@ const AccountDetails = props => {
               >
                 <TextField
                   fullWidth
+                  error={hasError('centro_medico')}
                   label="Centro de Salud"
                   margin="dense"
-                  name="centro-salud"
+                  name="centro_medico"
                   onChange={handleChange}
+                  value={formState.values.centro_medico || ''}
                   required
                   variant="outlined"
                 />
@@ -265,8 +364,9 @@ const AccountDetails = props => {
                 fullWidth
                 label="Fecha de Ingreso"
                 margin="dense"
-                name="fecha-ingresp"
+                name="fecha_ingreso"
                 onChange={handleChange}
+                value={formState.values.fecha_ingreso || ''}
                 required
                 type="date"
                 defaultValue=""
@@ -283,10 +383,12 @@ const AccountDetails = props => {
               >
                 <TextField
                   fullWidth
+                  error={hasError('peso')}
                   label="Peso"
                   margin="dense"
-                  name="centro-salud"
+                  name="peso"
                   onChange={handleChange}
+                  value={formState.values.peso || ''}
                   required
                   type="number"
                   variant="outlined"
@@ -299,10 +401,12 @@ const AccountDetails = props => {
               >
                 <TextField
                   fullWidth
+                  error={hasError('altura')}
                   label="Altura"
                   margin="dense"
                   name="altura"
                   onChange={handleChange}
+                  value={formState.values.altura || ''}
                   required
                   type="number"
                   variant="outlined"
@@ -319,6 +423,7 @@ const AccountDetails = props => {
                 margin="dense"
                 name="sexo"
                 onChange={handleChange}
+                value={formState.values.sexo || ''}
                 required
                 select
                 // eslint-disable-next-line react/jsx-sort-props
@@ -355,8 +460,9 @@ const AccountDetails = props => {
                   margin="dense"
                   multiline
                   rowsMax="6"
-                  name="contexto-inicial"
+                  name="contexto"
                   onChange={handleChange}
+                  value={formState.values.contexto || ''}
                   margin="normal"
                   required
                   variant="outlined"
@@ -365,12 +471,13 @@ const AccountDetails = props => {
           </Grid>
         </CardContent>
         <CardActions>
-          <Button
-            color="primary"
-            variant="contained"
-          >
-            Crear Paciente
-          </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+            >
+              Crear Paciente
+            </Button>
         </CardActions>
       </form>
     </Card>
@@ -378,7 +485,8 @@ const AccountDetails = props => {
 };
 
 AccountDetails.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  history: PropTypes.object
 };
 
-export default AccountDetails;
+export default withRouter(AccountDetails);

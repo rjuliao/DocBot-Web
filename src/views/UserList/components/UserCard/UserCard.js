@@ -57,7 +57,7 @@ const UserCard = props => {
       <RouterLink 
         to={{
           pathname:"/menu",
-          info:{ nombre: "cuando sienta ek boom de este perreo intenso"}
+          info:{ nombre: user}
         }}
       >
         <CardActionArea>
@@ -75,7 +75,7 @@ const UserCard = props => {
               variant="h4"
               className={classes.quote}
             >
-              {user.name}
+              {user.name} 
             </Typography>
             <Typography
               align="center"

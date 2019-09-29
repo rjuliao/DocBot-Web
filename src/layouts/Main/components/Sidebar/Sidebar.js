@@ -45,19 +45,8 @@ const Sidebar = props => {
   const pages = [
     {
       title: 'Pacientes',
-      href: '/users',
+      href: '/pacientes',
       icon: <PeopleIcon/>
-    },
-    
-    {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Typography',
-      href: '/typography',
-      icon: <TextFieldsIcon />
     },
     
     {

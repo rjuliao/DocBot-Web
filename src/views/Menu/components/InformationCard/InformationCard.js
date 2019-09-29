@@ -26,8 +26,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InformationCard = props => {
+    const { user } = props
     const classes = useStyles();
-
+    
 
     return(
         <Card className={classes.root}>
@@ -57,7 +58,7 @@ const InformationCard = props => {
                             className={classes.infoTop}
                             variant="h2"
                         >
-                            Pedrito Perez
+                            {user.name}
                         </Typography>
                     </Grid>
                     <Grid
@@ -69,19 +70,19 @@ const InformationCard = props => {
                             className={classes.info}
                             variant="h6"
                         >
-                            Edad: 45 años
+                            Edad: {user.age}
                         </Typography>
                         <Typography
                             className={classes.info}
                             variant="h6"
                         >
-                            E-mail: pedrito-perez@botic.com
+                            E-mail: {user.email}
                         </Typography>
                         <Typography
                             className={classes.info}    
                             variant="h6"
                         >
-                            Identificación: CC. 123.456.789
+                            Identificación: {user.id}
                         </Typography>
                         <Typography
                             className={classes.info}    
@@ -93,8 +94,7 @@ const InformationCard = props => {
                             className={classes.info}    
                             variant="h6"
                         >
-                            Fecha de Nacimiento: 14-09-2019
-                        </Typography>
+                            Fecha de Nacimiento: {user.date}                        </Typography>
                     </Grid>
                     <Grid
                         item
