@@ -6,6 +6,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { UserListToolbar, UserCard, UserTable } from './components';
 import mockData from './data-user';
 import { getPatients } from '../../services/api';
+import SignIn from '../SignIn/';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,7 +59,9 @@ const Users = props => {
   
 
   return (
-    <div className={classes.root} >
+    <div className={classes.root} > 
+      {localStorage.getItem("isLogTrue")? 
+        console.log(localStorage.getItem("isLogTrue")):<SignIn/>}
       <UserListToolbar/>
       <div className={classes.content}>
         <FormControlLabel

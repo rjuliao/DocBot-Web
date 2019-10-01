@@ -2,16 +2,10 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer } from '@material-ui/core';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import { Divider, Drawer, Button } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import ImageIcon from '@material-ui/icons/Image';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-
+import { Link as RouterLink } from 'react-router-dom';
 import { Profile, SidebarNav } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -34,6 +28,10 @@ const useStyles = makeStyles(theme => ({
   },
   nav: {
     marginBottom: theme.spacing(2)
+  },
+  lobutton:{
+    backgroundColor: '#1438A6',
+    color: '#F2F2F2',
   }
 }));
 
@@ -48,18 +46,18 @@ const Sidebar = props => {
       href: '/pacientes',
       icon: <PeopleIcon/>
     },
-    
-    {
-      title: 'Perfil',
-      href: '/account',
-      icon: <AccountBoxIcon />
-    },
+
     {
       title: 'Configuraciones',
       href: '/settings',
       icon: <SettingsIcon />
     }
   ];
+
+  const handleLogout = () => {
+    localStorage.clear();
+  }
+
 
   return (
     <Drawer
@@ -79,6 +77,18 @@ const Sidebar = props => {
           className={classes.nav}
           pages={pages}
         />
+      </div>
+      <div className={classes.root}>
+      <RouterLink to = '/sign-in'>
+          <Button 
+            className={classes.lobutton}
+            variant="contained"
+            size="large"
+            onClick={handleLogout}
+          >
+            Cerrar Sesión
+          </Button>
+        </RouterLink>
       </div>
     </Drawer>
   );
