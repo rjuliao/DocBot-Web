@@ -14,8 +14,11 @@ Aplicativo web del lado de médico que le ayuda a gestionas los avances del paci
 ### Librerias que usa el proyecto
 
 * Material-UI
+    Material-UI -> icons
+    Material-UI -> styles
+    Material-UI -> pickers
 * Mongoose
-* React Router
+* React RouterS
 * Node SASS
 * Recompose
 * uuid
@@ -23,6 +26,7 @@ Aplicativo web del lado de médico que le ayuda a gestionas los avances del paci
 * History
 * Clxs
 * Chart.js
+* material-table
 
 
 ## PARA EJECUTAR CORRECTAMENTE EL PROYECTO USTED DEBE:
