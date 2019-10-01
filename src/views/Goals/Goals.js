@@ -42,7 +42,6 @@ const Users = props => {
   return (
     <div className={classes.root}>
       
-      <GoalsToolbar/>
       <div className={classes.content}>
         <GoalsCard data={mockData}/> 
       </div>
