@@ -4,7 +4,7 @@
  * @param {*} password 
  */
 export function signIn(email,password){ 
-    return fetch(`http://localhost:8080/api/doctors/login`,{ 
+    return fetch(`http://api-rest-botic.herokuapp.com/api/doctors/login`,{ 
         method: 'POST', 
         body: JSON.stringify({ email, password }), 
         headers: { 'Content-Type':'application/json', } 
@@ -19,7 +19,7 @@ export function signIn(email,password){
  * @param {*} password 
  */
 export function singUp(name, lastName, medicalCenter,  email, password){
-    return fetch('http://localhost:8080/api/doctors',{
+    return fetch('http://api-rest-botic.herokuapp.com/api/doctors',{
         method: 'POST',
         body: JSON.stringify({name, lastName, email, medicalCenter, password}),
         headers: {'Content-Type':'application/json',}
@@ -45,7 +45,7 @@ export function singUp(name, lastName, medicalCenter,  email, password){
 export function regPaciente(name, lastName, birthdate, documentType, documentNumber, weight, height,
      sex, password, clinicalContext, medicalCenter, dateAssociation, idDoctor){
     
-    return fetch('http://localhost:8080/api/patients/',{
+    return fetch('http://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
         body: JSON.stringify({name, lastName, birthdate, documentType, documentNumber, weight, height, 
             sex, password, clinicalContext, dateAssociation, medicalCenter, idDoctor}),
@@ -59,7 +59,7 @@ export function regPaciente(name, lastName, birthdate, documentType, documentNum
  * @param {*} idDoctor 
  */
 export function getPatients(idDoctor){
-    return fetch('http://localhost:8080/api/patients/buscar',{
+    return fetch('http://api-rest-botic.herokuapp.com/api/patients/buscar',{
         method: 'POST',
         body: JSON.stringify({idDoctor}),
         headers: {'Content-Type':'application/json',}
