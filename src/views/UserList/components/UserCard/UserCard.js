@@ -13,6 +13,7 @@ import {
   CardActionArea
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import moment from 'moment';
 import GetAppIcon from '@material-ui/icons/GetApp';
 
 const useStyles = makeStyles(theme => ({
@@ -75,20 +76,15 @@ const UserCard = props => {
               variant="h4"
               className={classes.quote}
             >
-              {user.name} 
+              {user.name} {user.lastName}
             </Typography>
             <Typography
               align="center"
               variant="body1"
             >
-              Edad: {user.age}
+              Centro medico: {user.medicalCenter}
             </Typography>
-            <Typography
-              align="center"
-              variant="body2"
-            >
-              Email: {user.email}
-            </Typography>
+            
           </CardContent>
         </CardActionArea>
       </RouterLink>
@@ -107,7 +103,7 @@ const UserCard = props => {
               display="inline"
               variant="body2"
             >
-              Ingresado en: {user.date}
+              Ingresado el: {moment(user.dateAssociation).format('DD/MM/YYYY')}
             </Typography>
           </Grid>
         </Grid>
@@ -118,7 +114,8 @@ const UserCard = props => {
 
 UserCard.propTypes = {
   className: PropTypes.string,
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  user: PropTypes.any.isRequired
 };
 
 export default UserCard;

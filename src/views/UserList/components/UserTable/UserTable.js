@@ -109,7 +109,7 @@ const UserTable = props => {
                     <TableRow>
                     <TableCell> </TableCell>
                     <TableCell>Nombre</TableCell>
-                    <TableCell>Email</TableCell>
+                    <TableCell>Centro médico</TableCell>
                     <TableCell>Edad</TableCell>
                     <TableCell>Fecha de Registro</TableCell>
                     </TableRow>
@@ -136,12 +136,12 @@ const UserTable = props => {
                           </RouterLink>
                         </TableCell>
                         <TableCell>              
-                          <Typography variant="body1">{user.name}</Typography>
+                          <Typography variant="body1">{user.name} {user.lastName}</Typography>
                         </TableCell>
-                        <TableCell>{user.email}</TableCell>
+                        <TableCell>{user.medicalCenter}</TableCell>
                         <TableCell>{user.age} años</TableCell>
                         <TableCell>
-                        {moment(user.createdAt).format('DD/MM/YYYY')}
+                          {moment(user.dateAssociation).format('DD/MM/YYYY')}
                         </TableCell>
                     </TableRow>
                     ))}

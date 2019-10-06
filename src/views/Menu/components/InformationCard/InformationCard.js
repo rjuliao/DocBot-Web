@@ -58,7 +58,7 @@ const InformationCard = props => {
                         className={classes.infoTop}
                         variant="h2"
                     >
-                        {user.name}
+                        {user.name} {user.lastName}
                     </Typography>
                 </Grid>
                 <Grid
@@ -73,28 +73,22 @@ const InformationCard = props => {
                         Edad: {user.age}
                     </Typography>
                     <Typography
-                        className={classes.info}
+                        className={classes.info}    
                         variant="h6"
                     >
-                        E-mail: {user.email}
+                        Identificación: {user.documentType}: {user.documentNumber}
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Identificación: {user.id}
+                        Sexo: {user.sex == 'f' ? "Mujer":"Hombre"}
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Sexo: Hombre
-                    </Typography>
-                    <Typography
-                        className={classes.info}    
-                        variant="h6"
-                    >
-                        Fecha de Nacimiento: {user.date}                        
+                        Fecha de Nacimiento: {user.birthdate}                        
                     </Typography>
                 </Grid>
                 <Grid
@@ -106,19 +100,19 @@ const InformationCard = props => {
                         className={classes.info}    
                         variant="h6"
                     >
-                        Peso: 85kg
+                        Peso: {user.weight}kg
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Estatura: 1.75m
+                        Estatura: {user.height}m
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        ICM: 28.332515496
+                        ICM: {user.weight/Math.pow(user.height,2)}
                     </Typography>
                 </Grid>
             </Grid>
@@ -152,11 +146,7 @@ const InformationCard = props => {
                         className={classes.info}    
                         variant="body1"
                     >
-                        ILorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        {user.clinicalContext}
                     </Typography>
                 </Grid>
             </Grid>

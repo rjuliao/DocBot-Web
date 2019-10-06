@@ -6,7 +6,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { UserListToolbar, UserCard, UserTable } from './components';
 import mockData from './data-user';
 import { getPatients } from '../../services/api';
-import SignIn from '../SignIn/';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,24 +22,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 const Users = props => {
   const {location, showinfo} = props;
   const classes = useStyles();
 
-  var [users] = useState(mockData);
 
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
+    data: [],
   });
 
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.checked });
-    console.log(state.checkedB==true)
   };
 
   const handleUsers = () => {
-    console.log(localStorage.getItem("id"))
 
     getPatients(localStorage.getItem("id"))
     .then(response => {
@@ -48,8 +46,7 @@ const Users = props => {
     })  
     .then(json => {
       //console.log(JSON.stringify(json));
-      users = json;
-      console.log(users);
+      state.data = json;
     })
     .catch(error => {
       console.log(error.message);
@@ -60,8 +57,9 @@ const Users = props => {
 
   return (
     <div className={classes.root} > 
+      {handleUsers()} 
       <UserListToolbar/>
-      <div className={classes.content}>
+      <div className={classes.content} >
         <FormControlLabel
           control={
             <Checkbox
@@ -71,16 +69,19 @@ const Users = props => {
               color="primary"
             />
           }
-          label="Ver lista"
+          label="Ver forma de lista"
         />
       </div>
-      <div className={classes.content} onLoad={handleUsers()}>
+      <div 
+        className={classes.content} 
+        
+      >
         {!state.checkedB?
           <Grid
             container
             spacing={3}
           >
-              {users.map(user => (
+              {state.data.map(user => (
                 <Grid
                   item
                   key={user.id}
@@ -89,10 +90,9 @@ const Users = props => {
                   xs={12}
                 > 
                   <UserCard user={user} />
-                </Grid>
-              ))}
+                </Grid>))}
           </Grid>:
-          <UserTable users={users} />
+          <UserTable users={state.data} />
         }
       </div>
       <div className={classes.pagination}>
