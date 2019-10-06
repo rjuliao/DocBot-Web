@@ -60,8 +60,6 @@ const Users = props => {
 
   return (
     <div className={classes.root} > 
-      {localStorage.getItem("isLogTrue")? 
-        console.log(localStorage.getItem("isLogTrue")):<SignIn/>}
       <UserListToolbar/>
       <div className={classes.content}>
         <FormControlLabel

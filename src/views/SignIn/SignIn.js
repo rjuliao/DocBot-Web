@@ -17,6 +17,7 @@ import {
 import bcimage from './bgImage/background.jpg';
 import botic from './bgImage/logo-3.png';
 import { signIn } from '../../services/api';
+import { Login } from '../../context/UserContext';
 
 
 const schema = {
@@ -127,7 +128,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignIn = props => {
-  const { history} = props;
+  const { history, logVal} = props;
 
   const classes = useStyles();
 
@@ -192,6 +193,7 @@ const SignIn = props => {
           localStorage.setItem("name", json["name"]);
           localStorage.setItem("lastName", json["lastName"]);
           localStorage.setItem("medicalCenter", json["medicalCenter"]);
+          localStorage.setItem("isLogTrue", true);
           history.push('/pacientes');
         } else {
 
@@ -210,10 +212,13 @@ const SignIn = props => {
     login(formState.values.email, formState.values.password);
   };
 
-
+  const loginVal = () =>{
+    localStorage.setItem("isLogTrue", false)
+    console.log(localStorage.getItem("isLogTrue"))
+  };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onLoad={loginVal()}>
       <Grid
         className={classes.grid}
         container
