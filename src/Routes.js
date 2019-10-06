@@ -14,8 +14,7 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  Menu as PacientMenu,
-  Goals as Goals
+  Menu as PacientMenu
 } from './views';
 
 const Routes = () => {
@@ -25,12 +24,6 @@ const Routes = () => {
         exact
         from="/"
         to="/sign-in"
-      />
-      <RouteWithLayout
-        component={DashboardView}
-        exact
-        layout={MainLayout}
-        path="/dashboard"
       />
       <RouteWithLayout
         component={PacientMenu}
@@ -43,12 +36,6 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/pacientes"
-      />
-      <RouteWithLayout
-        component={Goals}
-        exact
-        layout={MainLayout}
-        path="/goals"
       />
       <RouteWithLayout
         component={TypographyView}
