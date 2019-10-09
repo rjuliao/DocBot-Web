@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { InformationCard, MenuButtons, Goals, Dashboard } from './components';
+import { InformationCard, MenuButtons, Goals, Dashboard, Paraclinicos } from './components';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -99,7 +99,7 @@ const Menu = props => {
                     <Dashboard/>
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
-                    jajaja
+                    <Paraclinicos/>
                 </TabPanel>
                 <TabPanel value={value} index={4} dir={theme.direction}>
                     jajajaj

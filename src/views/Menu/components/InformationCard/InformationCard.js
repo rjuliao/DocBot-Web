@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, Divider, Typography, Grid } from '@mater
 
 const useStyles = makeStyles(theme => ({
     root: {
+        backgroundColor : "#F4F6F8"
     },
     title: {
         marginBottom: '10px',

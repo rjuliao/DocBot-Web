@@ -4,7 +4,6 @@ import { IconButton, Grid, Typography, FormControlLabel, Checkbox, Button } from
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { UserListToolbar, UserCard, UserTable } from './components';
-import mockData from './data-user';
 import { getPatients } from '../../services/api';
 
 const useStyles = makeStyles(theme => ({
@@ -39,13 +38,13 @@ const Users = props => {
   };
 
   const handleUsers = () => {
-
+    console.log(localStorage.getItem("id"));
     getPatients(localStorage.getItem("id"))
     .then(response => {
       return response.json();
     })  
     .then(json => {
-      //console.log(JSON.stringify(json));
+      console.log(JSON.stringify(json));
       state.data = json;
     })
     .catch(error => {

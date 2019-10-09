@@ -52,13 +52,13 @@ const TotalProfit = props => {
               gutterBottom
               variant="body2"
             >
-              TOTAL PROFIT
+              Nivel de glucosa
             </Typography>
             <Typography
               color="inherit"
               variant="h3"
             >
-              $23,200
+              23,2?
             </Typography>
           </Grid>
           <Grid item>
