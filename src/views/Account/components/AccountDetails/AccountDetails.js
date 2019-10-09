@@ -85,9 +85,14 @@ const schema = {
   },
   idCard: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
-    email: true,
     length: {
       maximum: 15
+    }
+  },
+  age: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 2
     }
   },
   peso: {
@@ -152,11 +157,11 @@ const AccountDetails = props => {
 
 
 
-  const registro = (name, lastName, b_date, 
+  const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
     contexto, centre_medico, fecha_ingreso, idDoctor) =>{
       
-    regPaciente(name, lastName, b_date, idtipo, idCard, peso, altura,
+    regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
       sexo, psw, contexto, centre_medico, fecha_ingreso, idDoctor)
       .then(response => {
         return response.json();
@@ -181,7 +186,7 @@ const AccountDetails = props => {
   const handleRegister = event =>{
     event.preventDefault();
     registro(formState.values.name, formState.values.lastName, 
-      formState.values.b_day, formState.values.tipoid, formState.values.idnumber,
+      formState.values.b_day, formState.values.age, formState.values.tipoid, formState.values.idnumber,
       formState.values.peso, formState.values.altura,
       formState.values.sexo, formState.values.idnumber, formState.values.contexto,
       formState.values.centro_medico, formState.values.fecha_ingreso, localStorage.getItem("id"));
@@ -217,7 +222,6 @@ const AccountDetails = props => {
               
                 error={hasError('name')}
                 fullWidth
-                helperText=""
                 label="Nombres"
                 margin="dense"
                 name="name"
@@ -263,6 +267,23 @@ const AccountDetails = props => {
                 InputLabelProps={{
                   shrink: true,
                 }}
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Edad"
+                margin="dense"
+                name="age"
+                onChange={handleChange}
+                value={formState.values.age || ''}
+                required
+                type="number"
+                variant="outlined"
               />
             </Grid>
             <Grid

@@ -31,6 +31,7 @@ export function singUp(name, lastName, medicalCenter,  email, password){
  * @param {*} name 
  * @param {*} lastName 
  * @param {*} birthdate 
+ * @param {*} age
  * @param {*} documentType 
  * @param {*} documentNumber 
  * @param {*} weight 
@@ -42,12 +43,12 @@ export function singUp(name, lastName, medicalCenter,  email, password){
  * @param {*} dateAssociation 
  * @param {*} idDoctor
  */
-export function regPaciente(name, lastName, birthdate, documentType, documentNumber, weight, height,
+export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber, weight, height,
      sex, password, clinicalContext, medicalCenter, dateAssociation, idDoctor){
     
     return fetch('http://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
-        body: JSON.stringify({name, lastName, birthdate, documentType, documentNumber, weight, height, 
+        body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
             sex, password, clinicalContext, dateAssociation, medicalCenter, idDoctor}),
         headers: {'Content-Type':'application/json',}
     });
