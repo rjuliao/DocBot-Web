@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Avatar, Typography } from '@material-ui/core';
+import logo from './images/logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +42,7 @@ const Profile = props => {
         alt="Person"
         className={classes.avatar}
         component={RouterLink}
-        src={user.avatar}
+        src={logo}
         to="/settings"
       />
       <Typography

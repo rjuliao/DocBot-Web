@@ -14,6 +14,7 @@ import {
   LinearProgress,
   Grid
 } from '@material-ui/core';
+import logo  from './images/logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -56,7 +57,7 @@ const AccountProfile = props => {
         <Grid container justify="center" alignItems="center">
           <Avatar
             className={classes.avatar}
-            src={user.avatar}
+            src={logo}
           />
         </Grid>
       </CardContent>

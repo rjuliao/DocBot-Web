@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import logo from './images/logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -67,7 +67,7 @@ const UserCard = props => {
               <img
                 alt="Product"
                 className={classes.image}
-                
+                src={logo}
               />
             </div>
             <Typography 
