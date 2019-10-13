@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, CardHeader, Divider, Typography, Grid } from '@material-ui/core';
-
-
+import { Card, CardContent, CardHeader, 
+    Divider, 
+    Typography, 
+    Grid, 
+    Button, 
+    Fab } from '@material-ui/core';
+import ClearIcon from '@material-ui/icons/Clear';
+import CreateIcon from '@material-ui/icons/Create';
+import Popup from './Popup/Popup';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -29,7 +35,14 @@ const useStyles = makeStyles(theme => ({
 
 const InformationCard = props => {
     const { user } = props
-    const classes = useStyles();
+    const classes = useStyles(); 
+    const [state, setState] = React.useState({
+        showPopup: false,
+    });
+    
+    const handlePopup = name => event => {
+        setState({ ...state, [name]: !state.showPopup});
+    };
     
 
     return(
@@ -150,6 +163,28 @@ const InformationCard = props => {
                         {user.clinicalContext}
                     </Typography>
                 </Grid>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <Fab variant="extended"  color="primary" aria-label="add" className={classes.margin}>
+                        <ClearIcon />
+                         Eliminar Paciente
+                    </Fab>
+                </Grid>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <Fab variant="extended" onClick={handlePopup('showPopup')} color="primary" aria-label="add" className={classes.margin}>
+                        <CreateIcon />
+                        Editar Información
+                    </Fab>
+                </Grid>
+                {state.showPopup?
+                <Popup user={user} closePopup={handlePopup('showPopup')}/>:
+                null
+                }  
             </Grid>
         </div>
     );
