@@ -14,6 +14,7 @@ import {
     Dashboard,
     Paraclinicos
 } from './components';
+import { createStore } from 'redux';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -58,8 +59,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+
+
+
+
 const Menu = props => {
-    const { location } = props;
+    const { location, savePatient } = props;
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
