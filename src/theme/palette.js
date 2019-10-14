@@ -18,6 +18,10 @@ export default {
     main: colors.blue['A400'],
     light: colors.blue['A400']
   },
+  lineBar:{
+    default: '#FFCD42',
+    paper: white,
+  },
   success: {
     contrastText: white,
     dark: colors.green[900],
