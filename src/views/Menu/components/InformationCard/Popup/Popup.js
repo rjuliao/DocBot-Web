@@ -453,7 +453,7 @@ const Popup = props => {
 
 Popup.propTypes = {
     user: PropTypes.array.isRequired,
-    close4: PropTypes.isRequired,
+    closePopup: PropTypes.bool.isRequired,
 };
 
 

@@ -182,9 +182,7 @@ const InformationCard = props => {
                     </Fab>
                 </Grid>
                 {state.showPopup?
-                <Popup user={user} closePopup={handlePopup('showPopup')}/>:
-                null
-                }  
+                <Popup user={user} closePopup={handlePopup('showPopup')}/>: null }  
             </Grid>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const LatestSales = props => {
+const WeightHistory = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -46,12 +46,12 @@ const LatestSales = props => {
             Last 7 days <ArrowDropDownIcon />
           </Button>
         }
-        title="Nivel"
+        title="Cambio de peso"
       />
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>
-          <Bar
+          <Line
             data={data}
             options={options}
           />
@@ -71,8 +71,8 @@ const LatestSales = props => {
   );
 };
 
-LatestSales.propTypes = {
+WeightHistory.propTypes = {
   className: PropTypes.string,
 };
 
-export default LatestSales;
+export default WeightHistory;

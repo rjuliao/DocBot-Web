@@ -20,7 +20,7 @@ export const data = {
 export const options = {
   responsive: true,
   maintainAspectRatio: false,
-  animation: false,
+  animation: true,
   legend: { display: false },
   cornerRadius: 20,
   tooltips: {

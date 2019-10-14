@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import {
-  Budget,
-  TotalUsers,
-  TasksProgress,
-  TotalProfit,
+  Steps,
+  WeightChange,
+  GoalsProgress,
+  GlucoseLevel,
   LatestSales,
   UsersByDevice,
+  WeightHistory,
 } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -19,6 +20,17 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+
+  const [state, setState] = React.useState({
+    showSteps: true,
+    showWeight: false,
+    showGoals: false,
+    showGlucose: false,
+  });
+
+  const handleChart = name => event => {
+    setState({ ...state, [name]: !state.name});
+  };
 
   return (
     <div className={classes.root}>
@@ -32,8 +44,9 @@ const Dashboard = () => {
           sm={6}
           xl={3}
           xs={12}
+          onClick = {handleChart('showSteps')}
         >
-          <Budget />
+          <Steps closeSteps = {handleChart('showSteps')} />
         </Grid>
         <Grid
           item
@@ -42,7 +55,7 @@ const Dashboard = () => {
           xl={3}
           xs={12}
         >
-          <TotalUsers />
+          <WeightChange />
         </Grid>
         <Grid
           item
@@ -51,7 +64,7 @@ const Dashboard = () => {
           xl={3}
           xs={12}
         >
-          <TasksProgress />
+          <GoalsProgress />
         </Grid>
         <Grid
           item
@@ -60,7 +73,7 @@ const Dashboard = () => {
           xl={3}
           xs={12}
         >
-          <TotalProfit />
+          <GlucoseLevel />
         </Grid>
         <Grid
           item
@@ -78,7 +91,16 @@ const Dashboard = () => {
           xl={3}
           xs={12}
         >
-          <UsersByDevice />
+          <UsersByDevice  />
+        </Grid>
+        <Grid
+          item
+          lg={8}
+          md={12}
+          xl={9}
+          xs={12}
+        >
+          <WeightHistory />
         </Grid>
       </Grid>
     </div>
