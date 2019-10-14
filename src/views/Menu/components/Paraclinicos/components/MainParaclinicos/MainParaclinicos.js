@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import validate from 'validate.js';
+import PropTypes from 'prop-types';
+import {  withRouter } from 'react-router-dom';
 import { Card, 
         CardHeader, 
         Divider, 
@@ -37,7 +39,8 @@ const schema = {
   };
 
 const MainParaclinicos = props =>{
-  const {user} = props
+  const { history, user, className, ...rest } = props;
+
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -81,15 +84,28 @@ const MainParaclinicos = props =>{
       formState.touched[field] && formState.errors[field] ? true : false;
 
 
+  const clear = ()=>{
+    
+  }
+
   /**
    * Funcion para tomar los valores de los paraclínicos
    * @param {*} event 
    */
   const handleData = event =>{
+    event.preventDefault();
     console.log(formState.values.trigliceridos);
     console.log(formState.values.colesterol);
     console.log(formState.values.hemoglobina_glicosilada);
     console.log(formState.values.glicemia);
+    formState.values.trigliceridos = "";
+    formState.values.colesterol = "";
+    formState.values.hemoglobina_glicosilada = "";
+    formState.values.glicemia = "";
+    history.push({
+      pathname:"/menu",
+      info:{ nombre: user}
+    });
   }
 
   return(
@@ -193,5 +209,8 @@ const MainParaclinicos = props =>{
     </Card>
   )
 }
-
-export default MainParaclinicos;
+MainParaclinicos.propTypes = {
+  user: PropTypes.isRequired,
+  history: PropTypes.object
+};
+export default withRouter(MainParaclinicos);

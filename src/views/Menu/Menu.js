@@ -110,7 +110,7 @@ const Menu = props => {
                     <Dashboard/>
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
-                    <Paraclinicos/>
+                    <Paraclinicos user={location.info.nombre}/>
                 </TabPanel> 
                 <TabPanel value={value} index={4} dir={theme.direction}>
                     jajajaj

@@ -6,7 +6,7 @@ import { FormParaclinicos } from './components';
 
 
 const Paraclinicos = props => {
-    const { userid } = props;
+    const { user } = props;
 
 
     return(
@@ -19,14 +19,14 @@ const Paraclinicos = props => {
                     item
                     xs={12}
                 >
-                    <FormParaclinicos/>
+                    <FormParaclinicos user={user}/>
                 </Grid>
             </Grid>
         </div>
     );
 }
 Paraclinicos.propTypes = {
-    userid: PropTypes.any.isRequired
-  };
+    user: PropTypes.isRequired
+};
 
 export default Paraclinicos;
