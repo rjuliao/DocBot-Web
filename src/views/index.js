@@ -7,3 +7,4 @@ export { default as SignIn } from './SignIn';
 export { default as SignUp } from './SignUp';
 export { default as Typography } from './Typography';
 export { default as Menu } from './Menu';
+export { default as FindRisk } from './FindRisk';

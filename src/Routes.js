@@ -14,7 +14,8 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  Menu as PacientMenu
+  Menu as PacientMenu,
+  FindRisk as FindRiskTest,
 } from './views';
 
 const Routes = () => {
@@ -36,6 +37,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/pacientes"
+      />
+      <RouteWithLayout
+      component={FindRiskTest}
+      exact
+      layout={MainLayout}
+      path="/findrisk"
       />
       <RouteWithLayout
         component={TypographyView}
