@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Link, Grid } from '@material-ui/core';
-import logo from './images/headerlogo_un.png';
+import logo from '../../../../assets/logos/logo_un.png';
 
 
 const useStyles = makeStyles(theme => ({

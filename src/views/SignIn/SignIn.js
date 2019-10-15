@@ -14,8 +14,8 @@ import {
   CardMedia,
   CardContent
 } from '@material-ui/core';
-import bcimage from './bgImage/background.jpg';
-import botic from './bgImage/logo-3.png';
+import bcimage from '../../assets/logos/background.jpg';
+import botic from '../../assets/logos/name.jpeg';
 import { signIn } from '../../services/api';
 
 

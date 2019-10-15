@@ -14,7 +14,7 @@ import {
   LinearProgress,
   Grid
 } from '@material-ui/core';
-import logo  from './images/logo.png';
+import logo  from '../../../../assets/logos/logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {},

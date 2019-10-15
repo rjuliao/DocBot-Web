@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Avatar, Typography } from '@material-ui/core';
-import logo from './images/logo.png';
+import logo from '../../../../../../assets/logos/logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: 'fit-content'
   },
   avatar: {
-    width: 60,
-    height: 60
+    width: 80,
+    height: 80
   },
   name: {
     marginTop: theme.spacing(1)
@@ -27,11 +27,6 @@ const Profile = props => {
 
   const classes = useStyles();
 
-  const user = {
-    name: 'Alejandra Rizzioli',
-    avatar: '/images/avatars/avatar_11.png',
-    bio: 'Médico General'
-  };
 
   return (
     <div

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
-import logo from './image/logo-3.png';
+import logo from '../../../../assets/logos/name.jpeg';
 import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1)
   },
   imageprop: {
-    width: 88,
+    width: 100,
+    height: 30
   }
 }));
 

@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment';
-import logo from './images/logo.png';
+import logo from '../../../../assets/logos/logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {},
