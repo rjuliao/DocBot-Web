@@ -67,8 +67,10 @@ const InformationFR = props => {
         </Grid>
       </CardContent>
       <Divider />
-      <CardContent className={classes.title} variant="h3">
-          FINDRISK
+      <CardContent className={classes.title} >
+          <Typography variant="h1" color="primary">
+            FindRisk Test
+          </Typography>
       </CardContent>
     </Card>
   );

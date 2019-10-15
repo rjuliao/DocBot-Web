@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import { InformationFR, FindRiskTest } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -9,7 +10,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FindRisk = () => {
+const FindRisk = (props) => {
+  const { location }= props;
   const classes = useStyles();
 
   return (
@@ -34,7 +36,7 @@ const FindRisk = () => {
           xl={8}
           xs={12}
         >
-            <FindRiskTest/>
+          <FindRiskTest idCard={123456}/>
         </Grid>
       </Grid>
     </div>

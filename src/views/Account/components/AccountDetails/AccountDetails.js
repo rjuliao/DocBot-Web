@@ -169,8 +169,9 @@ const AccountDetails = props => {
       .then(json => {
         if (json["name"] == name) {
           console.log("Usuario creado");
-          history.push('/pacientes');
-
+          history.push({
+            pathname:"/findrisk",
+            info:{ nombre: idCard}});
         } else {
           console.log(".,mn")
         }
