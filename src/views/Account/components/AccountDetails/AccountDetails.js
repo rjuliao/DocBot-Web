@@ -185,11 +185,15 @@ const AccountDetails = props => {
   /***************Registro del paciente****************/
   const handleRegister = event =>{
     event.preventDefault();
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var now = date +'/'+month+'/'+year;
     registro(formState.values.name, formState.values.lastName, 
       formState.values.b_day, formState.values.age, formState.values.tipoid, formState.values.idnumber,
       formState.values.peso, formState.values.altura,
       formState.values.sexo, formState.values.idnumber, formState.values.contexto,
-      formState.values.centro_medico, formState.values.fecha_ingreso, localStorage.getItem("id"));
+      formState.values.centro_medico, now, localStorage.getItem("id"));
 
   }
 
@@ -359,42 +363,21 @@ const AccountDetails = props => {
             container
             spacing={3}
           >
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  error={hasError('centro_medico')}
-                  label="Centro de Salud"
-                  margin="dense"
-                  name="centro_medico"
-                  onChange={handleChange}
-                  value={formState.values.centro_medico || ''}
-                  required
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
               <TextField
                 fullWidth
-                label="Fecha de Ingreso"
+                error={hasError('centro_medico')}
+                label="Centro de Salud"
                 margin="dense"
-                name="fecha_ingreso"
+                name="centro_medico"
                 onChange={handleChange}
-                value={formState.values.fecha_ingreso || ''}
+                value={formState.values.centro_medico || ''}
                 required
-                type="date"
-                defaultValue=""
                 variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
               />
             </Grid>
             <Grid
