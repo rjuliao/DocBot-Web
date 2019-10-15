@@ -193,10 +193,11 @@ const SignIn = props => {
           localStorage.setItem("lastName", json["lastName"]);
           localStorage.setItem("medicalCenter", json["medicalCenter"]);
           localStorage.setItem("isLogTrue", true);
+          window.confirm("Ingreso exitoso, bienvenido")
           history.push('/pacientes');
         } else {
 
-          console.log("Ingreso Malo xd");
+          window.confirm("Error en ingreso, porfavor verifique sus credenciales")
         }
       })
       .catch(error => {

@@ -214,11 +214,11 @@ const SignUp = props => {
       })
       .then(json => {
         if (json["email"] == email) {
-          console.log("BIENVENIDO");
+          window.confirm("Bienvenido a Botic, por favor inice sesión para continuar")
           history.push('/sign-in');
 
         } else {
-          console.log("AH?")
+          window.confirm("Error en la creación del perfil")
         }
       })
       .catch(error => {
