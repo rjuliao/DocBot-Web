@@ -17,6 +17,8 @@ import {
 import bcimage from '../../assets/logos/background.jpg';
 import botic from '../../assets/logos/name.jpeg';
 import { signIn } from '../../services/api';
+import { connect } from 'react-redux';
+import getDoctor from '../../redux/actions/getDoctor';
 
 
 const schema = {
@@ -127,7 +129,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignIn = props => {
-  const { history, logVal} = props;
+  const { doctor, history, logVal} = props;
 
   const classes = useStyles();
 
@@ -177,7 +179,7 @@ const SignIn = props => {
 
 
   /**
-   * Login del médico
+   * El médico se loguea 
    * @param {*} email 
    * @param {*} password 
    */
@@ -188,11 +190,7 @@ const SignIn = props => {
       })
       .then(json => {
         if (json["login"] == true) {
-          localStorage.setItem("id", json["id"])
-          localStorage.setItem("name", json["name"]);
-          localStorage.setItem("lastName", json["lastName"]);
-          localStorage.setItem("medicalCenter", json["medicalCenter"]);
-          localStorage.setItem("isLogTrue", true);
+          props.getDoctor(json);
           window.confirm("Ingreso exitoso, bienvenido")
           history.push('/pacientes');
         } else {
@@ -330,4 +328,23 @@ SignIn.propTypes = {
   history: PropTypes.object
 };
 
-export default withRouter(SignIn);
+/**
+ * Regresa funciones que son acciones
+ * @param {*} dispatch 
+ */
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    getDoctor : (doctor) => dispatch(getDoctor(doctor)),
+  }
+}
+
+const mapStateToProps = (state) =>{
+  return{
+    doctor: state.doctor,
+  };
+}
+
+const wrapper = connect(mapStateToProps, mapDispatchToProps);
+const component = wrapper(SignIn)
+
+export default withRouter(component);

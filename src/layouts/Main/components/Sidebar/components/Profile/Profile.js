@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = props => {
-  const { className,  ...rest } = props;
+  const { doctor, className,  ...rest } = props;
 
   const classes = useStyles();
 
@@ -44,8 +44,8 @@ const Profile = props => {
         className={classes.name}
         variant="h4"
       >
-        
-        {localStorage.getItem("name")+" "+ localStorage.getItem("lastName")}
+
+        {doctor.name+" "+doctor.lastName} 
       </Typography>
       <Typography variant="body2">
         {localStorage.getItem("medicalCenter")}
@@ -56,7 +56,7 @@ const Profile = props => {
 };
 
 Profile.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Profile;

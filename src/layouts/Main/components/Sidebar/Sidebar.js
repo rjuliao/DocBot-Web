@@ -7,6 +7,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link as RouterLink } from 'react-router-dom';
 import { Profile, SidebarNav } from './components';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Sidebar = props => {
-  const { open, variant, onClose, className, ...rest } = props;
+  const { doctor, open, variant, onClose, className, ...rest } = props;
 
   const classes = useStyles();
 
@@ -60,6 +61,7 @@ const Sidebar = props => {
 
 
   return (
+    
     <Drawer
       anchor="left"
       classes={{ paper: classes.drawer }}
@@ -71,7 +73,8 @@ const Sidebar = props => {
         {...rest}
         className={clsx(classes.root, className)}
       >
-        <Profile />
+        {console.log(doctor)}
+        <Profile doctor={doctor}/>
         <Divider className={classes.divider} />
         <SidebarNav
           className={classes.nav}
@@ -101,4 +104,25 @@ Sidebar.propTypes = {
   variant: PropTypes.string.isRequired
 };
 
-export default Sidebar;
+/**
+ * Accede a los reducers que tengo definidos
+ * Cualquier cosa que se regrese va a estar disponible como propiedad en el componente
+ * @param {*} state 
+ */
+const mapStateToProps = (state) =>{
+  return{
+    doctor: state.doctor,
+  };
+}
+
+/**Forma 1 
+const wrapper = connect(mapStateToProps);
+const component = wrapper(Sidebar)
+*/
+
+
+/**
+ * De esta forma tenemos conectado el componente a redux
+ * Ahora tenemos doctor disponible como un prop 
+ */
+export default connect(mapStateToProps)(Sidebar);

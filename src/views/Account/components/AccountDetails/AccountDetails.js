@@ -12,7 +12,8 @@ import {
   Divider,
   Grid,
   Button,
-  TextField
+  TextField,
+  InputAdornment
 } from '@material-ui/core';
 import { regPaciente } from '../../../../services/api';
 
@@ -160,7 +161,9 @@ const AccountDetails = props => {
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
     contexto, centre_medico, fecha_ingreso, idDoctor) =>{
-      
+    
+    var information = [{id: idCard, sex: sexo,edad: age, weight: peso, height: altura}];
+
     regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
       sexo, psw, contexto, centre_medico, fecha_ingreso, idDoctor)
       .then(response => {
@@ -171,7 +174,7 @@ const AccountDetails = props => {
           console.log("Usuario creado");
           history.push({
             pathname:"/findrisk",
-            info:{ nombre: idCard}});
+            info:{ nombre: JSON.stringify(information)}});
         } else {
           console.log(".,mn")
         }
@@ -397,6 +400,9 @@ const AccountDetails = props => {
                   required
                   type="number"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: <InputAdornment position="end">kg</InputAdornment>,
+                  }}
                 />
               </Grid>
               <Grid
@@ -415,6 +421,9 @@ const AccountDetails = props => {
                   required
                   type="number"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: <InputAdornment position="end">m</InputAdornment>,
+                  }}
                 />
               </Grid>
               <Grid

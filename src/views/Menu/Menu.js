@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -15,6 +15,7 @@ import {
     Paraclinicos
 } from './components';
 import { createStore } from 'redux';
+import { withStyles } from '@material-ui/styles';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -58,9 +59,6 @@ const useStyles = makeStyles(theme => ({
 
     }
 }));
-
-
-
 
 
 const Menu = props => {
