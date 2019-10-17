@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: '#D92588'
   },
   quote: {
-    color: '#F299CA'
+    color: '#1438A6'
   }
 }));
 
