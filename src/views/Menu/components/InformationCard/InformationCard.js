@@ -7,8 +7,9 @@ import { Card, CardContent, CardHeader,
     Grid, 
     Button, 
     Fab } from '@material-ui/core';
-import ClearIcon from '@material-ui/icons/Clear';
+import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
+import TestIcon from '@material-ui/icons/FormatListBulleted'
 import Popup from './Popup/Popup';
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +31,9 @@ const useStyles = makeStyles(theme => ({
     info: {
         margin: '10px',
         padding: 'initial'
+    },
+    icons: {
+        marginRight: theme.spacing(1),
     }
 }));
 
@@ -165,20 +169,29 @@ const InformationCard = props => {
                 </Grid>
                 <Grid
                     item
-                    xs={6}
+                    xs={4}
                 >
                     <Fab variant="extended"  color="primary" aria-label="add" className={classes.margin}>
-                        <ClearIcon />
+                        <DeleteIcon className={classes.icons} />
                          Eliminar Paciente
                     </Fab>
                 </Grid>
                 <Grid
                     item
-                    xs={6}
+                    xs={4}
                 >
                     <Fab variant="extended" onClick={handlePopup('showPopup')} color="primary" aria-label="add" className={classes.margin}>
-                        <CreateIcon />
+                        <CreateIcon className={classes.icons}/>
                         Editar Información
+                    </Fab>
+                </Grid>
+                <Grid
+                    item
+                    xs={4}
+                >
+                    <Fab variant="extended" color="primary" aria-label="add" className={classes.margin}>
+                        <TestIcon className={classes.icons}/>
+                        Aplicar FindRisk
                     </Fab>
                 </Grid>
                 {state.showPopup?

@@ -9,8 +9,10 @@ import {  Button,
           Grow, 
           Paper, 
           MenuList,
-          MenuItem} from '@material-ui/core';
+          MenuItem,
+          Fab} from '@material-ui/core';
 import { SearchInput } from '../../../../components';
+import Add from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -26,6 +28,10 @@ const useStyles = makeStyles(theme => ({
   addButton: {
     backgroundColor: '#1438A6',
     color: '#F2F2F2',
+    margin: theme.spacing(1),
+  },
+  addIcon: {
+    marginRight: theme.spacing(1),
   },
   searchInput: {
     marginRight: theme.spacing(1)
@@ -52,12 +58,11 @@ const UserListToolbar = props => {
         
         <span className={classes.spacer} />
         <RouterLink to="/account">
-          <Button
-            className={classes.addButton}
-            variant="contained"
-          >
+          <Fab  variant="extended" className={classes.addButton}>
+            <Add className={classes.addIcon}/>
             Crear Paciente
-          </Button>
+          </Fab>
+          
         </RouterLink>
       </div>
     </div>

@@ -14,6 +14,7 @@ import {
     Dashboard,
     Paraclinicos
 } from './components';
+import InfoIcon from '@material-ui/icons/Info';
 import { createStore } from 'redux';
 import { withStyles } from '@material-ui/styles';
 
@@ -98,7 +99,7 @@ const Menu = props => {
                 index={value}
                 onChangeIndex={handleChangeIndex}
             >
-                <TabPanel value={value} index={0} dir={theme.direction}>
+                <TabPanel value={value}  index={0} dir={theme.direction}>
                     <InformationCard user={location.info.nombre}/>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
