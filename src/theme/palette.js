@@ -46,6 +46,12 @@ export default {
     main: colors.red[600],
     light: colors.red[400]
   },
+  valueH: {
+    contrastText: white,
+    dark: colors.yellow[900],
+    main: colors.yellow[600],
+    light: colors.yellow[400]
+  },
   text: {
     primary: colors.blueGrey[900],
     secondary: colors.blueGrey[600],
