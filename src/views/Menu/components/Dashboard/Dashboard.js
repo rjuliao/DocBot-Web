@@ -44,9 +44,8 @@ const Dashboard = () => {
           sm={6}
           xl={3}
           xs={12}
-          onClick = {handleChart('showSteps')}
         >
-          <Steps closeSteps = {handleChart('showSteps')} />
+          <Steps />
         </Grid>
         <Grid
           item
