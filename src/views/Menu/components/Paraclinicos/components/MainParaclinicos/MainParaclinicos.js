@@ -9,7 +9,10 @@ import { Card,
         Grid, 
         CardActions, 
         TextField, 
-        Button} from '@material-ui/core';
+        Button,
+        Fab} from '@material-ui/core';
+import AddButton from '@material-ui/icons/AddCircleOutline';
+import { makeStyles } from '@material-ui/styles';
 
 const schema = {
     hemoglobina_glicosilada: {
@@ -38,9 +41,19 @@ const schema = {
     }
   };
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: theme.spacing(3),
+        backgroundColor: theme.palette.background.default,
+    },
+    buttonbase: {
+      marginRight: theme.spacing(1),
+    }
+}));
+
 const MainParaclinicos = props =>{
   const { history, user, className, ...rest } = props;
-
+  const classes = useStyles();
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -197,13 +210,14 @@ const MainParaclinicos = props =>{
           </Grid>
         </CardContent>
         <CardActions>
-          <Button
+          <Fab  
             color="primary"
             variant="contained"
             type="submit"
           >
+            <AddButton className={classes.buttonbase}/>
             Ingresar Valores
-          </Button>
+          </Fab>
         </CardActions>
       </form>
     </Card>
