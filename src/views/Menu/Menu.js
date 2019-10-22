@@ -99,8 +99,9 @@ const Menu = props => {
                 index={value}
                 onChangeIndex={handleChangeIndex}
             >
+                
                 <TabPanel value={value}  index={0} dir={theme.direction}>
-                    <InformationCard user={location.info.nombre}/>
+                    <InformationCard />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <Goals/>
@@ -109,7 +110,7 @@ const Menu = props => {
                     <Dashboard/>
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
-                    <Paraclinicos user={location.info.nombre}/>
+                    <Paraclinicos />
                 </TabPanel> 
                 <TabPanel value={value} index={4} dir={theme.direction}>
                     jajajaj

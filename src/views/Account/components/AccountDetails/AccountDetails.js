@@ -160,21 +160,19 @@ const AccountDetails = props => {
 
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
-    contexto, centre_medico, fecha_ingreso, idDoctor) =>{
-    
-    var information = [{id: idCard, sex: sexo,edad: age, weight: peso, height: altura}];
+    contexto, centre_medico, idDoctor) =>{
+
 
     regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
-      sexo, psw, contexto, centre_medico, fecha_ingreso, idDoctor)
+      sexo, psw, contexto, centre_medico, idDoctor)
       .then(response => {
         return response.json();
       })
       .then(json => {
         if (json["name"] == name) {
           console.log("Usuario creado");
-          history.push({
-            pathname:"/findrisk",
-            info:{ nombre: JSON.stringify(information)}});
+
+          history.push("/pacientes");
         } else {
           console.log(".,mn")
         }
@@ -189,15 +187,12 @@ const AccountDetails = props => {
   /***************Registro del paciente****************/
   const handleRegister = event =>{
     event.preventDefault();
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var now = date +'/'+month+'/'+year;
+    
     registro(formState.values.name, formState.values.lastName, 
       formState.values.b_day, formState.values.age, formState.values.tipoid, formState.values.idnumber,
       formState.values.peso, formState.values.altura,
       formState.values.sexo, formState.values.idnumber, formState.values.contexto,
-      formState.values.centro_medico, now, localStorage.getItem("id"));
+      formState.values.centro_medico, localStorage.getItem("id"));
 
   }
 

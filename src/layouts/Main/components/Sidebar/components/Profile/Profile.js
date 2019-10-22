@@ -45,7 +45,7 @@ const Profile = props => {
         variant="h4"
       >
 
-        {doctor.name+" "+doctor.lastName} 
+        {localStorage.getItem('name')+" "+localStorage.getItem('lastName')} 
       </Typography>
       <Typography variant="body2">
         {localStorage.getItem("medicalCenter")}

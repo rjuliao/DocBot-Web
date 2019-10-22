@@ -191,6 +191,11 @@ const SignIn = props => {
       .then(json => {
         if (json["login"] == true) {
           props.getDoctor(json);
+          localStorage.setItem('name', json["name"])
+          localStorage.setItem('lastName', json["lastName"]);
+          localStorage.setItem('medicalCenter', json["medicalCenter"])
+          localStorage.setItem('id', json["id"])
+        
           window.confirm("Ingreso exitoso, bienvenido")
           history.push('/pacientes');
         } else {

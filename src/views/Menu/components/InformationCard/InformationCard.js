@@ -76,7 +76,7 @@ const InformationCard = props => {
                         className={classes.infoTop}
                         variant="h2"
                     >
-                        {user.name} {user.lastName}
+                        {localStorage.getItem('p_Name')} {localStorage.getItem('p_lName')}
                     </Typography>
                 </Grid>
                 <Grid
@@ -88,25 +88,25 @@ const InformationCard = props => {
                         className={classes.info}
                         variant="h6"
                     >
-                        Edad: {user.age}
+                        Edad: {localStorage.getItem('p_age')}
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Identificación: {user.documentType}: {user.documentNumber}
+                        Identificación: {localStorage.getItem('p_documentType')}: {localStorage.getItem('p_documentNumber')}
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Sexo: {user.sex == 'f' ? "Mujer":"Hombre"}
+                        Sexo: {localStorage.getItem('sex')== 'f' ? "Mujer":"Hombre"}
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Fecha de Nacimiento: {user.birthdate}                        
+                        Fecha de Nacimiento: {localStorage.getItem('p_birthdate')}                        
                     </Typography>
                 </Grid>
                 <Grid
@@ -118,19 +118,19 @@ const InformationCard = props => {
                         className={classes.info}    
                         variant="h6"
                     >
-                        Peso: {user.weight}kg
+                        Peso: {localStorage.getItem('p_weight')}kg
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        Estatura: {user.height}m
+                        Estatura: {localStorage.getItem('p_height')}m
                     </Typography>
                     <Typography
                         className={classes.info}    
                         variant="h6"
                     >
-                        ICM: {user.weight/Math.pow(user.height,2)}
+                        ICM: {localStorage.getItem('p_weight')/Math.pow(localStorage.getItem('p_height'),2)}
                     </Typography>
                 </Grid>
             </Grid>
@@ -164,7 +164,7 @@ const InformationCard = props => {
                         className={classes.info}    
                         variant="body1"
                     >
-                        {user.clinicalContext}
+                        {localStorage.getItem('p_clinicalContext')}
                     </Typography>
                 </Grid>
                 <Grid
@@ -200,10 +200,6 @@ const InformationCard = props => {
         </div>
     );
 }
-
-InformationCard.propTypes = {
-    user: PropTypes.any.isRequired,
-};
 
 
 export default InformationCard;
