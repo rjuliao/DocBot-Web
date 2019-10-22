@@ -37,8 +37,12 @@ const Users = props => {
     setState({ ...state, [name]: event.target.checked });
   };
 
+  /**
+   * Obtengo la lista de pacientes
+   */
   const handleUsers = () => {
     console.log(localStorage.getItem("id"));
+    
     getPatients(localStorage.getItem("id"))
     .then(response => {
       return response.json();
@@ -60,13 +64,13 @@ const Users = props => {
       <UserListToolbar/>
       <div className={classes.content} >
         <FormControlLabel
-          control={
-            <Checkbox
+          control={<Checkbox
               checked={state.checkedB}
               onChange={handleChange('checkedB')}
               value="checkedB"
               color="primary"
             />
+            
           }
           label="Ver forma de lista"
         />

@@ -50,6 +50,40 @@ const UserCard = props => {
 
   const classes = useStyles();
 
+  /**
+   * Esto debe ser cambiado!!
+   * @param {*} userr 
+   */
+  const handleUser = userr =>{
+    localStorage.removeItem('p_id');
+    localStorage.removeItem('p_Name');
+    localStorage.removeItem('p_lName');
+    localStorage.removeItem('p_medicalCenter');
+    localStorage.removeItem('p_dateAssociation');
+    localStorage.removeItem('p_birthdate');
+    localStorage.removeItem('p_documentType');
+    localStorage.removeItem('p_documentNumber');
+    localStorage.removeItem('p_weight');
+    localStorage.removeItem('p_height');
+    localStorage.removeItem('p_clinicalContext');
+    localStorage.removeItem('p_sex');
+
+    console.log(userr._id)
+    localStorage.setItem('p_id', userr._id);
+    localStorage.setItem('p_Name', userr.name);
+    localStorage.setItem('p_lName', userr.lastName);
+    localStorage.setItem('p_age', userr.age);
+    localStorage.setItem('p_medicalCenter', userr.medicalCenter);
+    localStorage.setItem('p_dateAssociation', userr.dateAssociation);
+    localStorage.setItem('p_birthdate', userr.birthdate);
+    localStorage.setItem('p_documentType', userr.documentType);
+    localStorage.setItem('p_documentNumber', userr.documentNumber);
+    localStorage.setItem('p_weight', userr.weight);
+    localStorage.setItem('p_height', userr.height);
+    localStorage.setItem('p_clinicalContext', userr.clinicalContext);
+    localStorage.setItem('p_sex', userr.sex);
+  }
+
   return (
     <Card
       {...rest}
@@ -61,7 +95,7 @@ const UserCard = props => {
           info:{ nombre: user}
         }}
       >
-        <CardActionArea>
+        <CardActionArea onClick={()=>handleUser(user)}>
           <CardContent>
             <div className={classes.imageContainer}>
               <img

@@ -68,6 +68,29 @@ const UserTable = props => {
     setSelectedUsers(selectedUsers);
   };
 
+    /**
+   * Esto debe ser cambiado!!
+   * @param {*} user 
+   */
+  const handleUser = user =>{
+  
+
+    console.log(user.name)
+    
+    localStorage.setItem('p_id', user._id);
+    localStorage.setItem('p_Name', user.name);
+    localStorage.setItem('p_lName', user.lastName);
+    localStorage.setItem('p_medicalCenter', user.medicalCenter);
+    localStorage.setItem('p_dateAssociation', user.dateAssociation);
+    localStorage.setItem('p_birthdate', user.birthdate);
+    localStorage.setItem('p_documentType', user.documentType);
+    localStorage.setItem('p_documentNumber', user.documenNumber);
+    localStorage.setItem('p_weight', user.weight);
+    localStorage.setItem('p_height', user.height);
+    localStorage.setItem('p_clinicalContext', user.clinicalContext);
+    localStorage.setItem('p_sex', user.sex);
+  }
+
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedUsers.indexOf(id);
     let newSelectedUsers = [];
@@ -130,7 +153,7 @@ const UserTable = props => {
                               info:{ nombre: user}
                               }}
                             >
-                              <Fab size="small" color="primary" aria-label="add" className={classes.margin}>
+                              <Fab size="small" color="primary" aria-label="add" onClick={()=>handleUser(user)} className={classes.margin}>
                                 
                                   <AccessibilityIcon />
                               </Fab>
