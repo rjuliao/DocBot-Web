@@ -58,7 +58,7 @@ const UsersByDevice = props => {
         hoverBorderColor: theme.palette.white
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Meta 1', 'Meta 2', 'Meta 3']
   };
 
   const options = {
@@ -85,21 +85,18 @@ const UsersByDevice = props => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'Meta 1',
       value: '63',
-      icon: <LaptopMacIcon />,
       color: theme.palette.primary.main
     },
     {
-      title: 'Tablet',
+      title: 'Meta 2',
       value: '15',
-      icon: <TabletMacIcon />,
       color: theme.palette.error.main
     },
     {
-      title: 'Mobile',
+      title: 'Meta 3',
       value: '23',
-      icon: <PhoneIphoneIcon />,
       color: theme.palette.warning.main
     }
   ];
@@ -115,7 +112,7 @@ const UsersByDevice = props => {
             <RefreshIcon />
           </IconButton>
         }
-        title="Users By Device"
+        title="Progreso de metas general"
       />
       <Divider />
       <CardContent>

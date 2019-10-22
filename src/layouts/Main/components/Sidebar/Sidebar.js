@@ -2,12 +2,13 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer, Button } from '@material-ui/core';
+import { Divider, Drawer, Button, Fab } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link as RouterLink } from 'react-router-dom';
 import { Profile, SidebarNav } from './components';
 import { connect } from 'react-redux';
+import Block from '@material-ui/icons/Block';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -29,6 +30,9 @@ const useStyles = makeStyles(theme => ({
   },
   nav: {
     marginBottom: theme.spacing(2)
+  },
+  blockIcon: {
+    marginRight: theme.spacing(1),
   },
   lobutton:{
     backgroundColor: '#1438A6',
@@ -82,15 +86,16 @@ const Sidebar = props => {
         />
       </div>
       <div className={classes.root}>
-      <RouterLink to = '/sign-in'>
-          <Button 
+        <RouterLink to = '/sign-in'>
+          <Fab  
             className={classes.lobutton}
             variant="contained"
             size="large"
             onClick={handleLogout}
           >
+            <Block className={classes.blockIcon} />
             Cerrar Sesión
-          </Button>
+          </Fab>
         </RouterLink>
       </div>
     </Drawer>
