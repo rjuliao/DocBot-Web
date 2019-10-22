@@ -13,6 +13,7 @@ import { Card,
         Fab} from '@material-ui/core';
 import AddButton from '@material-ui/icons/AddCircleOutline';
 import { makeStyles } from '@material-ui/styles';
+import { setParaclinico } from '../../../../../../services/api';
 
 const schema = {
     hemoglobina_glicosilada: {
@@ -101,6 +102,21 @@ const MainParaclinicos = props =>{
     
   }
 
+  const sendUribeclinicos = (type, value, comment, id) => {
+  
+    setParaclinico(type, value, comment, id )
+    .then(response => {
+      return response.json();
+    })  
+    .then(json => {
+      //console.log(JSON.stringify(json));
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+
+  }
+
   /**
    * Funcion para tomar los valores de los paraclínicos
    * @param {*} event 
@@ -111,6 +127,12 @@ const MainParaclinicos = props =>{
     console.log(formState.values.colesterol);
     console.log(formState.values.hemoglobina_glicosilada);
     console.log(formState.values.glicemia);
+
+    sendUribeclinicos("trigliceridos",formState.values.trigliceridos, "los tiene muy alto", localStorage.getItem('p_id'));
+    sendUribeclinicos("colesterol",formState.values.colesterol, "los tiene muy alto", localStorage.getItem('p_id'));
+    sendUribeclinicos("hemoglobina_glicosilada",formState.values.hemoglobina_glicosilada, "los tiene muy alto", localStorage.getItem('p_id'));
+    sendUribeclinicos("glicemia",formState.values.glicemia, "los tiene muy alto", localStorage.getItem('p_id'));
+
     formState.values.trigliceridos = "";
     formState.values.colesterol = "";
     formState.values.hemoglobina_glicosilada = "";
