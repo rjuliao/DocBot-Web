@@ -21,6 +21,7 @@ import {
   Fab
 } from '@material-ui/core';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
+import { getFindriskVal } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -73,9 +74,20 @@ const UserTable = props => {
    * @param {*} user 
    */
   const handleUser = user =>{
-  
+    localStorage.removeItem('p_id');
+    localStorage.removeItem('p_Name');
+    localStorage.removeItem('p_lName');
+    localStorage.removeItem('p_medicalCenter');
+    localStorage.removeItem('p_dateAssociation');
+    localStorage.removeItem('p_birthdate');
+    localStorage.removeItem('p_documentType');
+    localStorage.removeItem('p_documentNumber');
+    localStorage.removeItem('p_weight');
+    localStorage.removeItem('p_height');
+    localStorage.removeItem('p_clinicalContext');
+    localStorage.removeItem('p_sex');
+    localStorage.removeItem('p_vtf');
 
-    console.log(user.name)
     
     localStorage.setItem('p_id', user._id);
     localStorage.setItem('p_Name', user.name);
@@ -89,6 +101,17 @@ const UserTable = props => {
     localStorage.setItem('p_height', user.height);
     localStorage.setItem('p_clinicalContext', user.clinicalContext);
     localStorage.setItem('p_sex', user.sex);
+
+    getFindriskVal(user._id)
+    .then(response => {
+      return response.json();
+    })  
+    .then(json => {
+      localStorage.setItem('p_vtf', json["testFindRisk"]);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
   }
 
   const handleSelectOne = (event, id) => {
