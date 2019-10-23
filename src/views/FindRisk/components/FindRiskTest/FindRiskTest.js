@@ -21,6 +21,7 @@ import {
   Radio,
   FormControlLabel,
 } from '@material-ui/core';
+import { setFindriskVal } from '../../../../services/api';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -32,11 +33,6 @@ const useStyles = makeStyles(() => ({
       padding: 'initial'
   }
 }));
-
-
-
-
-
 
 
 const FindRiskTest = props => {
@@ -74,16 +70,55 @@ const FindRiskTest = props => {
   };
   
 
-  const getValues = (age, weight, height, gender, pv4, pv5, pv6, pv7, pv8) =>{
-    console.log(information)
-    history.push('/pacientes');
+  const getValue = (sum) =>{
+
+    setFindriskVal(sum, localStorage.getItem('p_medicalCenter'), localStorage.getItem('p_id'))
+    .then(response => {
+      return response.json();
+    })  
+    .then(json => {
+      
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+
+    history.push('/menu');
   }
 
   const handleRisk = event =>{
     event.preventDefault();
-    getValues(formState.values.age, formState.values.weight, formState.values.height,
-              formState.values.p3, formState.values.pv4, formState.values.pv5, 
-              formState.values.pv6, formState.values.pv7, formState.values.pv8)
+    
+    var sum = 0;
+    var age = localStorage.getItem('p_age');
+    if (age < 45){
+      sum = 0; 
+    }else if(age >= 45 && age <= 54){
+      sum = 2;
+    }else if(age >= 55 && age <= 64){
+      sum = 3;
+    }else if(age > 64){
+      sum = 4;
+    }
+    
+    var icm = (formState.values.peso/Math.pow(localStorage.getItem('p_height'),2)).toFixed(3)
+    
+    if (icm < 25){
+      sum += 0; console.log('1')
+    }else if(icm >= 25 && icm <= 30){
+      sum += 1;
+    }else if(icm > 30){
+      sum += 3;
+    }
+
+    sum += parseInt(formState.values.gender,10);
+    sum += parseInt(formState.values.pv4,10);
+    sum += parseInt(formState.values.pv5,10);
+    sum += parseInt(formState.values.pv6,10);
+    sum += parseInt(formState.values.pv7,10);
+    sum += parseInt(formState.values.pv8,10);
+    localStorage.setItem('p_vtf', sum);
+    getValue(sum)
   }
 
   return (
@@ -109,7 +144,7 @@ const FindRiskTest = props => {
               xs={12}
             >
               <Typography variant="body1">
-                Edad: {information.edad} años
+                Edad: {localStorage.getItem('p_age')} años
               </Typography>
             </Grid>
             <Grid
@@ -125,14 +160,20 @@ const FindRiskTest = props => {
               md={4}
               xs={12}
             >
-              
-              <Typography
-                className={classes.info}    
-                variant="h6"
-              >
-                Peso: {information.weight}kg
-              </Typography>
-
+              <TextField
+                fullWidth
+                label="Peso"
+                margin="dense"
+                name="peso"
+                onChange={handleChange}
+                value={formState.values.peso || ''}
+                required
+                type="number"
+                variant="outlined"
+                InputProps={{
+                  startAdornment: <InputAdornment position="end">kg</InputAdornment>,
+                }}
+              /> 
             </Grid>
             <Grid
               item
@@ -143,7 +184,7 @@ const FindRiskTest = props => {
                 className={classes.info}    
                 variant="h6"
               >
-                Altura: {information.height}m
+                Altura: {localStorage.getItem('p_height')}m
               </Typography>
             </Grid>
             <Grid
@@ -155,7 +196,7 @@ const FindRiskTest = props => {
               className={classes.info}    
               variant="h6"
             >
-              ICM: {information.weight/Math.pow(information.height,2)}m
+              ICM: {(formState.values.peso/Math.pow(localStorage.getItem('p_height'),2)).toFixed(3)}m
             </Typography>
             </Grid>
             <Grid
@@ -167,27 +208,13 @@ const FindRiskTest = props => {
                 Perímetro de cintura medido por debajo de las costillas (normalmente a nivel del ombligo)
               </Typography>
             </Grid>
-
+            {localStorage.getItem('p_sex')== 'f' ? 
             <Grid
               item
               md={6}
               xs={12}
             >
-              <FormControl component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend">Hombre</FormLabel>
-                <RadioGroup aria-label="gender" name="gender" value={formState.values.gender} onChange={handleChange}>
-                  <FormControlLabel value="0" control={<Radio />} label="Menos de 94 cm." />
-                  <FormControlLabel value="3" control={<Radio />} label="Entre 94 - 102 cm." />
-                  <FormControlLabel value="4" control={<Radio />} label="Más de 102 cm." />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <FormControl component="fieldset" className={classes.formControl}>
+               <FormControl component="fieldset" className={classes.formControl}>
                 <FormLabel component="legend">Mujer</FormLabel>
                 <RadioGroup aria-label="gender" name="gender" value={formState.values.gender} onChange={handleChange}>
                   <FormControlLabel
@@ -207,7 +234,22 @@ const FindRiskTest = props => {
                   />
                 </RadioGroup>
               </FormControl>
-            </Grid>
+            </Grid>:
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <FormControl component="fieldset" className={classes.formControl}>
+                <FormLabel component="legend">Hombre</FormLabel>
+                <RadioGroup aria-label="gender" name="gender" value={formState.values.gender} onChange={handleChange}>
+                  <FormControlLabel value="0" control={<Radio />} label="Menos de 94 cm." />
+                  <FormControlLabel value="3" control={<Radio />} label="Entre 94 - 102 cm." />
+                  <FormControlLabel value="4" control={<Radio />} label="Más de 102 cm." />
+                </RadioGroup>
+              </FormControl>
+             
+            </Grid>}
             <Grid
               item
               md={12}
@@ -381,7 +423,6 @@ const FindRiskTest = props => {
 FindRiskTest.propTypes = {
   className: PropTypes.string,
   history: PropTypes.object,
-  information: PropTypes.object.isRequired,
 };
 
 export default withRouter(FindRiskTest);

@@ -36,7 +36,7 @@ const FindRisk = (props) => {
           xl={8}
           xs={12}
         >
-          <FindRiskTest information={location.info.nombre}/>
+          <FindRiskTest/>
         </Grid>
       </Grid>
     </div>
