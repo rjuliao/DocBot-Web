@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { IconButton, Grid, Typography, FormControlLabel, Checkbox, Button } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-//import mockData from './data';
-import { GoalsCard } from './components';
+import { GoalsCard, TableContent } from './components';
+import GoalsToolbar from './components/GoalsToolbar';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,35 +19,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Users = props => {
-  const {location, showinfo} = props;
+  const {goals, showinfo} = props;
   const classes = useStyles();
 
-  //const [users] = useState(mockData);
-
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
-
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
-    console.log(state.checkedB==true)
-  };
 
   return (
     <div className={classes.root}>
-      
       <div className={classes.content}>
-        <GoalsCard /> 
+        <GoalsToolbar/>
       </div>
-      <div className={classes.pagination}>
-        <Typography variant="caption">1-6 of 20</Typography>
-        <IconButton>
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton>
-          <ChevronRightIcon />
-        </IconButton>
+      <div className={classes.content}> 
+        <TableContent goals={goals}/>
       </div>
     </div>
   );
