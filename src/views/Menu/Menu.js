@@ -17,6 +17,7 @@ import {
 import InfoIcon from '@material-ui/icons/Info';
 import { createStore } from 'redux';
 import { withStyles } from '@material-ui/styles';
+import { getGoals } from '../../services/api';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -67,6 +68,10 @@ const Menu = props => {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
+    
+  const [state, setState] = React.useState({
+    goals: [],
+  });
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -75,6 +80,21 @@ const Menu = props => {
     const handleChangeIndex = index => {
         setValue(index);
     };
+
+    const handleSetGoal= ()=>{
+        
+        getGoals(localStorage.getItem('p_id'))
+        .then(response => {
+            return response.json();
+          })  
+          .then(json => {
+            state.goals = json;
+          })
+          .catch(error => {
+            console.log(error.message);
+          });
+    }
+
 
     return (
         <div className={classes.root}>
@@ -88,7 +108,7 @@ const Menu = props => {
                 aria-label="full width tabs example"
                 >
                     <Tab label="Información" {...a11yProps(0)} />
-                    <Tab label="Metas" {...a11yProps(1)} />
+                    <Tab label="Metas" {...a11yProps(1)} onClick={()=>handleSetGoal()} />
                     <Tab label="Graficos y avances" {...a11yProps(2)} />
                     <Tab label="Paraclínicos" {...a11yProps(3)} />
                     <Tab label="DocBot" {...a11yProps(4)} />
@@ -104,7 +124,7 @@ const Menu = props => {
                     <InformationCard />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <Goals/>
+                    <Goals goals={state.goals}/>
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
                     <Dashboard/>
