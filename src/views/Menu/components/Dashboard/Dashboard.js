@@ -76,6 +76,28 @@ const Dashboard = () => {
         </Grid>
         <Grid
           item
+          lg={12}
+          md={12}
+          xl={12}
+          xs={12}
+        >
+          <WeightHistory />
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
+
+export default Dashboard;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+        <Grid
+          item
           lg={8}
           md={12}
           xl={9}
@@ -92,18 +114,4 @@ const Dashboard = () => {
         >
           <UsersByDevice  />
         </Grid>
-        <Grid
-          item
-          lg={12}
-          md={12}
-          xl={12}
-          xs={12}
-        >
-          <WeightHistory />
-        </Grid>
-      </Grid>
-    </div>
-  );
-};
-
-export default Dashboard;
+ */

@@ -41,14 +41,12 @@ const Users = props => {
    * Obtengo la lista de pacientes
    */
   const handleUsers = () => {
-    console.log(localStorage.getItem("id"));
     
     getPatients(localStorage.getItem("id"))
     .then(response => {
       return response.json();
     })  
     .then(json => {
-      console.log(JSON.stringify(json));
       state.data = json;
     })
     .catch(error => {

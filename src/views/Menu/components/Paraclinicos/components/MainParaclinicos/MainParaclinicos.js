@@ -39,8 +39,43 @@ const schema = {
       length: {
         maximum: 5
       }
+    },
+    comentario: {
+      presence: { allowEmpty: false, message: 'Obligatorio' },
+      length: {
+        maximum: 5
+      }
     }
+    
   };
+
+
+const typeP = [
+  {
+    value: "0",
+    label: ""
+  },
+  {
+    value: "hemoglobina_glicosilada",
+    label: "Hemoglobina Glicosidada"
+  },
+  {
+    value: "trigliceridos",
+    label: "Trigliceridos "
+  },
+  {
+    value: "glicemia",
+    label: "Glicemia"
+  },
+  {
+    value: "colesterol",
+    label: "Colesterol "
+  },
+  {
+    value: "otro",
+    label: "Otro"
+  },
+]
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -102,7 +137,7 @@ const MainParaclinicos = props =>{
     
   }
 
-  const sendUribeclinicos = (type, value, comment, id) => {
+  const sendParaclinicos = (type, value, comment, id) => {
   
     setParaclinico(type, value, comment, id )
     .then(response => {
@@ -123,24 +158,13 @@ const MainParaclinicos = props =>{
    */
   const handleData = event =>{
     event.preventDefault();
-    console.log(formState.values.trigliceridos);
-    console.log(formState.values.colesterol);
-    console.log(formState.values.hemoglobina_glicosilada);
-    console.log(formState.values.glicemia);
 
-    sendUribeclinicos("trigliceridos",formState.values.trigliceridos, "los tiene muy alto", localStorage.getItem('p_id'));
-    sendUribeclinicos("colesterol",formState.values.colesterol, "los tiene muy alto", localStorage.getItem('p_id'));
-    sendUribeclinicos("hemoglobina_glicosilada",formState.values.hemoglobina_glicosilada, "los tiene muy alto", localStorage.getItem('p_id'));
-    sendUribeclinicos("glicemia",formState.values.glicemia, "los tiene muy alto", localStorage.getItem('p_id'));
-
-    formState.values.trigliceridos = "";
-    formState.values.colesterol = "";
-    formState.values.hemoglobina_glicosilada = "";
-    formState.values.glicemia = "";
-    history.push({
-      pathname:"/menu",
-      info:{ nombre: user}
-    });
+    sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, localStorage.getItem('p_id'));
+    
+    formState.values.type = "";
+    formState.values.value = "";
+    formState.values.comment = "";
+    history.push("/menu");
   }
 
   return(
@@ -162,20 +186,25 @@ const MainParaclinicos = props =>{
           >
             <Grid
                 item
-                xs={3}
+                xs={4}
             >
               <TextField
                 fullWidth
-                error={hasError('hemoglobina_glicosilada')}
-                label="Hemoglobina Glicosilada"
+                select
+                label="Tipo de paraclinico"
                 margin="dense"
-                name="hemoglobina_glicosilada"
+                name="type"
                 onChange={handleChange}
-                value={formState.values.hemoglobina_glicosilada || ''}
+                value={formState.values.type || ''}
                 required
-                type="number"
                 variant="outlined"
-              />
+              >
+                {typeP.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Grid>
             
             <Grid
@@ -184,48 +213,27 @@ const MainParaclinicos = props =>{
             >
               <TextField
                 fullWidth
-                error={hasError('trigliceridos')}
-                label="Triglicéridos"
+                label="Valor"
                 margin="dense"
-                name="trigliceridos"
+                name="value"
                 onChange={handleChange}
-                value={formState.values.trigliceridos || ''}
+                value={formState.values.value || ''}
                 required
-                type="number"
                 variant="outlined"
               />
             </Grid>
             <Grid
               item
-              xs={3}
+              xs={5}
             >
               <TextField
                 fullWidth
-                error={hasError('glicemia')}
-                label="Glicemia"
+                label="Comentario"
                 margin="dense"
-                name="glicemia"
+                name="comment"
                 onChange={handleChange}
-                value={formState.values.glicemia || ''}
+                value={formState.values.comment || ''}
                 required
-                type="number"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              xs={3}
-            >
-              <TextField
-                fullWidth
-                error={hasError('colesterol')}
-                label="Colesterol"
-                margin="dense"
-                name="colesterol"
-                onChange={handleChange}
-                value={formState.values.colesterol || ''}
-                required
-                type="number"
                 variant="outlined"
               />
             </Grid>
