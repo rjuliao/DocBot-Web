@@ -40,7 +40,7 @@ Aplicativo web encargado de gestionar la información de los pacientes que un m�
 Clonar el proyecto y luego instalar las dependencias del proyeto por medio de :
 
 ### `npm install` 
-:bomb: :bomb: :bomb: :bomb: 
+:bomb: :bomb: :bomb: :bomb: <br>  
 Luego, estando en la carpeta del proyecto, usted podrá hacer `npm start` para desplegar el servidor con el proyecto.<br>
 
 Runs the app in the development mode.<br>
