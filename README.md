@@ -1,7 +1,7 @@
 
-# Botic Aplicativo Web
+# DocBot Aplicativo Web :computer:
 
-Aplicativo web del lado de médico que le ayuda a gestionas los avances del paciente y mantenerlo bajo su control absoluto.<br> 
+Aplicativo web encargado de gestionar la información de los pacientes que un médico puede llegar a tener bajo su control.<br> 
 
 `One web to rule the all`<br>
     `one web to find them`<br>
@@ -9,9 +9,7 @@ Aplicativo web del lado de médico que le ayuda a gestionas los avances del paci
     `and in the database bing them`<br>
 
 
-
-
-### Librerias que usa el proyecto
+### Librerias que usa el proyecto :bookmark_tabs:
 
 * Material-UI
   *  Material-UI -> icons
@@ -27,13 +25,22 @@ Aplicativo web del lado de médico que le ayuda a gestionas los avances del paci
 * material-table
 * Redux
 
+## Funcionalidades del aplicativo :file_folder:
 
-## PARA EJECUTAR CORRECTAMENTE EL PROYECTO USTED DEBE:
+- Registrarse :inbox_tray:
+- Registrar un paciente :eyes:
+- Ver información del paciente :page_facing_up:
+- Ver gráficos de avances del paciente :bar_chart:
+- Añadir paraclínicos del paciente :syringe:
+- Agrega mensajes para el paciente :calling:
+
+
+## PARA EJECUTAR CORRECTAMENTE EL PROYECTO USTED DEBE :pushpin:
 
 Clonar el proyecto y luego instalar las dependencias del proyeto por medio de :
 
-### `npm install`
-
+### `npm install` 
+:bomb: :bomb: :bomb: :bomb: <br>  
 Luego, estando en la carpeta del proyecto, usted podrá hacer `npm start` para desplegar el servidor con el proyecto.<br>
 
 Runs the app in the development mode.<br>
@@ -42,5 +49,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+
+## Vease también :satellite:
+
+:lock: [Api de conexión con la base de datos](https://github.com/pamg1/Api-rest-botic)
 
 
