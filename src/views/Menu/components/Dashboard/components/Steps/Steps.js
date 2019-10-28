@@ -50,46 +50,44 @@ const Steps = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <CardActionArea onClick={closeSteps}>
-        <CardContent>
-          <Grid
-            container
-            justify="space-between"
-          >
-            <Grid item>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-                variant="body2"
-              >
-                Pasos Recorridos
-              </Typography>
-              <Typography variant="h3">24 pasos</Typography>
-            </Grid>
-            <Grid item>
-              <Avatar className={classes.avatar}>
-                <MoneyIcon className={classes.icon} />
-              </Avatar>
-            </Grid>
-          </Grid>
-          <div className={classes.difference}>
-            <ArrowDownwardIcon className={classes.differenceIcon} />
+      <CardContent>
+        <Grid
+          container
+          justify="space-between"
+        >
+          <Grid item>
             <Typography
-              className={classes.differenceValue}
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
               variant="body2"
             >
-              12%
+              Pasos Recorridos
             </Typography>
-            <Typography
-              className={classes.caption}
-              variant="caption"
-            >
-              Desde la última vez
-            </Typography>
-          </div>
-        </CardContent>
-      </CardActionArea>
+            <Typography variant="h3">0 pasos</Typography>
+          </Grid>
+          <Grid item>
+            <Avatar className={classes.avatar}>
+              <MoneyIcon className={classes.icon} />
+            </Avatar>
+          </Grid>
+        </Grid>
+        <div className={classes.difference}>
+          <ArrowDownwardIcon className={classes.differenceIcon} />
+          <Typography
+            className={classes.differenceValue}
+            variant="body2"
+          >
+            
+          </Typography>
+          <Typography
+            className={classes.caption}
+            variant="caption"
+          >
+            
+          </Typography>
+        </div>
+      </CardContent>
     </Card>
   );
 };
