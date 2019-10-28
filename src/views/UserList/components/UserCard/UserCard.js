@@ -15,7 +15,7 @@ import {
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment';
 import logo from '../../../../assets/logos/logo.png';
-import { getFindriskVal } from '../../../../services/api';
+import { getFindriskVal, getMedicalInfos } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -73,18 +73,26 @@ const UserCard = props => {
     var l = userr.weight.length
     var w = userr.weight[l-1]
 
+    if (l>1){
+      var old = userr.weight[l-2];
+      var oldv = old.value
+    }
+    if (l <= 1){
+      var oldv = 0
+      
+    }
+
     localStorage.setItem('p_id', userr._id);
     localStorage.setItem('p_Name', userr.name);
     localStorage.setItem('p_lName', userr.lastName);
     localStorage.setItem('p_age', userr.age);
-    localStorage.setItem('p_medicalCenter', userr.medicalCenter);
     localStorage.setItem('p_dateAssociation', userr.dateAssociation);
     localStorage.setItem('p_birthdate', userr.birthdate);
     localStorage.setItem('p_documentType', userr.documentType);
     localStorage.setItem('p_documentNumber', userr.documentNumber);
     localStorage.setItem('p_weight', w.value);
+    localStorage.setItem('p_wold', oldv);
     localStorage.setItem('p_height', userr.height);
-    localStorage.setItem('p_clinicalContext', userr.clinicalContext);
     localStorage.setItem('p_sex', userr.sex);
 
     getFindriskVal(userr._id)
@@ -93,6 +101,17 @@ const UserCard = props => {
     })  
     .then(json => {
       localStorage.setItem('p_vtf', json["testFindRisk"]);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+
+    getMedicalInfos(userr._id)
+    .then(response => {
+      return response.json();
+    })  
+    .then(json => {
+      console.log(json)
     })
     .catch(error => {
       console.log(error.message);

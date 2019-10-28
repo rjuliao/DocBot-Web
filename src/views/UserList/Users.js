@@ -97,15 +97,7 @@ const Users = props => {
           <UserTable users={state.data} />
         }
       </div>
-      <div className={classes.pagination}>
-        <Typography variant="caption">1-6 of 20</Typography>
-        <IconButton>
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton>
-          <ChevronRightIcon />
-        </IconButton>
-      </div>
+      
     </div>
   );
 };
