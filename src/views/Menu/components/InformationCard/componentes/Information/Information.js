@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { Card, CardContent, CardHeader, 
     Divider, 
     Typography, 
-    Grid} from '@material-ui/core';
+    Grid,
+    Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    TextField} from '@material-ui/core';
+import { updateWeight } from '../../../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -15,6 +23,9 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '10px',
         color: '#1438A6'
 
+    },
+    button: {
+        margin: theme.spacing(1),
     },
     subttitle: {
         marginBottom: '5px'
@@ -35,8 +46,58 @@ const useStyles = makeStyles(theme => ({
 const Information = props => {
     const { history, user } = props
     const classes = useStyles(); 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
     
+    /***********************************************************************/
+    const [formState, setFormState] = useState({
+        isValid: false,
+        values: {},
+        touched: {},
+        errors: {}
+    });
+    const handleChange = event => {
+        event.persist();
     
+        setFormState(formState => ({
+            ...formState,
+            values: {
+            ...formState.values,
+            [event.target.name]:
+                event.target.type === 'checkbox'
+                ? event.target.checked
+                : event.target.value
+            },
+            touched: {
+            ...formState.touched,
+            [event.target.name]: true
+            }
+        }));
+    };
+
+    const handleWeight = event =>{
+        event.preventDefault();
+        localStorage.setItem("p_weight", formState.values.peso)
+        updateWeight(localStorage.getItem("p_id"), formState.values.peso)
+        .then(response => {
+            return response.json();
+        })  
+        .then(json => {
+            console.log(JSON.stringify(json));
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+        handleClose();
+
+    }
 
     return(
         <div className={classes.root}>
@@ -103,12 +164,9 @@ const Information = props => {
                     md={6}
                     xs={12}
                 >
-                    <Typography
-                        className={classes.info}    
-                        variant="h6"
-                    >
+                    <Button variant="outlined" color="primary" className={classes.button} onClick={handleClickOpen}>
                         Peso: {localStorage.getItem('p_weight')}kg
-                    </Typography>
+                    </Button>
                     <Typography
                         className={classes.info}    
                         variant="h6"
@@ -187,10 +245,60 @@ const Information = props => {
                     </Typography>
                 </Grid>
             </Grid>
-            
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"¿Desea Añadir muestra de peso?"}</DialogTitle>
+                <DialogContent>
+                <Card>
+                    <form
+                        autoComplete="off"
+                        noValidate
+                    >
+                        <CardContent>
+                            <Grid
+                                container
+                                spacing={3}
+                            >
+                                <Grid
+                                    item
+                                    sx={12}
+                                >
+                                    <TextField
+                                        fullWidth
+                                        label="Peso"
+                                        margin="dense"
+                                        name="peso"
+                                        onChange={handleChange}
+                                        value={formState.values.peso || ''}
+                                        required
+                                        type="number"
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </form>
+                </Card>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleWeight} color="primary">
+                    Aceptar
+                </Button>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                    Cancelar
+                </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }
 
-
-export default Information;
+Information.propTypes = {
+    user: PropTypes.isRequired,
+    history: PropTypes.object
+};
+export default withRouter(Information);
