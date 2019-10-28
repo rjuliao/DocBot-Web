@@ -16,38 +16,26 @@ import { makeStyles } from '@material-ui/styles';
 import { setParaclinico } from '../../../../../../services/api';
 
 const schema = {
-    hemoglobina_glicosilada: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
-    },
-    trigliceridos: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
-    },
-    colesterol: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
-    },
-    glicemia: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
-    },
-    comentario: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
+  tipo:{
+    presence: {allowEmpty: false, message: 'Obligatorio'},
+    length:{
+      maximum: 4
     }
+  },
+  value:{
+    presence: {allowEmpty: false, message: 'Obligatorio'},
+    length:{
+      maximum: 4
+    }
+  },
+  comentario: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 5
+    }
+  }
     
-  };
+};
 
 
 const typeP = [
@@ -68,8 +56,8 @@ const typeP = [
     label: "Glicemia"
   },
   {
-    value: "colesterol",
-    label: "Colesterol "
+    value: "colesterol_total",
+    label: "Colesterol Total"
   },
   {
     value: "otro",
@@ -190,6 +178,7 @@ const MainParaclinicos = props =>{
             >
               <TextField
                 fullWidth
+                error={hasError('tipo')}
                 select
                 label="Tipo de paraclinico"
                 margin="dense"
@@ -213,12 +202,14 @@ const MainParaclinicos = props =>{
             >
               <TextField
                 fullWidth
+                error={hasError('value')}
                 label="Valor"
                 margin="dense"
                 name="value"
                 onChange={handleChange}
                 value={formState.values.value || ''}
                 required
+                type="number"
                 variant="outlined"
               />
             </Grid>
@@ -228,6 +219,7 @@ const MainParaclinicos = props =>{
             >
               <TextField
                 fullWidth
+                error={hasError('comentario')}
                 label="Comentario"
                 margin="dense"
                 name="comment"
@@ -242,6 +234,7 @@ const MainParaclinicos = props =>{
         <CardActions>
           <Fab  
             color="primary"
+            
             variant="contained"
             type="submit"
           >
