@@ -44,16 +44,75 @@ export function singUp(name, lastName, medicalCenter,  email, password){
  * @param {*} avatar
  */
 export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber, weight, height,
-     sex, password, clinicalContext, medicalCenter, doc, avatar){
+     sex, password,email, doc, avatar){
     
     return fetch('http://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
         body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
-            sex, password, clinicalContext, medicalCenter, doc, avatar}),
+            sex, password, email, doc, avatar}),
         headers: {'Content-Type':'application/json',}
     });
     
 }
+
+/**
+ * Añadir la información médica del paciente
+ * @param {*} clinicalContext 
+ * @param {*} medicalCenter 
+ * @param {*} isDiabetic 
+ * @param {*} patient 
+ */
+export function medicalInfos(clinicalContext, medicalCenter, isDiabetic, patient){
+    
+    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos',{
+        method: 'POST',
+        body: JSON.stringify({clinicalContext, medicalCenter, isDiabetic, patient}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
+
+
+/**
+ * Obtener información médica del paciente
+ * @param {*} id 
+ */
+export function getMedicalInfos(patient){
+    
+    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
+        method: 'POST',
+        body: JSON.stringify({ patient}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
+
+/**
+ * Actualizar peso
+ * @param {*} id 
+ * @param {*} weight 
+ */
+export function updateWeight(id, weight){
+   
+    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
+        method: 'PUT',
+        body: JSON.stringify({weight, id}),
+        headers: {'Content-Type':'application/json',}
+    });
+    
+ }
+
+/**
+ * Obtengo el peso del paciente
+ * @param {*} id 
+ */
+export function getWeight(id){
+   
+   return fetch('http://api-rest-botic.herokuapp.com/api/patients/getweight',{
+       method: 'GET',
+       headers: {'Content-Type':'application/json','id':id}
+   });
+   
+}
+
 
 /**
  * Obtengo una lista de pacientes a partir del id de doctor
@@ -67,6 +126,15 @@ export function getPatients(doc){
     });
 }
 
+/**
+ * 
+ * @param {*} name 
+ * @param {*} lastName 
+ * @param {*} birthdate 
+ * @param {*} age 
+ * @param {*} documentType 
+ * @param {*} documentNumber 
+ */
 export function editPatient(name, lastName, birthdate, age, documentType, documentNumber){
     return fetch('http://api-rest-botic.herokuapp.com/api/patients/edit',{
         method: 'PUT',
@@ -157,13 +225,12 @@ export function getGoals(pat){
 /**
  * Guardo el valor del findrisk
  * @param {*} testFindrisk 
- * @param {*} medicalCenter 
  * @param {*} patient 
  */
-export function setFindriskVal(testFindRisk, medicalCenter, patient){
+export function setFindriskVal(testFindRisk, patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/',{
         method: 'POST',
-        body: JSON.stringify({testFindRisk, medicalCenter, patient}),
+        body: JSON.stringify({testFindRisk, patient}),
         headers: {'Content-Type':'application/json',}
     });
 }
