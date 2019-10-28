@@ -17,7 +17,7 @@ import {
 import InfoIcon from '@material-ui/icons/Info';
 import { createStore } from 'redux';
 import { withStyles } from '@material-ui/styles';
-import { getGoals } from '../../services/api';
+import { getGoals, getParaclinico } from '../../services/api';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -86,15 +86,28 @@ const Menu = props => {
         getGoals(localStorage.getItem('p_id'))
         .then(response => {
             return response.json();
-          })  
-          .then(json => {
+        })  
+        .then(json => {
             state.goals = json;
-          })
-          .catch(error => {
+        })
+        .catch(error => {
             console.log(error.message);
-          });
+        });
     }
 
+
+    const handleParaclinicos =()=>{
+        getParaclinico(localStorage.getItem('p_id'))
+        .then(response => {
+            return response.json();
+        })  
+        .then(json => {
+            console.log(json);
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+    }
 
     return (
         <div className={classes.root}>
@@ -109,8 +122,8 @@ const Menu = props => {
                 >
                     <Tab label="Información" {...a11yProps(0)} />
                     <Tab label="Metas" {...a11yProps(1)} onClick={()=>handleSetGoal()} />
-                    <Tab label="Graficos y avances" {...a11yProps(2)} />
-                    <Tab label="Paraclínicos" {...a11yProps(3)} />
+                    <Tab label="Graficos y avances" {...a11yProps(2)}  />
+                    <Tab label="Paraclínicos" {...a11yProps(3)} onClick={()=>handleParaclinicos()}/>
                     <Tab label="DocBot" {...a11yProps(4)} />
                 </Tabs>
             </AppBar>
