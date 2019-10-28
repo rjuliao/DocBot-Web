@@ -62,9 +62,9 @@ const Colesterol = props => {
               gutterBottom
               variant="body2"
             >
-              Colesterol
+              Colesterol Total
             </Typography>
-            <Typography variant="h3">84.5kg</Typography>
+            <Typography variant="h3">84.5 mg/dL</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
