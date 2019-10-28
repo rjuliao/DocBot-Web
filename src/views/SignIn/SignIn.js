@@ -241,7 +241,7 @@ const SignIn = props => {
                   className={classes.quoteText}
                   variant="h1"
                 >
-                  <img src={botic} width={88} /> es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
+                  DocBot es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
                 </Typography>
             </CardContent>
           </Card>
@@ -311,7 +311,7 @@ const SignIn = props => {
                   color="#D92588"
                   variant="body1"
                 >
-                  Nuevo en Botic?{' '}
+                  Nuevo en DocBot?{' '}
                   <Link
                     component={RouterLink}
                     to="/sign-up"
