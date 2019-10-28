@@ -56,6 +56,18 @@ export function regPaciente(name, lastName, birthdate, age, documentType, docume
 }
 
 /**
+ * Obtener información de un paciente
+ * @param {*} documentnumber 
+ */
+export function getSinglePatient(documentnumber){
+    
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/buscarPaciente',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json', 'documentnumber': documentnumber}
+    });
+}
+
+/**
  * Añadir la información médica del paciente
  * @param {*} clinicalContext 
  * @param {*} medicalCenter 
@@ -74,14 +86,13 @@ export function medicalInfos(clinicalContext, medicalCenter, isDiabetic, patient
 
 /**
  * Obtener información médica del paciente
- * @param {*} id 
+ * @param {*} patient
  */
 export function getMedicalInfos(patient){
     
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
         method: 'POST',
-        body: JSON.stringify({ patient}),
-        headers: {'Content-Type':'application/json',}
+        headers: {'Content-Type':'application/json','patient':patient}
     });
 }
 
@@ -113,6 +124,17 @@ export function getWeight(id){
    
 }
 
+/**
+ * Edito la información de peso del paciente
+ * @param {*} weight 
+ */
+export function setWeight(weight){
+    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
+        method: 'PUT',
+        body: JSON.stringify({weight}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
 
 /**
  * Obtengo una lista de pacientes a partir del id de doctor
@@ -155,6 +177,8 @@ export function detelePatient(id){
     });
 }
 
+
+/********************************PARACLINICOS*************************************************/
 /**
  * Añadir un paraclinico
  * @param {*} type 
@@ -183,6 +207,8 @@ export function getParaclinico(patient){
     });
 }
 
+
+/********************************METAS*****************************************/
 /**
  * Creo una meta y la guardo en la base de datos
  * @param {*} description 
@@ -247,14 +273,3 @@ export function getFindriskVal(patient){
 }
 
 
-/**
- * Edito la información de peso del paciente
- * @param {*} weight 
- */
-export function setWeight(weight){
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
-        method: 'PUT',
-        body: JSON.stringify({weight}),
-        headers: {'Content-Type':'application/json',}
-    });
-}
