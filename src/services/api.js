@@ -76,7 +76,6 @@ export function getSinglePatient(documentnumber){
  * @param {*} patient 
  */
 export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient){
-    console.log(JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}));
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos',{
         method: 'POST',
         body: JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}),
@@ -90,7 +89,7 @@ export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDia
  * @param {*} patient
  */
 export function getMedicalInfos(patient){
-    console.log(patient)
+
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
         method: 'GET',
         headers: {'Content-Type':'application/json','patient':patient}
