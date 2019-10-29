@@ -56,7 +56,7 @@ export function regPaciente(name, lastName, birthdate, age, documentType, docume
 }
 
 /**
- * Obtener información de un paciente
+ * Obtener id de un paciente
  * @param {*} documentnumber 
  */
 export function getSinglePatient(documentnumber){
@@ -70,15 +70,16 @@ export function getSinglePatient(documentnumber){
 /**
  * Añadir la información médica del paciente
  * @param {*} clinicalContext 
- * @param {*} medicalCenter 
+ * @param {*} medicalCenter
+ * @param {*} testFindRisk
  * @param {*} isDiabetic 
  * @param {*} patient 
  */
-export function medicalInfos(clinicalContext, medicalCenter, isDiabetic, patient){
-    
+export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient){
+    console.log(JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}));
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos',{
         method: 'POST',
-        body: JSON.stringify({clinicalContext, medicalCenter, isDiabetic, patient}),
+        body: JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}),
         headers: {'Content-Type':'application/json',}
     });
 }
@@ -91,7 +92,7 @@ export function medicalInfos(clinicalContext, medicalCenter, isDiabetic, patient
 export function getMedicalInfos(patient){
     
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
-        method: 'POST',
+        method: 'GET',
         headers: {'Content-Type':'application/json','patient':patient}
     });
 }
@@ -249,14 +250,15 @@ export function getGoals(pat){
 
 
 /**
- * Guardo el valor del findrisk
+ * Actualizo información medica del paciente, valor del findrisk y si es diabetico
  * @param {*} testFindrisk 
+ * @param {*} isDiabetic 
  * @param {*} patient 
  */
-export function setFindriskVal(testFindRisk, patient){
+export function setFindriskVal(testFindRisk, isDiabetic, patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/',{
-        method: 'POST',
-        body: JSON.stringify({testFindRisk, patient}),
+        method: 'PUT',
+        body: JSON.stringify({testFindRisk, isDiabetic, patient}),
         headers: {'Content-Type':'application/json',}
     });
 }
