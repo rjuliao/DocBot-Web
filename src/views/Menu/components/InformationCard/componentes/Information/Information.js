@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader,
     DialogContentText,
     DialogActions,
     TextField} from '@material-ui/core';
-import { updateWeight } from '../../../../../../services/api';
+import { updateWeight, getWeight } from '../../../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -85,16 +85,34 @@ const Information = props => {
     const handleWeight = event =>{
         event.preventDefault();
         localStorage.setItem("p_weight", formState.values.peso)
+
         updateWeight(localStorage.getItem("p_id"), formState.values.peso)
         .then(response => {
             return response.json();
         })  
         .then(json => {
-            console.log(JSON.stringify(json));
+
+
+            getWeight(localStorage.getItem("p_id"))
+            .then(response => {
+                return response.json();
+            }) 
+            .then(json=>{
+                var l = json.weight.length
+                var w = json.weight[l-2]
+                localStorage.setItem('p_wold', w.value);
+                
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
+    
         })
         .catch(error => {
             console.log(error.message);
         });
+
+
         handleClose();
 
     }
@@ -188,6 +206,30 @@ const Information = props => {
             >
                 <Grid
                     item
+                    xs={6}
+                >
+                    <Typography
+                        className={classes.infoTop}
+                        variant="h2"
+                    >
+                        El paciente es diabético:
+                    </Typography>
+                </Grid>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <Typography
+                        className={classes.info}
+                        variant="h3"
+                    >
+                        {
+                            !localStorage.getItem("p_isDiabetic") ? "SI":"NO"
+                        }
+                    </Typography>
+                </Grid>
+                <Grid
+                    item
                     xs={12}
                 >
                     <Typography
@@ -211,7 +253,7 @@ const Information = props => {
                         className={classes.info}    
                         variant="body1"
                     >
-                        {localStorage.getItem('p_clinicalContext')}
+                        {localStorage.getItem('p_clinicalC')}
                     </Typography>
                 </Grid>
                 <Grid
@@ -225,7 +267,7 @@ const Information = props => {
                         FINDRISK TEST
                     </Typography>
                     <Divider/>
-                    {localStorage.getItem('p_vtf')=== null? 
+                    {parseInt(localStorage.getItem('p_vtf'),10) === 0? 
                     <Typography>
                         Este paciente no tiene aplicado el test
                     </Typography>:
@@ -233,9 +275,12 @@ const Information = props => {
                         className={classes.info}    
                         variant="body1"
                     >
-                        {parseInt(localStorage.getItem('p_vtf'),10) > 14 ? 
+                        {
+                        parseInt(localStorage.getItem('p_vtf'),10) > 14 ? 
                         "Su puntaje es: " + localStorage.getItem('p_vtf') +" ¡OJO! Esta por encima en riesgo de desarrollar diabetes"
-                        :"Su puntaje es: " + localStorage.getItem('p_vtf') +" Esta por debajo del índice de riesgo para desarrollar diabetes"}
+                        :
+                        "Su puntaje es: " + localStorage.getItem('p_vtf') +" Esta por debajo del índice de riesgo para desarrollar diabetes"
+                        }
                     </Typography>}
                     <Typography
                         className={classes.info}    
