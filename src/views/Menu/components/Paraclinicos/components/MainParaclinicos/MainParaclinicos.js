@@ -44,6 +44,10 @@ const typeP = [
     label: ""
   },
   {
+    value: "glucosa",
+    label: "Glucosa"
+  },
+  {
     value: "hemoglobina_glicosilada",
     label: "Hemoglobina Glicosidada"
   },
