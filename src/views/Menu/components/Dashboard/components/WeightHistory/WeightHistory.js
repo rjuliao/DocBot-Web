@@ -14,7 +14,7 @@ import {
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import { data, options } from './chart';
+import {  options } from './chart';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const WeightHistory = props => {
-  const { className, ...rest } = props;
+  const { className, data, ...rest } = props;
 
   const classes = useStyles();
 
@@ -38,15 +38,7 @@ const WeightHistory = props => {
       className={clsx(classes.root, className)}
     >
       <CardHeader
-        action={
-          <Button
-            size="small"
-            variant="text"
-          >
-            Last 7 days <ArrowDropDownIcon />
-          </Button>
-        }
-        title="Cambio de peso"
+        title="Historico de peso"
       />
       <Divider />
       <CardContent>
@@ -59,13 +51,7 @@ const WeightHistory = props => {
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
-        <Button
-          color="primary"
-          size="small"
-          variant="text"
-        >
-          Overview <ArrowRightIcon />
-        </Button>
+        
       </CardActions>
     </Card>
   );
@@ -73,6 +59,7 @@ const WeightHistory = props => {
 
 WeightHistory.propTypes = {
   className: PropTypes.string,
+  weight: PropTypes.array.isRequired
 };
 
 export default WeightHistory;
