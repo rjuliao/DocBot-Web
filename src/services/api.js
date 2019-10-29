@@ -90,7 +90,7 @@ export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDia
  * @param {*} patient
  */
 export function getMedicalInfos(patient){
-    
+    console.log(patient)
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
         method: 'GET',
         headers: {'Content-Type':'application/json','patient':patient}
