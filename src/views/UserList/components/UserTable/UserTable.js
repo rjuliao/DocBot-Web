@@ -21,7 +21,7 @@ import {
   Fab
 } from '@material-ui/core';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
-import { getFindriskVal } from '../../../../services/api';
+import { getFindriskVal, getMedicalInfos } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -73,7 +73,7 @@ const UserTable = props => {
    * Esto debe ser cambiado!!
    * @param {*} user 
    */
-  const handleUser = user =>{
+  const handleUser = userr =>{
     localStorage.removeItem('p_id');
     localStorage.removeItem('p_Name');
     localStorage.removeItem('p_lName');
@@ -87,27 +87,46 @@ const UserTable = props => {
     localStorage.removeItem('p_clinicalContext');
     localStorage.removeItem('p_sex');
     localStorage.removeItem('p_vtf');
+    localStorage.removeItem('p_vtf');
+    localStorage.removeItem('p_clinicalC');
+    localStorage.removeItem('p_mecialC');
+    localStorage.removeItem('p_isDiabetic');
 
-    
-    localStorage.setItem('p_id', user._id);
-    localStorage.setItem('p_Name', user.name);
-    localStorage.setItem('p_lName', user.lastName);
-    localStorage.setItem('p_medicalCenter', user.medicalCenter);
-    localStorage.setItem('p_dateAssociation', user.dateAssociation);
-    localStorage.setItem('p_birthdate', user.birthdate);
-    localStorage.setItem('p_documentType', user.documentType);
-    localStorage.setItem('p_documentNumber', user.documenNumber);
-    localStorage.setItem('p_weight', user.weight);
-    localStorage.setItem('p_height', user.height);
-    localStorage.setItem('p_clinicalContext', user.clinicalContext);
-    localStorage.setItem('p_sex', user.sex);
+    var l = userr.weight.length
+    var w = userr.weight[l-1]
 
-    getFindriskVal(user._id)
+    if (l>1){
+      var old = userr.weight[l-2];
+      var oldv = old.value
+    }
+    if (l <= 1){
+      var oldv = 0
+      
+    }
+
+    localStorage.setItem('p_id', userr._id);
+    localStorage.setItem('p_Name', userr.name);
+    localStorage.setItem('p_lName', userr.lastName);
+    localStorage.setItem('p_age', userr.age);
+    localStorage.setItem('p_dateAssociation', userr.dateAssociation);
+    localStorage.setItem('p_birthdate', userr.birthdate);
+    localStorage.setItem('p_documentType', userr.documentType);
+    localStorage.setItem('p_documentNumber', userr.documentNumber);
+    localStorage.setItem('p_weight', w.value);
+    localStorage.setItem('p_wold', oldv);
+    localStorage.setItem('p_height', userr.height);
+    localStorage.setItem('p_sex', userr.sex);
+
+    getMedicalInfos(userr._id)
     .then(response => {
       return response.json();
     })  
     .then(json => {
+      console.log(json)
       localStorage.setItem('p_vtf', json["testFindRisk"]);
+      localStorage.setItem('p_clinicalC', json["clinicalContext"]);
+      localStorage.setItem('p_mecialC', json["medicalCenter"]);
+      localStorage.setItem('p_isDiabetic', json["isDiabetic"]);
     })
     .catch(error => {
       console.log(error.message);

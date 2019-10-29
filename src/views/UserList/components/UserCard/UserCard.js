@@ -69,6 +69,10 @@ const UserCard = props => {
     localStorage.removeItem('p_clinicalContext');
     localStorage.removeItem('p_sex');
     localStorage.removeItem('p_vtf');
+    localStorage.removeItem('p_vtf');
+    localStorage.removeItem('p_clinicalC');
+    localStorage.removeItem('p_mecialC');
+    localStorage.removeItem('p_isDiabetic');
 
     var l = userr.weight.length
     var w = userr.weight[l-1]
@@ -95,23 +99,18 @@ const UserCard = props => {
     localStorage.setItem('p_height', userr.height);
     localStorage.setItem('p_sex', userr.sex);
 
-    getFindriskVal(userr._id)
-    .then(response => {
-      return response.json();
-    })  
-    .then(json => {
-      localStorage.setItem('p_vtf', json["testFindRisk"]);
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
 
+    console.log(userr._id)
     getMedicalInfos(userr._id)
     .then(response => {
       return response.json();
     })  
     .then(json => {
       console.log(json)
+      localStorage.setItem('p_vtf', json.testFindRisk);
+      localStorage.setItem('p_clinicalC', json.clinicalContext);
+      localStorage.setItem('p_mecialC', json.medicalCenter);
+      localStorage.setItem('p_isDiabetic', json.isDiabetic);
     })
     .catch(error => {
       console.log(error.message);
