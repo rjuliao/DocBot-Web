@@ -236,6 +236,8 @@ const GoalsToolbar = props => {
        formState.values.freqtype, formState.values.freq, formState.values.intensidad,
         formState.values.typeMessage, localStorage.getItem('p_id'), formState.values.dueDate, 0, 
         "No Predeterminada", "", ""  )
+
+    handleClose()
   }
 
 
