@@ -77,24 +77,24 @@ const WeightChange = props => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          { localStorage.getItem('p_wold') > localStorage.getItem('p_weight') ?
+          { parseInt(localStorage.getItem('p_weight'),10) > parseInt(localStorage.getItem('p_wold'),10) ?
             <ArrowUpwardIcon className={classes.differenceIcon} />
             :
             <ArrowDownwardIcon className={classes.differenceSucess} />
           }
-          { localStorage.getItem('p_wold') > localStorage.getItem('p_weight') ?
+          { parseInt(localStorage.getItem('p_weight'),10) > parseInt(localStorage.getItem('p_wold'),10) ?
             <Typography
               className={classes.caption}
               variant="caption"
             >
-              Subió la última vez
+              Subió desde la última vez
             </Typography>
             :
             <Typography
               className={classes.caption}
               variant="caption"
             >
-              Bajó la última vez
+              Bajó desde la última vez
             </Typography>
           }
           
