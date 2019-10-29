@@ -9,7 +9,8 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
+  Button,
+  Grid
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -28,7 +29,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LatestSales = props => {
-  const { className, ...rest } = props;
+  const { className, goals, ...rest } = props;
 
   const classes = useStyles();
 
@@ -46,27 +47,21 @@ const LatestSales = props => {
             Last 7 days <ArrowDropDownIcon />
           </Button>
         }
-        title="Nivel"
+        title="Progreso de metas"
       />
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>
-          <Bar
-            data={data}
-            options={options}
-          />
+          
+          <Grid
+            container
+            spacing={3}
+          >
+            
+          </Grid>
         </div>
       </CardContent>
       <Divider />
-      <CardActions className={classes.actions}>
-        <Button
-          color="primary"
-          size="small"
-          variant="text"
-        >
-          Overview <ArrowRightIcon />
-        </Button>
-      </CardActions>
     </Card>
   );
 };
@@ -76,3 +71,16 @@ LatestSales.propTypes = {
 };
 
 export default LatestSales;
+
+/**
+ * {goals.map(user => (
+              <Grid
+                item
+                key={user.id}
+                lg={4}
+                md={6}
+                xs={12}
+              > 
+                {/*<SingleGoal goals={goals} />
+                </Grid>))}
+ */
