@@ -182,8 +182,7 @@ const AccountDetails = props => {
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
     contexto, centre_medico, email, diabetico, idDoctor) =>{
-    
-    var id;
+ 
 
     regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
       sexo, psw, email, idDoctor, "")
@@ -196,26 +195,34 @@ const AccountDetails = props => {
       console.log(error.message);
     });
 
+
     getSinglePatient(idCard)
     .then(response => {
       return response.json();
     })
     .then(json => {
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
+      console.log(json.id)
 
-    medicalInfos(contexto, centre_medico, diabetico, id)
-    .then(response => {
-      return response.json();
-    })
-    .then(json => {
-        history.push("/pacientes");
+      medicalInfos(contexto, centre_medico,0, diabetico, json.id)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+          
+          history.push("/pacientes");
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+
     })
     .catch(error => {
       console.log(error.message);
     });
+  
+    
+
+    
   }
 
 
