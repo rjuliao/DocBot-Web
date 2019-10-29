@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const GoalsProgress = props => {
-  const { className, ...rest } = props;
+  const { className, progress, ...rest } = props;
 
   const classes = useStyles();
 
@@ -62,7 +62,7 @@ const GoalsProgress = props => {
             >
               Progreso de metas
             </Typography>
-            <Typography variant="h3">75.5%</Typography>
+            <Typography variant="h3">{progress}%</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -72,7 +72,7 @@ const GoalsProgress = props => {
         </Grid>
         <LinearProgress
           className={classes.progress}
-          value={75.5}
+          value={progress}
           variant="determinate"
         />
       </CardContent>
