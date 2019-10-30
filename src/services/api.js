@@ -290,12 +290,24 @@ export function setMessages(description, date, patient, doctor){
 }
 
 
+/**
+ * Obtener lista de mensajes por doctor
+ * @param {*} doctor
+ * @param {*} patient
+ */
+export function getMessages(doctor, patient){
+    return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/findByDocandP',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json','doctor': doctor,'patient': patient}
+    });
+}
+
 
 /**
  * Escribir modelo bayesiano
  * @param {*} patient
  */
-export function getMessages(doctor, patient){
+export function createModel(doctor, patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/bayesianModel',{
         method: 'POST',
         headers: {'Content-Type':'application/json',},
