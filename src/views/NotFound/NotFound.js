@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
     width: 560
   },
   quoteText: {
-    color: '#D92588'
+    color: theme.primary
   },
   quote: {
-    color: '#1438A6'
+    color: theme.secondary
   }
 }));
 

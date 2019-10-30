@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import AccessibilityNew from '@material-ui/icons/AccessibilityNew';
 
 const useStyles = makeStyles(theme => ({
@@ -32,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   differenceIcon: {
+    color: theme.palette.error.dark
+  },
+  differenceSucess: {
     color: theme.palette.success.dark
   },
   differenceValue: {
@@ -64,7 +68,7 @@ const WeightChange = props => {
             >
               Cambio de peso
             </Typography>
-            <Typography variant="h3">84.5kg</Typography>
+            <Typography variant="h3">{localStorage.getItem("p_weight")}kg</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -73,19 +77,27 @@ const WeightChange = props => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
-          <Typography
-            className={classes.caption}
-            variant="caption"
-          >
-            Dese la última vez
-          </Typography>
+          { parseInt(localStorage.getItem('p_weight'),10) > parseInt(localStorage.getItem('p_wold'),10) ?
+            <ArrowUpwardIcon className={classes.differenceIcon} />
+            :
+            <ArrowDownwardIcon className={classes.differenceSucess} />
+          }
+          { parseInt(localStorage.getItem('p_weight'),10) > parseInt(localStorage.getItem('p_wold'),10) ?
+            <Typography
+              className={classes.caption}
+              variant="caption"
+            >
+              Subió desde la última vez
+            </Typography>
+            :
+            <Typography
+              className={classes.caption}
+              variant="caption"
+            >
+              Bajó desde la última vez
+            </Typography>
+          }
+          
         </div>
       </CardContent>
     </Card>

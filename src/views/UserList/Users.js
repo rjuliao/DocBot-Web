@@ -47,6 +47,7 @@ const Users = props => {
       return response.json();
     })  
     .then(json => {
+      console.log(json)
       state.data = json;
     })
     .catch(error => {
@@ -96,15 +97,7 @@ const Users = props => {
           <UserTable users={state.data} />
         }
       </div>
-      <div className={classes.pagination}>
-        <Typography variant="caption">1-6 of 20</Typography>
-        <IconButton>
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton>
-          <ChevronRightIcon />
-        </IconButton>
-      </div>
+      
     </div>
   );
 };

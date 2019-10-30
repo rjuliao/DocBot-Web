@@ -11,75 +11,33 @@ import { Card,
         TextField, 
         Button,
         Fab} from '@material-ui/core';
-import AddButton from '@material-ui/icons/AddCircleOutline';
+import Send from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/styles';
-import { setParaclinico } from '../../../../../../services/api';
+import { setParaclinico, setMessages } from '../../../../../../services/api';
 
 const schema = {
-  tipo:{
-    presence: {allowEmpty: false, message: 'Obligatorio'},
-    length:{
-      maximum: 4
-    }
-  },
-  value:{
-    presence: {allowEmpty: false, message: 'Obligatorio'},
-    length:{
-      maximum: 4
-    }
-  },
+
   comentario: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
-      maximum: 5
+      maximum: 50
     }
   }
     
 };
 
-
-const typeP = [
-  {
-    value: "0",
-    label: ""
-  },
-  {
-    value: "glucosa",
-    label: "Glucosa"
-  },
-  {
-    value: "hemoglobina_glicosilada",
-    label: "Hemoglobina Glicosidada"
-  },
-  {
-    value: "trigliceridos",
-    label: "Trigliceridos "
-  },
-  {
-    value: "glicemia",
-    label: "Glicemia"
-  },
-  {
-    value: "colesterol_total",
-    label: "Colesterol Total"
-  },
-  {
-    value: "otro",
-    label: "Otro"
-  },
-]
-
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: theme.spacing(3),
-        backgroundColor: theme.palette.background.default,
+      padding: theme.spacing(3),
+      backgroundColor: theme.palette.background.default,
     },
     buttonbase: {
+        
       marginRight: theme.spacing(1),
     }
 }));
 
-const MainParaclinicos = props =>{
+const InfoMessage = props =>{
   const { history, user, className, ...rest } = props;
   const classes = useStyles();
 
@@ -129,18 +87,19 @@ const MainParaclinicos = props =>{
     
   }
 
-  const sendParaclinicos = (type, value, comment, id) => {
-  
-    setParaclinico(type, value, comment, id )
+  const handleMessage = (idP, idDoc, nombre, mensaje, asunto, date) => {
+    
+    setMessages(mensaje, date, idP, idDoc, nombre, asunto)
     .then(response => {
       return response.json();
     })  
-    .then(json => {
-      //console.log(JSON.stringify(json));
+    .then(json => { 
     })
     .catch(error => {
       console.log(error.message);
     });
+
+   
 
   }
 
@@ -151,11 +110,28 @@ const MainParaclinicos = props =>{
   const handleData = event =>{
     event.preventDefault();
 
-    sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, localStorage.getItem('p_id'));
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //hoy es 0!
+    var yyyy = date.getFullYear();
     
-    formState.values.type = "";
-    formState.values.value = "";
-    formState.values.comment = "";
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    
+    date = mm+'/'+dd+'/'+yyyy;
+
+    var nombre = localStorage.getItem("name") + " " + localStorage.getItem("lastName") 
+    
+    handleMessage(localStorage.getItem("p_id"), localStorage.getItem("id"),
+     nombre,formState.values.message,  formState.values.subject,  date)
+    
+    formState.values.message=""
+    formState.values.subject=""
     history.push("/menu");
   }
 
@@ -167,91 +143,76 @@ const MainParaclinicos = props =>{
         onSubmit={handleData}
       >
         <CardHeader
-          subheader="Ingresar datos paraclínicos"
-          title="Paraclinicos"
+          subheader="Ingresar mensaje para el paciente"
+          title="Mensajes"
         />
         <Divider/>
         <CardContent>
           <Grid
             container
+            justify = "center"
+            
+            alignItems="center"
             spacing={3}
           >
             <Grid
-                item
-                xs={4}
-            >
-              <TextField
-                fullWidth
-                error={hasError('tipo')}
-                select
-                label="Tipo de paraclinico"
-                margin="dense"
-                name="type"
-                onChange={handleChange}
-                value={formState.values.type || ''}
-                required
-                variant="outlined"
-              >
-                {typeP.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid>
-            
-            <Grid
               item
-              xs={3}
-            >
-              <TextField
-                fullWidth
-                error={hasError('value')}
-                label="Valor"
-                margin="dense"
-                name="value"
-                onChange={handleChange}
-                value={formState.values.value || ''}
-                required
-                type="number"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              xs={5}
+              xs={12}
             >
               <TextField
                 fullWidth
                 error={hasError('comentario')}
-                label="Comentario"
+                label="Asunto"
                 margin="dense"
-                name="comment"
+                name="subject"
                 onChange={handleChange}
-                value={formState.values.comment || ''}
+                value={formState.values.subject || ''}
                 required
                 variant="outlined"
               />
             </Grid>
+            
+            <Grid
+              item
+              xs={10}
+            >
+              <TextField
+                fullWidth
+                error={hasError('comentario')}
+                label="Mensaje"
+                margin="dense"
+                name="message"
+                onChange={handleChange}
+                value={formState.values.message || ''}
+                required
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              xs={2}
+            >
+              <Fab  
+                color="primary"
+                type="submit"
+                variant="contained"
+                onClik={handleData}
+              >
+                <Send className={classes.buttonbase}/>
+                Enviar
+              </Fab>
+            </Grid>
           </Grid>
         </CardContent>
-        <CardActions>
-          <Fab  
-            color="primary"
-            
-            variant="contained"
-            type="submit"
-          >
-            <AddButton className={classes.buttonbase}/>
-            Ingresar Valores
-          </Fab>
+        <CardActions >
+          
         </CardActions>
       </form>
     </Card>
   )
 }
-MainParaclinicos.propTypes = {
+InfoMessage.propTypes = {
   user: PropTypes.isRequired,
   history: PropTypes.object
 };
-export default withRouter(MainParaclinicos);
+export default withRouter(InfoMessage);

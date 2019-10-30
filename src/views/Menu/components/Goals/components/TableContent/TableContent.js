@@ -111,7 +111,7 @@ const TableContent = props => {
                               {goal.typeFrequency === '1'?"Alta": (goal.typeFrequency==='2'?"Media": "Baja")} 
                             </TableCell>
                             <TableCell>{goal.typeMessage==='1'?"Amable":"Asertivo"} </TableCell>
-                            <TableCell>{goal.progress}%</TableCell>
+                            <TableCell>{(goal.progress/goal.quantity)*100}%</TableCell>
                             <TableCell>{goal.intensityLevel === '1'?"Alta": (goal.intensityLevel==='2'?"Media": "Baja")}</TableCell>
                         </TableRow>
                         ))}

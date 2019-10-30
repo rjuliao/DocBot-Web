@@ -86,11 +86,11 @@ const typeMessage = [
     label: ''
   },
   {
-    value: 1,
+    value: 'kind',
     label: 'Amable'
   },
   {
-    value: 2,
+    value: 'assertive',
     label: 'Asertivo'
   },
 ];
@@ -236,6 +236,8 @@ const GoalsToolbar = props => {
        formState.values.freqtype, formState.values.freq, formState.values.intensidad,
         formState.values.typeMessage, localStorage.getItem('p_id'), formState.values.dueDate, 0, 
         "No Predeterminada", "", ""  )
+
+    handleClose()
   }
 
 

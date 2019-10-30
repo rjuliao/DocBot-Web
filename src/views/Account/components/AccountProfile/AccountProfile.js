@@ -15,6 +15,7 @@ import {
   Grid
 } from '@material-ui/core';
 import logo  from '../../../../assets/logos/logo.png';
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -63,13 +64,17 @@ const AccountProfile = props => {
       </CardContent>
       <Divider />
       <CardActions>
-        <Button
-          className={classes.uploadButton}
-          color="primary"
-          variant="text"
+        <RouterLink
+          to="/pacientes"
         >
-          Cambiar Avatar
-        </Button>
+          <Button
+            className={classes.uploadButton}
+            color="primary"
+            variant="text"
+          >
+            Cancelar
+          </Button>
+        </RouterLink>
       </CardActions>
     </Card>
   );

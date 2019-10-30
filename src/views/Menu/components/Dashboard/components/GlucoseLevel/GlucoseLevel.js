@@ -58,7 +58,7 @@ const GlucoseLevel = props => {
               color="inherit"
               variant="h3"
             >
-              23,2?
+              0 mg/dL
             </Typography>
           </Grid>
           <Grid item>

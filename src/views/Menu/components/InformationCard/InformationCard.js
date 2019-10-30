@@ -460,6 +460,8 @@ const InformationCard = props => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            
         </div>
     );
 }

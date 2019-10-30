@@ -44,15 +44,96 @@ export function singUp(name, lastName, medicalCenter,  email, password){
  * @param {*} avatar
  */
 export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber, weight, height,
-     sex, password, clinicalContext, medicalCenter, doc, avatar){
+     sex, password,email, doc, avatar){
     
     return fetch('http://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
         body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
-            sex, password, clinicalContext, medicalCenter, doc, avatar}),
+            sex, password, email, doc, avatar}),
         headers: {'Content-Type':'application/json',}
     });
     
+}
+
+/**
+ * Obtener id de un paciente
+ * @param {*} documentnumber 
+ */
+export function getSinglePatient(documentnumber){
+    
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/buscarPaciente',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json', 'documentnumber': documentnumber}
+    });
+}
+
+/**
+ * Añadir la información médica del paciente
+ * @param {*} clinicalContext 
+ * @param {*} medicalCenter
+ * @param {*} testFindRisk
+ * @param {*} isDiabetic 
+ * @param {*} patient 
+ */
+export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient){
+    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos',{
+        method: 'POST',
+        body: JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
+
+
+/**
+ * Obtener información médica del paciente
+ * @param {*} patient
+ */
+export function getMedicalInfos(patient){
+
+    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json','patient':patient}
+    });
+}
+
+/**
+ * Actualizar peso
+ * @param {*} id 
+ * @param {*} weight 
+ */
+export function updateWeight(id, weight){
+   
+    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
+        method: 'PUT',
+        body: JSON.stringify({weight, id}),
+        headers: {'Content-Type':'application/json',}
+    });
+    
+ }
+
+/**
+ * Obtengo el peso del paciente
+ * @param {*} id 
+ */
+export function getWeight(id){
+   
+   return fetch('http://api-rest-botic.herokuapp.com/api/patients/getweight',{
+       method: 'GET',
+       headers: {'Content-Type':'application/json','id':id}
+   });
+   
+}
+
+/**
+ * Edito la información de peso del paciente
+ * @param {*} weight 
+ */
+export function setWeight(weight){
+    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
+        method: 'PUT',
+        body: JSON.stringify({weight}),
+        headers: {'Content-Type':'application/json',}
+    });
 }
 
 /**
@@ -67,6 +148,15 @@ export function getPatients(doc){
     });
 }
 
+/**
+ * 
+ * @param {*} name 
+ * @param {*} lastName 
+ * @param {*} birthdate 
+ * @param {*} age 
+ * @param {*} documentType 
+ * @param {*} documentNumber 
+ */
 export function editPatient(name, lastName, birthdate, age, documentType, documentNumber){
     return fetch('http://api-rest-botic.herokuapp.com/api/patients/edit',{
         method: 'PUT',
@@ -87,6 +177,8 @@ export function detelePatient(id){
     });
 }
 
+
+/********************************PARACLINICOS*************************************************/
 /**
  * Añadir un paraclinico
  * @param {*} type 
@@ -115,6 +207,8 @@ export function getParaclinico(patient){
     });
 }
 
+
+/********************************METAS*****************************************/
 /**
  * Creo una meta y la guardo en la base de datos
  * @param {*} description 
@@ -155,15 +249,15 @@ export function getGoals(pat){
 
 
 /**
- * Guardo el valor del findrisk
+ * Actualizo información medica del paciente, valor del findrisk y si es diabetico
  * @param {*} testFindrisk 
- * @param {*} medicalCenter 
+ * @param {*} isDiabetic 
  * @param {*} patient 
  */
-export function setFindriskVal(testFindRisk, medicalCenter, patient){
+export function setFindriskVal(testFindRisk, isDiabetic, patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/',{
-        method: 'POST',
-        body: JSON.stringify({testFindRisk, medicalCenter, patient}),
+        method: 'PUT',
+        body: JSON.stringify({testFindRisk, isDiabetic, patient}),
         headers: {'Content-Type':'application/json',}
     });
 }
@@ -181,28 +275,18 @@ export function getFindriskVal(patient){
 
 
 /**
- * Edito la información de peso del paciente
- * @param {*} weight 
- */
-export function setWeight(weight){
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
-        method: 'PUT',
-        body: JSON.stringify({weight}),
-        headers: {'Content-Type':'application/json',}
-    });
-}
-
-/**
  * Guardar un mensaje del doctor para el paciente
  * @param {*} description
  * @param {*} date
  * @param {*} patient
  * @param {*} doctor 
+ * @param {*} doctorName
+ * @param {*} subject
  */
-export function setMessages(description, date, patient, doctor){
+export function setMessages(description, date, patient, doctor, doctorName, subject){
     return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/',{
         method: 'POST',
-        body: JSON.stringify({description, date, patient, doctor}),
+        body: JSON.stringify({description, date, patient, doctor, doctorName, subject}),
         headers: {'Content-Type':'application/json',}
     });
 }
@@ -217,5 +301,18 @@ export function getMessages(doctor, patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/findByDocandP',{
         method: 'GET',
         headers: {'Content-Type':'application/json','doctor': doctor,'patient': patient}
+    });
+}
+
+
+/**
+ * Escribir modelo bayesiano
+ * @param {*} patient
+ */
+export function createModel(patient){
+    return fetch('http://api-rest-botic.herokuapp.com/api/bayesianModel',{
+        method: 'POST',
+        headers: {'Content-Type':'application/json',},
+        body: JSON.stringify({"r": 0, "s": 0, patient})
     });
 }

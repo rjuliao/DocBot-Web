@@ -1,6 +1,5 @@
 export { default as Steps } from './Steps';
-export { default as LatestOrders } from './LatestOrders';
-export { default as LatestSales } from './LatestSales';
+export { default as SingleGoalProgress } from './SingleGoalProgress';
 export { default as GoalsProgress } from './GoalsProgress';
 export { default as GlucoseLevel } from './GlucoseLevel';
 export { default as WeightChange } from './WeightChange';

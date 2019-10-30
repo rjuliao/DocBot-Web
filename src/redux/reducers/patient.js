@@ -13,7 +13,7 @@ const initialState = {
 const reducer =(state = initialState, action)=>{
     switch(action.type){
         case 'getActualPatient':
-        state.loggedDoctor = action.payload;
+        state.patient = action.payload;
         break;
     }
     return state;

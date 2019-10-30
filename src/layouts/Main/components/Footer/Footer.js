@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4)
   },
   link: {
-    color: '#3F51B5',
+    color: theme.primary,
   },
   logoun: {
     width: 150,
@@ -38,7 +38,7 @@ const Footer = props => {
           target="_blank"
           className={classes.link}
         >
-          Botic!
+          DocBot!
         </Link>
         . 2019
       </Typography>

@@ -15,11 +15,25 @@ import {
   TextField,
   InputAdornment
 } from '@material-ui/core';
-import { regPaciente } from '../../../../services/api';
+import { regPaciente, medicalInfos, getSinglePatient, createModel } from '../../../../services/api';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
+
+const diabtic = [
+  {
+    value: "empty"
+  },
+  {
+    value: 1,
+    label: 'SI'
+  },
+  {
+    value: 0,
+    label: 'NO'
+  },
+]
 
 const id = [
   {
@@ -70,6 +84,13 @@ const schema = {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
       maximum: 32
+    }
+  },
+  email: {
+    presence: { allowEmpty: false, message: 'es obligatorio' },
+    email: true,
+    length: {
+      maximum: 64
     }
   },
   lastName: {
@@ -160,26 +181,54 @@ const AccountDetails = props => {
 
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
-    contexto, centre_medico, idDoctor) =>{
-
+    contexto, centre_medico, email, diabetico, idDoctor) =>{
+ 
 
     regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
-      sexo, psw, contexto, centre_medico, idDoctor, "")
+      sexo, psw, email, idDoctor, "")
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+
+
+    getSinglePatient(idCard)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+
+      medicalInfos(contexto, centre_medico,0, diabetico, json.id)
       .then(response => {
         return response.json();
       })
       .then(json => {
-        if (json["name"] == name) {
-          console.log("Usuario creado");
+          
 
-          history.push("/pacientes");
-        } else {
-          console.log(".,mn")
-        }
+          createModel(json.patient)
+          .then(response => {
+            return response.json();
+          })
+          .then(json => {
+              history.push("/pacientes");
+          })
+          .catch(error => {
+            console.log(error.message);
+          });
       })
       .catch(error => {
         console.log(error.message);
       });
+
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+
   }
 
 
@@ -187,12 +236,13 @@ const AccountDetails = props => {
   /***************Registro del paciente****************/
   const handleRegister = event =>{
     event.preventDefault();
-    
+  
+
     registro(formState.values.name, formState.values.lastName, 
       formState.values.b_day, formState.values.age, formState.values.tipoid, formState.values.idnumber,
       formState.values.peso, formState.values.altura,
       formState.values.sexo, formState.values.idnumber, formState.values.contexto,
-      formState.values.centro_medico, localStorage.getItem("id"));
+      formState.values.centro_medico, formState.values.email, formState.values.isDiabetic, localStorage.getItem("id"));
 
   }
 
@@ -248,6 +298,23 @@ const AccountDetails = props => {
                 onChange={handleChange}
                 value={formState.values.lastName || ''}
                 required
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                error={hasError('email')}
+                label="Email"
+                margin="dense"
+                name="email"
+                onChange={handleChange}
+                value={formState.values.email || ''}
+                
                 variant="outlined"
               />
             </Grid>
@@ -378,6 +445,35 @@ const AccountDetails = props => {
                 required
                 variant="outlined"
               />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="¿Es diabético?"
+                margin="dense"
+                name="isDiabetic"
+                onChange={handleChange}
+                value={formState.values.isDiabetic || ''}
+                required
+                select
+                // eslint-disable-next-line react/jsx-sort-props
+                SelectProps={{ native: true }}
+                
+                variant="outlined"
+              >
+                {diabtic.map(option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Grid>
             <Grid
                 item

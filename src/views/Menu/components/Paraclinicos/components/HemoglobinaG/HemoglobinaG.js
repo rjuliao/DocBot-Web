@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.valueH.main,
+    backgroundColor: theme.palette.error.main,
     height: 56,
     width: 56
   },
@@ -64,7 +64,7 @@ const HemoglobinaG = props => {
             >
               Hemoglobina Glicosilada
             </Typography>
-            <Typography variant="h3">84.5kg</Typography>
+            <Typography variant="h3">84.5 mg/dL</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
