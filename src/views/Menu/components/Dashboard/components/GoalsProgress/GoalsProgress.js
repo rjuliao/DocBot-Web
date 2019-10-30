@@ -62,7 +62,7 @@ const GoalsProgress = props => {
             >
               Progreso de metas
             </Typography>
-            <Typography variant="h3">{progress}%</Typography>
+            <Typography variant="h3">{isNaN(progress)?"0":progress}%</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
