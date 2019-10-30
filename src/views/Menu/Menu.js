@@ -12,12 +12,15 @@ import {
     MenuButtons,
     Goals,
     Dashboard,
-    Paraclinicos
+    Paraclinicos,
+    Messages
 } from './components';
 import InfoIcon from '@material-ui/icons/Info';
 import { createStore } from 'redux';
 import { withStyles } from '@material-ui/styles';
-import { getGoals, getParaclinico } from '../../services/api';
+import { getGoals, getParaclinico, getWeight, getMessages } from '../../services/api';
+import palette from '../../theme/palette';
+import moment from 'moment';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -71,6 +74,9 @@ const Menu = props => {
     
   const [state, setState] = React.useState({
     goals: [],
+    data: [],
+    messages: [],
+    progress: 0,
   });
 
     const handleChange = (event, newValue) => {
@@ -81,14 +87,40 @@ const Menu = props => {
         setValue(index);
     };
 
+    /**********************************************METAS*******************************************************/
     const handleSetGoal= ()=>{
         
-        getGoals(localStorage.getItem('p_id'))
+       getAllGoalsInfo(localStorage.getItem('p_id'))
+    }
+
+    const getAllGoalsInfo =(id)=>{
+
+        getGoals(id)
         .then(response => {
             return response.json();
         })  
         .then(json => {
+
             state.goals = json;
+            var l = json.length
+            var s = 0;
+            json.map(goal => {
+                s += goal.progress/goal.quantity
+            })
+            var p = s/l
+            state.progress = (p*100).toFixed(0)
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+    }
+    /*******************************************PARACLÍNICOS****************************************************/
+    const handleParaclinicos =()=>{
+        getParaclinico(localStorage.getItem('p_id'))
+        .then(response => {
+            return response.json();
+        })  
+        .then(json => {
         })
         .catch(error => {
             console.log(error.message);
@@ -96,13 +128,51 @@ const Menu = props => {
     }
 
 
-    const handleParaclinicos =()=>{
-        getParaclinico(localStorage.getItem('p_id'))
+    /*******************************************GRÁFICOS******************************************************/
+    const handleGraficos = ()=>{
+
+        getWeight(localStorage.getItem('p_id'))
+        .then(response => {
+            return response.json();
+        })  
+        .then(json => { 
+            const labels=[];
+            const data=[];
+
+            //var l = json.weight.length >=10 ? 10: json.weight.length;
+            
+            for(var x = 0; x < json.weight.length; x++){
+                var i = json.weight[x]
+                labels.push(moment(i.date).format('DD/MM'))
+                data.push(i.value)
+            }
+            const info = {
+                labels: labels,
+                datasets:[
+                    {
+                        borderColor: palette.warning.main,
+                        data: data,
+                        fill: false,
+                    }   
+                ]
+            }
+            state.data = info
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+        getAllGoalsInfo(localStorage.getItem('p_id'))
+    }
+
+    const handleMessages = ()=>{
+
+        getMessages(localStorage.getItem('id'),localStorage.getItem('p_id'))
         .then(response => {
             return response.json();
         })  
         .then(json => {
             console.log(json);
+            state.messages = json
         })
         .catch(error => {
             console.log(error.message);
@@ -122,9 +192,9 @@ const Menu = props => {
                 >
                     <Tab label="Información" {...a11yProps(0)} />
                     <Tab label="Metas" {...a11yProps(1)} onClick={()=>handleSetGoal()} />
-                    <Tab label="Graficos y avances" {...a11yProps(2)}  />
+                    <Tab label="Graficos y avances" {...a11yProps(2)} onClick={()=>handleGraficos()} />
                     <Tab label="Paraclínicos" {...a11yProps(3)} onClick={()=>handleParaclinicos()}/>
-                    <Tab label="DocBot" {...a11yProps(4)} />
+                    <Tab label="DocBot" {...a11yProps(4)} onClick={()=>handleMessages()} />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -140,13 +210,17 @@ const Menu = props => {
                     <Goals goals={state.goals}/>
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    <Dashboard/>
+                    <Dashboard 
+                        data={state.data} 
+                        goalP={state.progress} 
+                        goals={state.goals}
+                    />
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
                     <Paraclinicos />
                 </TabPanel> 
                 <TabPanel value={value} index={4} dir={theme.direction}>
-                    jajajaj
+                    <Messages messages={state.messages}/>
                 </TabPanel>
             </SwipeableViews>
         </div>
