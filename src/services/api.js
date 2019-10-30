@@ -280,7 +280,7 @@ export function getFindriskVal(patient){
  */
 export function getMessages(doctor, patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/bayesianModel',{
-        method: 'GET',
+        method: 'POST',
         headers: {'Content-Type':'application/json',},
         body: JSON.stringify({"r": 0, "s": 0, patient})
     });
