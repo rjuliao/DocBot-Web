@@ -58,15 +58,6 @@ const Paraclinicos = props => {
                     <Colesterol clt={p5}/>
                 </Grid>
                 
-                <Grid
-                    item
-                    lg={12}
-                    sm={12}
-                    xl={12}
-                    xs={12}
-                >
-                    <ParaChart data={data}/>
-                </Grid>
             </Grid>
         </div>
     );
@@ -77,3 +68,16 @@ Paraclinicos.propTypes = {
 };
 
 export default Paraclinicos;
+
+/**
+ * 
+                <Grid
+                    item
+                    lg={12}
+                    sm={12}
+                    xl={12}
+                    xs={12}
+                >
+                    <ParaChart data={data}/>
+                </Grid>
+ */
