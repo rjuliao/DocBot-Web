@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import AccessibilityNew from '@material-ui/icons/Waves';
+import ArrowUpwardIcon from '@material-ui/icons/NavigateNext';
+import AccessibilityNew from '@material-ui/icons/Grain';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,7 +64,7 @@ const HemoglobinaG = props => {
             >
               Hemoglobina Glicosilada
             </Typography>
-            <Typography variant="h3">84.5 mg/dL</Typography>
+            <Typography variant="h3">{localStorage.getItem("hg")} mg/dL</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -74,17 +74,12 @@ const HemoglobinaG = props => {
         </Grid>
         <div className={classes.difference}>
           <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
+        
           <Typography
             className={classes.caption}
             variant="caption"
           >
-            Dese la última vez
+            {localStorage.getItem("hg_C")}
           </Typography>
         </div>
       </CardContent>

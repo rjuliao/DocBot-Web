@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowUpwardIcon from '@material-ui/icons/NavigateNext';
 import AccessibilityNew from '@material-ui/icons/HdrWeak';
 
 const useStyles = makeStyles(theme => ({
@@ -64,7 +64,7 @@ const Colesterol = props => {
             >
               Colesterol Total
             </Typography>
-            <Typography variant="h3">84.5 mg/dL</Typography>
+            <Typography variant="h3">{localStorage.getItem("clt")} mg/dL</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -75,16 +75,10 @@ const Colesterol = props => {
         <div className={classes.difference}>
           <ArrowUpwardIcon className={classes.differenceIcon} />
           <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
-          <Typography
             className={classes.caption}
             variant="caption"
           >
-            Dese la última vez
+            {localStorage.getItem("clt_C")}
           </Typography>
         </div>
       </CardContent>

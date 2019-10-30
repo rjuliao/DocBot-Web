@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import AccessibilityNew from '@material-ui/icons/Grain';
+import ArrowUpwardIcon from '@material-ui/icons/NavigateNext';
+import AccessibilityNew from '@material-ui/icons/Waves';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Trigliceridos = props => {
-  const { className, ...rest } = props;
+  const { className, tri, ...rest } = props;
 
   const classes = useStyles();
 
@@ -64,7 +64,7 @@ const Trigliceridos = props => {
             >
               Trigliceridos
             </Typography>
-            <Typography variant="h3">84.5 mg/dL</Typography>
+            <Typography variant="h3">{localStorage.getItem("tri")} mg/dL</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -74,17 +74,12 @@ const Trigliceridos = props => {
         </Grid>
         <div className={classes.difference}>
           <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
+          
           <Typography
             className={classes.caption}
             variant="caption"
           >
-            Dese la última vez
+            {localStorage.getItem("tri_C")}
           </Typography>
         </div>
       </CardContent>
@@ -93,7 +88,8 @@ const Trigliceridos = props => {
 };
 
 Trigliceridos.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  tri: PropTypes.array.isRequired
 };
 
 export default Trigliceridos;

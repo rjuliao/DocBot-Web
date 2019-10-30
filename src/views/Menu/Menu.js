@@ -77,6 +77,13 @@ const Menu = props => {
     data: [],
     messages: [],
     progress: 0,
+    p1 : [],
+    p2 : [],
+    p3 : [],
+    p4 : [],
+    p5 : [],
+    p6 : [],
+    dataP: []
   });
 
     const handleChange = (event, newValue) => {
@@ -116,15 +123,128 @@ const Menu = props => {
     }
     /*******************************************PARACLÍNICOS****************************************************/
     const handleParaclinicos =()=>{
-        getParaclinico(localStorage.getItem('p_id'))
+        getParas(localStorage.getItem('p_id'))
+    }
+
+    const getParas = (id) => {
+
+        getParaclinico(id)
         .then(response => {
             return response.json();
         })  
         .then(json => {
+            const p1 = []
+            const p2 = []
+            const p3 = []
+            const p4 = []
+            const p5 = []
+            const p6 = []
+
+            console.log(json)
+
+            for(var x = 0; x < json.length; x++){
+                var i = json[x]
+                if(i.type === 'trigliceridos'){
+                    p1.push(i)
+                    localStorage.setItem("tri", i.value)
+                    localStorage.setItem("tri_C", i.comment)
+                }
+                if(i.type === 'glicemia'){
+                    p2.push(i)
+                    localStorage.setItem("gli", i.value)
+                    localStorage.setItem("gli_C", i.comment)
+                }
+                if(i.type === 'otro'){
+                    p3.push(i)
+                }
+                if(i.type === 'hemoglobina_glicosilada'){
+                    p4.push(i)
+                    localStorage.setItem("hg", i.value)
+                    localStorage.setItem("hg_C", i.comment)
+                }
+                if(i.type === 'colesterol_total'){
+                    p5.push(i)
+                    localStorage.setItem("clt", i.value)
+                    localStorage.setItem("clt_C", i.comment)
+                }
+                if(i.type === 'glucosa'){
+                    p6.push(i)
+                    localStorage.setItem("glu", i.value)
+                }
+                
+
+                state.p1 = p1
+                state.p2 = p2
+                state.p3 = p3
+                state.p4 = p4
+                state.p5 = p5
+                state.p6 = p6
+                createData(p1, p2, p4, p5);
+            }
         })
         .catch(error => {
             console.log(error.message);
         });
+    }
+
+    const createData = (p1, p2, p3, p4) =>{
+        const labels=[];
+        const data1=[];
+        const data2=[];
+        const data3=[];
+        const data4=[];
+        
+        for(var x = 0; x < p1.length; x++){
+            var i = p1[x]
+            labels.push(moment(i.date).format('DD/MM'))
+            data1.push(i.value)
+        }
+        for(var x = 0; x < p2.length; x++){
+            var i = p2[x]
+            labels.push(moment(i.date).format('DD/MM'))
+            data2.push(i.value)
+        }
+        for(var x = 0; x < p3.length; x++){
+            var i = p3[x]
+            labels.push(moment(i.date).format('DD/MM'))
+            data3.push(i.value)
+        }
+        for(var x = 0; x < p4.length; x++){
+            var i = p4[x]
+            labels.push(moment(i.date).format('DD/MM'))
+            data4.push(i.value)
+        }
+
+        const info = {
+            labels: labels,
+            datasets:[
+                {
+                    label: 'Trigliceridos',
+                    borderColor: palette.warning.main,
+                    data: data1,
+                    fill: false,
+                },
+                {
+                    label: 'Glicemia',
+                    borderColor: palette.success.main,
+                    data: data2,
+                    fill: false,
+                },
+                {
+                    label: 'Hemoglobina Colesterol',
+                    borderColor: palette.primary.main,
+                    data: data3,
+                    fill: false,
+                },
+                {
+                    label: 'Colesterol',
+                    borderColor: palette.valueH.main,
+                    data: data4,
+                    fill: false,
+                }   
+            ]
+        }
+        state.dataP = info;
     }
 
 
@@ -162,6 +282,7 @@ const Menu = props => {
             console.log(error.message);
         });
         getAllGoalsInfo(localStorage.getItem('p_id'))
+        getParas(localStorage.getItem('p_id'))
     }
 
     const handleMessages = ()=>{
@@ -217,7 +338,15 @@ const Menu = props => {
                     />
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
-                    <Paraclinicos />
+                    <Paraclinicos 
+                        p1={state.p1}
+                        p2={state.p2}
+                        p3={state.p3}
+                        p4={state.p4}
+                        p5={state.p5}
+                        p6={state.p6}
+                        data={state.dataP}
+                    />
                 </TabPanel> 
                 <TabPanel value={value} index={4} dir={theme.direction}>
                     <Messages messages={state.messages}/>

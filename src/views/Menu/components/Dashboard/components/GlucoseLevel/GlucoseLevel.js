@@ -58,7 +58,7 @@ const GlucoseLevel = props => {
               color="inherit"
               variant="h3"
             >
-              0 mg/dL
+              {localStorage.getItem("glu")} mg/dL
             </Typography>
           </Grid>
           <Grid item>
