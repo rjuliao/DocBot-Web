@@ -7,7 +7,7 @@ import {
   WeightChange,
   GoalsProgress,
   GlucoseLevel,
-  LatestSales,
+  SingleGoalProgress,
   UsersByDevice,
   WeightHistory,
 } from './components';
@@ -18,7 +18,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Dashboard = () => {
+const Dashboard = props => {
+  const {data, goals, goalP} = props
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -28,9 +29,7 @@ const Dashboard = () => {
     showGlucose: false,
   });
 
-  const handleChart = name => event => {
-    setState({ ...state, [name]: !state.name});
-  };
+  
 
   return (
     <div className={classes.root}>
@@ -63,7 +62,7 @@ const Dashboard = () => {
           xl={3}
           xs={12}
         >
-          <GoalsProgress />
+          <GoalsProgress progress= {goalP} />
         </Grid>
         <Grid
           item
@@ -76,21 +75,12 @@ const Dashboard = () => {
         </Grid>
         <Grid
           item
-          lg={8}
+          lg={12}
           md={12}
-          xl={9}
+          xl={12}
           xs={12}
         >
-          <LatestSales />
-        </Grid>
-        <Grid
-          item
-          lg={4}
-          md={6}
-          xl={3}
-          xs={12}
-        >
-          <UsersByDevice  />
+          <WeightHistory data = {data}/>
         </Grid>
         <Grid
           item
@@ -99,7 +89,7 @@ const Dashboard = () => {
           xl={12}
           xs={12}
         >
-          <WeightHistory />
+          <SingleGoalProgress goals={goals} />
         </Grid>
       </Grid>
     </div>
@@ -107,29 +97,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-/**
- * 
- * 
- * 
- * 
- * 
-        <Grid
-          item
-          lg={8}
-          md={12}
-          xl={9}
-          xs={12}
-        >
-          <LatestSales />
-        </Grid>
-        <Grid
-          item
-          lg={4}
-          md={6}
-          xl={3}
-          xs={12}
-        >
-          <UsersByDevice  />
-        </Grid>
- */
