@@ -274,4 +274,14 @@ export function getFindriskVal(patient){
     });
 }
 
-
+/**
+ * Escribir modelo bayesiano
+ * @param {*} patient
+ */
+export function getMessages(doctor, patient){
+    return fetch('http://api-rest-botic.herokuapp.com/api/bayesianModel',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json',},
+        body: JSON.stringify({"r": 0, "s": 0, patient})
+    });
+}
