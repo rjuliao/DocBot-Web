@@ -15,7 +15,7 @@ import {
   TextField,
   InputAdornment
 } from '@material-ui/core';
-import { regPaciente, medicalInfos, getSinglePatient } from '../../../../services/api';
+import { regPaciente, medicalInfos, getSinglePatient, createModel } from '../../../../services/api';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -201,7 +201,6 @@ const AccountDetails = props => {
       return response.json();
     })
     .then(json => {
-      console.log(json.id)
 
       medicalInfos(contexto, centre_medico,0, diabetico, json.id)
       .then(response => {
@@ -209,7 +208,17 @@ const AccountDetails = props => {
       })
       .then(json => {
           
-          history.push("/pacientes");
+
+          createModel(json.patient)
+          .then(response => {
+            return response.json();
+          })
+          .then(json => {
+              history.push("/pacientes");
+          })
+          .catch(error => {
+            console.log(error.message);
+          });
       })
       .catch(error => {
         console.log(error.message);
@@ -219,10 +228,7 @@ const AccountDetails = props => {
     .catch(error => {
       console.log(error.message);
     });
-  
-    
 
-    
   }
 
 
