@@ -280,11 +280,13 @@ export function getFindriskVal(patient){
  * @param {*} date
  * @param {*} patient
  * @param {*} doctor 
+ * @param {*} doctorName
+ * @param {*} subject
  */
-export function setMessages(description, date, patient, doctor){
+export function setMessages(description, date, patient, doctor, doctorName, subject){
     return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/',{
         method: 'POST',
-        body: JSON.stringify({description, date, patient, doctor}),
+        body: JSON.stringify({description, date, patient, doctor, doctorName, subject}),
         headers: {'Content-Type':'application/json',}
     });
 }
@@ -307,7 +309,7 @@ export function getMessages(doctor, patient){
  * Escribir modelo bayesiano
  * @param {*} patient
  */
-export function createModel(doctor, patient){
+export function createModel(patient){
     return fetch('http://api-rest-botic.herokuapp.com/api/bayesianModel',{
         method: 'POST',
         headers: {'Content-Type':'application/json',},
