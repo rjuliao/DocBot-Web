@@ -86,11 +86,11 @@ const typeMessage = [
     label: ''
   },
   {
-    value: 1,
+    value: 'kind',
     label: 'Amable'
   },
   {
-    value: 2,
+    value: 'assertive',
     label: 'Asertivo'
   },
 ];
