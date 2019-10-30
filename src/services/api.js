@@ -274,3 +274,30 @@ export function getFindriskVal(patient){
 }
 
 
+/**
+ * Guardar un mensaje del doctor para el paciente
+ * @param {*} description
+ * @param {*} date
+ * @param {*} patient
+ * @param {*} doctor 
+ */
+export function setMessages(description, date, patient, doctor){
+    return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/',{
+        method: 'POST',
+        body: JSON.stringify({description, date, patient, doctor}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
+
+
+/**
+ * Obtener lista de mensajes por doctor
+ * @param {*} doctor
+ * @param {*} patient
+ */
+export function getMessages(doctor, patient){
+    return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/findByDocandP',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json','doctor': doctor,'patient': patient}
+    });
+}
