@@ -4,7 +4,7 @@
  * @param {*} password 
  */
 export function signIn(email,password){ 
-    return fetch(`http://api-rest-botic.herokuapp.com/api/doctors/login`,{ 
+    return fetch(`https://api-rest-botic.herokuapp.com/api/doctors/login`,{ 
         method: 'POST', 
         body: JSON.stringify({ email, password }), 
         headers: { 'Content-Type':'application/json', } 
@@ -19,7 +19,7 @@ export function signIn(email,password){
  * @param {*} password 
  */
 export function singUp(name, lastName, medicalCenter,  email, password){
-    return fetch('http://api-rest-botic.herokuapp.com/api/doctors',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/doctors',{
         method: 'POST',
         body: JSON.stringify({name, lastName, email, medicalCenter, password}),
         headers: {'Content-Type':'application/json',}
@@ -46,7 +46,7 @@ export function singUp(name, lastName, medicalCenter,  email, password){
 export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber, weight, height,
      sex, password,email, doc, avatar){
     
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
         body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
             sex, password, email, doc, avatar}),
@@ -76,7 +76,7 @@ export function getSinglePatient(documentnumber){
  * @param {*} patient 
  */
 export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient){
-    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/medicalInfos',{
         method: 'POST',
         body: JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}),
         headers: {'Content-Type':'application/json',}
@@ -90,7 +90,7 @@ export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDia
  */
 export function getMedicalInfos(patient){
 
-    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/medicalInfos/buscar',{
         method: 'GET',
         headers: {'Content-Type':'application/json','patient':patient}
     });
@@ -103,7 +103,7 @@ export function getMedicalInfos(patient){
  */
 export function updateWeight(id, weight){
    
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/updateweight',{
         method: 'PUT',
         body: JSON.stringify({weight, id}),
         headers: {'Content-Type':'application/json',}
@@ -117,7 +117,7 @@ export function updateWeight(id, weight){
  */
 export function getWeight(id){
    
-   return fetch('http://api-rest-botic.herokuapp.com/api/patients/getweight',{
+   return fetch('https://api-rest-botic.herokuapp.com/api/patients/getweight',{
        method: 'GET',
        headers: {'Content-Type':'application/json','id':id}
    });
@@ -129,7 +129,7 @@ export function getWeight(id){
  * @param {*} weight 
  */
 export function setWeight(weight){
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/updateweight',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/updateweight',{
         method: 'PUT',
         body: JSON.stringify({weight}),
         headers: {'Content-Type':'application/json',}
@@ -141,7 +141,7 @@ export function setWeight(weight){
  * @param {*} doc 
  */
 export function getPatients(doc){
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/buscar',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/buscar',{
         method: 'POST',
         body: JSON.stringify({doc}),
         headers: {'Content-Type':'application/json',}
@@ -158,7 +158,7 @@ export function getPatients(doc){
  * @param {*} documentNumber 
  */
 export function editPatient(name, lastName, birthdate, age, documentType, documentNumber){
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/edit',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/edit',{
         method: 'PUT',
         body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber}),
         headers: {'Content-Type':'application/json',}
@@ -171,7 +171,7 @@ export function editPatient(name, lastName, birthdate, age, documentType, docume
  * @param {*} id 
  */
 export function detelePatient(id){
-    return fetch('http://api-rest-botic.herokuapp.com/api/patients/delete',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/patients/delete',{
         method: 'DELETE',
         headers: {'Content-Type':'application/json','id':id}
     });
@@ -189,7 +189,7 @@ export function detelePatient(id){
  */
 export function setParaclinico(type, value, comment,  patient){
 
-    return fetch('http://api-rest-botic.herokuapp.com/api/paraclinicals/',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/paraclinicals/',{
         method: 'POST',
         body: JSON.stringify({type, value, comment,  patient}),
         headers: {'Content-Type':'application/json',}
@@ -202,7 +202,7 @@ export function setParaclinico(type, value, comment,  patient){
  * @param {*} patient 
  */
 export function getParaclinico(patient){
-    return fetch('http://api-rest-botic.herokuapp.com/api/paraclinicals/buscar',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/paraclinicals/buscar',{
         headers: {'Content-Type':patient,}
     });
 }
@@ -227,7 +227,7 @@ export function getParaclinico(patient){
  */
 export function setGoal(description, state, quantity, typeFrequency, frequency, 
     intensityLevel, typeMessage, pat, dueDate, progress, tag, nMessages, complianceDate){
-    return fetch('http://api-rest-botic.herokuapp.com/api/goals/',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/goals/',{
         method: 'POST',
         body: JSON.stringify({description, state, quantity, typeFrequency, 
             frequency, intensityLevel, typeMessage, pat, dueDate, progress, tag,nMessages, complianceDate }),
@@ -240,7 +240,7 @@ export function setGoal(description, state, quantity, typeFrequency, frequency,
  * @param {*} pat 
  */
 export function getGoals(pat){
-    return fetch('http://api-rest-botic.herokuapp.com/api/goals/buscar',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/goals/buscar',{
         method: 'POST',
         body: JSON.stringify({ pat}),
         headers: {'Content-Type':'application/json',}
@@ -255,7 +255,7 @@ export function getGoals(pat){
  * @param {*} patient 
  */
 export function setFindriskVal(testFindRisk, isDiabetic, patient){
-    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/medicalInfos/',{
         method: 'PUT',
         body: JSON.stringify({testFindRisk, isDiabetic, patient}),
         headers: {'Content-Type':'application/json',}
@@ -268,7 +268,7 @@ export function setFindriskVal(testFindRisk, isDiabetic, patient){
  * @param {*} patient 
  */
 export function getFindriskVal(patient){
-    return fetch('http://api-rest-botic.herokuapp.com/api/medicalInfos/findTestfr',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/medicalInfos/findTestfr',{
         headers: {'Content-Type':'application/json','patient':patient}
     });
 }
@@ -284,7 +284,7 @@ export function getFindriskVal(patient){
  * @param {*} subject
  */
 export function setMessages(description, date, patient, doctor, doctorName, subject){
-    return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/messagesD/',{
         method: 'POST',
         body: JSON.stringify({description, date, patient, doctor, doctorName, subject}),
         headers: {'Content-Type':'application/json',}
@@ -298,7 +298,7 @@ export function setMessages(description, date, patient, doctor, doctorName, subj
  * @param {*} patient
  */
 export function getMessages(doctor, patient){
-    return fetch('http://api-rest-botic.herokuapp.com/api/messagesD/findByDocandP',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/messagesD/findByDocandP',{
         method: 'GET',
         headers: {'Content-Type':'application/json','doctor': doctor,'patient': patient}
     });
@@ -310,7 +310,7 @@ export function getMessages(doctor, patient){
  * @param {*} patient
  */
 export function createModel(patient){
-    return fetch('http://api-rest-botic.herokuapp.com/api/bayesianModel',{
+    return fetch('https://api-rest-botic.herokuapp.com/api/bayesianModel',{
         method: 'POST',
         headers: {'Content-Type':'application/json',},
         body: JSON.stringify({"r": 0, "s": 0, patient})
