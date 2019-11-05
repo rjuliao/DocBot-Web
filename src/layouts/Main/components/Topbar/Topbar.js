@@ -10,7 +10,7 @@ import { Link as RouterLink } from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   root: {
     boxShadow: 'none',
-    backgroundColor:  '#1438A6',
+    backgroundColor:  theme.palette.primary,
     
   },
   flexGrow: {

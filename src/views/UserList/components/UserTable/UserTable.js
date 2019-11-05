@@ -174,7 +174,7 @@ const UserTable = props => {
                     <TableRow>
                     <TableCell> </TableCell>
                     <TableCell>Nombre</TableCell>
-                    <TableCell>Centro médico</TableCell>
+                    <TableCell>Correo electronico</TableCell>
                     <TableCell>Edad</TableCell>
                     <TableCell>Fecha de Registro</TableCell>
                     </TableRow>
@@ -204,7 +204,7 @@ const UserTable = props => {
                         <TableCell>              
                           <Typography variant="body1">{user.name} {user.lastName}</Typography>
                         </TableCell>
-                        <TableCell>{user.medicalCenter}</TableCell>
+                        <TableCell>{user.email}</TableCell>
                         <TableCell>{user.age} años</TableCell>
                         <TableCell>
                           {moment(user.dateAssociation).format('DD/MM/YYYY')}

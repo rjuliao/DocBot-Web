@@ -150,7 +150,7 @@ const UserCard = props => {
               align="center"
               variant="body1"
             >
-              Centro medico: {user.medicalCenter}
+              Correo electronico: {user.email}
             </Typography>
             
           </CardContent>

@@ -38,7 +38,7 @@ const Profile = props => {
         className={classes.avatar}
         component={RouterLink}
         src={logo}
-        to="/settings"
+        to="/pacientes"
       />
       <Typography
         className={classes.name}

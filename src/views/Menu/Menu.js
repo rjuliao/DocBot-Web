@@ -72,19 +72,19 @@ const Menu = props => {
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
     
-  const [state, setState] = React.useState({
-    goals: [],
-    data: [],
-    messages: [],
-    progress: 0,
-    p1 : [],
-    p2 : [],
-    p3 : [],
-    p4 : [],
-    p5 : [],
-    p6 : [],
-    dataP: []
-  });
+    const [state, setState] = React.useState({
+        goals: [],
+        data: [],
+        messages: [],
+        progress: 0,
+        p1 : [],
+        p2 : [],
+        p3 : [],
+        p4 : [],
+        p5 : [],
+        p6 : [],
+        dataP: []
+    });
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -216,23 +216,23 @@ const Menu = props => {
         }
 
         const info = {
-            labels: labels,
+            labels: [...new Set(labels)],
             datasets:[
                 {
                     label: 'Trigliceridos',
-                    borderColor: palette.warning.main,
+                    borderColor: palette.success.main,
                     data: data1,
                     fill: false,
                 },
                 {
                     label: 'Glicemia',
-                    borderColor: palette.success.main,
+                    borderColor: palette.primary.main,
                     data: data2,
                     fill: false,
                 },
                 {
-                    label: 'Hemoglobina Colesterol',
-                    borderColor: palette.primary.main,
+                    label: 'Hemoglobina Glicosilada',
+                    borderColor: palette.error.main,
                     data: data3,
                     fill: false,
                 },

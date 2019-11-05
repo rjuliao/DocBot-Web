@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         padding: 'initial'
     },
     icons: {
-        marginRight: theme.spacing(1),
+        marginRight: theme.spacing(2),
     }
 }));
 
@@ -238,25 +238,17 @@ const InformationCard = props => {
                 </Grid>
                 <Grid
                     item
-                    xs={4}
+                    xs={6}
                 >
                     <Fab variant="extended"  color="primary" aria-label="add" onClick={handleClickOpen} className={classes.margin}>
                         <DeleteIcon className={classes.icons} />
                          Eliminar Paciente
                     </Fab>
                 </Grid>
+
                 <Grid
                     item
-                    xs={4}
-                >
-                    <Fab variant="extended"  color="primary" onClick={handleClickOpenD} aria-label="add" className={classes.margin}>
-                        <CreateIcon className={classes.icons}/>
-                        Editar Información
-                    </Fab>
-                </Grid>
-                <Grid
-                    item
-                    xs={4}
+                    xs={6}
                 >
                     <RouterLink 
                         to={"/findrisk"}
@@ -460,8 +452,6 @@ const InformationCard = props => {
                     </Button>
                 </DialogActions>
             </Dialog>
-
-            
         </div>
     );
 }

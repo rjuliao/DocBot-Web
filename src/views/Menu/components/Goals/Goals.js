@@ -5,7 +5,6 @@ import GoalsToolbar from './components/GoalsToolbar';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3)
   },
   content: {
     marginTop: theme.spacing(2)
@@ -25,7 +24,7 @@ const Users = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.content}>
+      <div className={classes.root}>
         <GoalsToolbar/>
       </div>
       <div className={classes.content}> 
