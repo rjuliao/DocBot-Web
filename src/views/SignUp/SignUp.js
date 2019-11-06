@@ -107,8 +107,6 @@ const useStyles = makeStyles(theme => ({
   contentHeader: {
     display: 'flex',
     alignItems: 'center',
-    paddingTop: theme.spacing(5),
-    paddingBototm: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2)
   },
@@ -262,10 +260,6 @@ const SignUp = props => {
                 </Typography>
             </CardContent>
           </Card>
-          <div className={classes.quote}>
-            <div className={classes.quoteInner}> 
-            </div>
-          </div>
         </Grid>
         <Grid
           className={classes.content}
@@ -274,11 +268,7 @@ const SignUp = props => {
           xs={12}
         >
           <div className={classes.content}>
-            <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
-                <ArrowBackIcon />
-              </IconButton>
-            </div>
+            
             <div className={classes.contentBody}>
               <form
                 className={classes.form}

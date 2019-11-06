@@ -245,12 +245,6 @@ const SignIn = props => {
                 </Typography>
             </CardContent>
           </Card>
-          <div className={classes.quote}>
-            <div className={classes.quoteInner}>
-              
-              
-            </div>
-          </div>
         </Grid>
         <Grid
           className={classes.content}
@@ -318,6 +312,19 @@ const SignIn = props => {
                     variant="h6"
                   >
                     Registrarme
+                  </Link>
+                </Typography>
+                <Typography
+                  color="#D92588"
+                  variant="body1"
+                >
+                  Olvidaste tu contraseña?{' '}
+                  <Link
+                    component={RouterLink}
+                    to="/cambiar-contraseña"
+                    variant="h6"
+                  >
+                    Cambiar contraseña
                   </Link>
                 </Typography>
               </form>
