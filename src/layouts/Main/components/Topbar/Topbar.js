@@ -48,7 +48,7 @@ const Topbar = props => {
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
-          <RouterLink to = '/sign-in'>
+          <RouterLink to = '/menu'>
             <IconButton  onClick={handleLogout}>
               <Badge
                 badgeContent={notifications.length}
