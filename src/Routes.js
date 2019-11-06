@@ -14,6 +14,8 @@ import {
   NotFound as NotFoundView,
   Menu as PacientMenu,
   FindRisk as FindRiskTest,
+  ChangePassword as ChangePasswordView,
+  ChangePassword
 } from './views';
 
 const Routes = () => {
@@ -59,6 +61,12 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/sign-up"
+      />
+      <RouteWithLayout
+        component={ChangePasswordView}
+        exact
+        layout={MinimalLayout}
+        path="/cambiar-contraseña"
       />
       <RouteWithLayout
         component={SignInView}
