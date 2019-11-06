@@ -27,6 +27,28 @@ export function singUp(name, lastName, medicalCenter,  email, password){
 }
 
 /**
+ * Cambiar contraseña del medico
+ * @param {*} email 
+ * @param {*} password 
+ */
+export function changePass(email, newpassword){
+    return fetch('https://api-rest-botic.herokuapp.com/api/doctors/changepass',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json','email':email,'newpassword':newpassword}
+    });
+}
+/**
+ * Obtener código de verificación
+ * @param {*} email 
+ */
+export function getCode(email){
+    return fetch('https://api-rest-botic.herokuapp.com/api/doctors/codever',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json','email': email}
+    });
+}
+
+/**
  * Registar un paciente
  * @param {*} name 
  * @param {*} lastName 
