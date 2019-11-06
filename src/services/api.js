@@ -33,10 +33,11 @@ export function singUp(name, lastName, medicalCenter,  email, password){
  */
 export function changePass(email, newpassword){
     return fetch('https://api-rest-botic.herokuapp.com/api/doctors/changepass',{
-        method: 'GET',
+        method: 'PUT',
         headers: {'Content-Type':'application/json','email':email,'newpassword':newpassword}
     });
 }
+
 /**
  * Obtener código de verificación
  * @param {*} email 
