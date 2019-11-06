@@ -78,17 +78,19 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: 'url(/images/auth.jpg)',
+    verticalAlign: 'bottom',
+    backgroundImage: 'url(/images/background.jpg)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
   },
   quoteInner: {
     textAlign: 'center',
-    flexBasis: '600px'
+    flexBasis: '600px',
   },
   quoteText: {
-    color: '#3F51B5',
+    color:  theme.palette.primary.main,
+    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',  
     fontWeight: 300
   },
   name: {
@@ -102,6 +104,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     height: '100%',
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column'
   },
   contentHeader: {
@@ -133,7 +136,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     color: '#1438A6',
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
+    textAlign: 'center'
   },
   textField: {
     color: '#1438A6',
@@ -246,20 +250,16 @@ const SignUp = props => {
           item
           lg={5}
         >
-          <Card >
-            <CardMedia
-              component="img"
-              image={bcimage}  
-            />
-            <CardContent className={classes.quoteInner}>
+         <div className={classes.quote}>
+            <div className={classes.quoteInner}>
               <Typography
-                  className={classes.quoteText}
-                  variant="h1"
-                >
-                  <img src={botic} width={88} /> es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
-                </Typography>
-            </CardContent>
-          </Card>
+                className={classes.quoteText}
+                variant="h1"
+              >
+                DocBot es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
+              </Typography>
+            </div>
+          </div>
         </Grid>
         <Grid
           className={classes.content}
@@ -283,6 +283,7 @@ const SignUp = props => {
                 <Typography
                   color="textSecondary"
                   gutterBottom
+                  alignItems='center'
                 >
                   Usa tu e-mail para crear una nueva cuenta en Botic
                 </Typography>

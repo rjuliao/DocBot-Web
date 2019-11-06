@@ -15,7 +15,7 @@ import {
   CardContent
 } from '@material-ui/core';
 import bcimage from '../../assets/logos/background.jpg';
-import botic from '../../assets/logos/name.jpeg';
+import botic from '../../assets/logos/logoT.png';
 import { signIn } from '../../services/api';
 import { connect } from 'react-redux';
 import getDoctor from '../../redux/actions/getDoctor';
@@ -42,6 +42,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     height: '100%'
   },
+  imageprop: {
+    width: 300,
+    paddingTop: theme.spacing(3),
+    justifyContent: 'center',
+  },
   grid: {
     height: '100%'
   },
@@ -56,17 +61,19 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: 'url(./bgImage/logo.png)',
+    verticalAlign: 'bottom',
+    backgroundImage: 'url(/images/background.jpg)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
   },
   quoteInner: {
     textAlign: 'center',
-    flexBasis: '600px'
+    flexBasis: '600px',
   },
   quoteText: {
-    color: '#3F51B5',
+    color:  theme.palette.primary.main,
+    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',  
     fontWeight: 300
   },
   
@@ -74,6 +81,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     height: '100%',
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column'
   },
   contentHeader: {
@@ -108,6 +116,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     marginTop: theme.spacing(3),
     color: '#1438A6',
+    textAlign: 'center'
   },
   socialButtons: {
     marginTop: theme.spacing(3)
@@ -220,6 +229,10 @@ const SignIn = props => {
     console.log(localStorage.getItem("isLogTrue"))
   };
 
+  const handleChangePsw = () => {
+    history.push('./obtener-codigo')
+  }
+
   return (
     <div className={classes.root} onLoad={loginVal()}>
       <Grid
@@ -231,20 +244,17 @@ const SignIn = props => {
           item
           lg={5}
         >
-          <Card >
-            <CardMedia
-              component="img"
-              image={bcimage}  
-            />
-            <CardContent className={classes.quoteInner}>
-              <Typography
+         
+          <div className={classes.quote}>
+              <div className={classes.quoteInner}>
+                <Typography
                   className={classes.quoteText}
                   variant="h1"
                 >
                   DocBot es una herramienta que te ayuda a monitorear tus pacientes desde cualquier lugar
                 </Typography>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
         </Grid>
         <Grid
           className={classes.content}
@@ -253,12 +263,13 @@ const SignIn = props => {
           xs={12}
         >
           <div className={classes.content}>
-            
+            <img src={botic} className={classes.imageprop}/>
             <div className={classes.contentBody}>
               <form
                 className={classes.form}
                 onSubmit={handleSignIn}
               >
+                
                 <Typography
                   className={classes.title}
                   variant="h2"
@@ -301,6 +312,17 @@ const SignIn = props => {
                 >
                   INICIAR SESIÓN
                 </Button>
+                <Button
+                  className={classes.signInButton}
+                  color="primary"
+                  fullWidth
+                  size="large"
+                  onClick={()=>handleChangePsw()}
+                  variant="contained"
+                >
+                  Cambiar Contraseña
+                </Button>
+
                 <Typography
                   color="#D92588"
                   variant="body1"
@@ -312,19 +334,6 @@ const SignIn = props => {
                     variant="h6"
                   >
                     Registrarme
-                  </Link>
-                </Typography>
-                <Typography
-                  color="#D92588"
-                  variant="body1"
-                >
-                  Olvidaste tu contraseña?{' '}
-                  <Link
-                    component={RouterLink}
-                    to="/cambiar-contraseña"
-                    variant="h6"
-                  >
-                    Cambiar contraseña
                   </Link>
                 </Typography>
               </form>
