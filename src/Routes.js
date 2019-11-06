@@ -15,7 +15,7 @@ import {
   Menu as PacientMenu,
   FindRisk as FindRiskTest,
   ChangePassword as ChangePasswordView,
-  ChangePassword
+  EmailForm as EmailFormView
 } from './views';
 
 const Routes = () => {
@@ -67,6 +67,12 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/cambiar-contraseña"
+      />
+      <RouteWithLayout
+        component={EmailFormView}
+        exact
+        layout={MinimalLayout}
+        path="/obtener-codigo"
       />
       <RouteWithLayout
         component={SignInView}

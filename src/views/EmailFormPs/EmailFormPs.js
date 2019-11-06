@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
@@ -10,9 +11,11 @@ import {
   CardContent
 } from '@material-ui/core';
 import bcimage from '../../assets/logos/background.jpg';
+import botic from '../../assets/logos/name.jpeg';
+import { signIn } from '../../services/api';
 import { connect } from 'react-redux';
 import getDoctor from '../../redux/actions/getDoctor';
-import { PswForm } from './Components';
+import { EmailForm } from './Components';
 
 
 const useStyles = makeStyles(theme => ({
@@ -115,11 +118,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ChangePassword = props => {
+const EmailFormPs = props => {
   const { doctor, history, logVal} = props;
 
   const classes = useStyles();
-
 
   return (
     <div className={classes.root} >
@@ -152,8 +154,7 @@ const ChangePassword = props => {
           <div className={classes.content}>
             
             <div className={classes.contentBody}>
-            
-              <PswForm/>
+              <EmailForm/>
             </div>
           </div>
         </Grid>
@@ -162,7 +163,7 @@ const ChangePassword = props => {
   );
 };
 
-ChangePassword.propTypes = {
+EmailFormPs.propTypes = {
   history: PropTypes.object
 };
 
@@ -183,6 +184,6 @@ const mapStateToProps = (state) =>{
 }
 
 const wrapper = connect(mapStateToProps, mapDispatchToProps);
-const component = wrapper(ChangePassword)
+const component = wrapper(EmailFormPs)
 
 export default withRouter(component);
