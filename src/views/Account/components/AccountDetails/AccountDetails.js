@@ -93,6 +93,12 @@ const schema = {
       maximum: 64
     }
   },
+  phoneNumber: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 10
+    }
+  },
   lastName: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
@@ -128,6 +134,15 @@ const schema = {
     length: {
       maximum: 5
     }
+  },
+  contexto: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
+    length: {
+      maximum: 100
+    }
+  },
+  selection: {
+    presence: { allowEmpty: false, message: 'Obligatorio' },
   }
 };
 
@@ -153,7 +168,8 @@ const AccountDetails = props => {
     }));
   }, [formState.values]);
 
- 
+
+
   /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {
     event.persist();
@@ -254,7 +270,7 @@ const AccountDetails = props => {
       <form
         autoComplete="off"
         noValidate
-        onSubmit={handleRegister}
+        
       >
         <CardHeader
           subheader="Datos personales"
@@ -314,7 +330,7 @@ const AccountDetails = props => {
                 name="email"
                 onChange={handleChange}
                 value={formState.values.email || ''}
-                
+                required
                 variant="outlined"
               />
             </Grid>
@@ -325,6 +341,7 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
+                error={hasError('selection')}
                 label="Fecha de Nacimiento"
                 margin="dense"
                 name="b_day"
@@ -347,6 +364,7 @@ const AccountDetails = props => {
               <TextField
                 fullWidth
                 label="Edad"
+                error={hasError('age')}
                 margin="dense"
                 name="age"
                 onChange={handleChange}
@@ -363,12 +381,14 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
+                error={hasError('phoneNumber')}
                 label="Número de celular"
                 margin="dense"
                 name="phone"
                 onChange={handleChange}
                 value={formState.values.phone || ''}
                 type="number"
+                required
                 variant="outlined"
               />
             </Grid>
@@ -379,6 +399,7 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
+                error={hasError('selection')}
                 label="Tipo de doc. indentidad"
                 margin="dense"
                 name="tipoid"
@@ -408,6 +429,7 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
+                error={hasError('idCard')}
                 label="No. documento de identidad"
                 margin="dense"
                 name="idnumber"
@@ -453,6 +475,7 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
+                error={hasError('selection')}
                 label="¿Es diabético?"
                 margin="dense"
                 name="isDiabetic"
@@ -524,6 +547,7 @@ const AccountDetails = props => {
               >
               <TextField
                 fullWidth
+                error={hasError('selection')}
                 label="Sexo"
                 margin="dense"
                 name="sexo"
@@ -556,11 +580,11 @@ const AccountDetails = props => {
           >
             <Grid
               item
-              
               xs={12}
             >
               <TextField
                   fullWidth
+                  error={hasError('contexto')}
                   label="Contexto clínico en el ingreso actual"
                   margin="dense"
                   multiline
@@ -579,7 +603,9 @@ const AccountDetails = props => {
             <Button
               color="primary"
               variant="contained"
-              type="submit"
+              fullWidth
+              onClick={handleRegister}
+              size="large"
             >
               Crear Paciente
             </Button>
