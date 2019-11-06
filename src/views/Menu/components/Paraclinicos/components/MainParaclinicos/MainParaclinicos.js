@@ -44,7 +44,7 @@ const typeP = [
     label: ""
   },
   {
-    value: "glucosa",
+    value: "Glucosa",
     label: "Glucosa"
   },
   {
