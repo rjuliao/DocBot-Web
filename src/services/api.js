@@ -269,6 +269,20 @@ export function getGoals(pat){
     });
 }
 
+/**
+ * Actualizar una meta
+ * @param {*} description 
+ * @param {*} quantity 
+ * @param {*} frequency 
+ * @param {*} dueDate 
+ */
+export function editGoal(description, quantity, frequency, dueDate){
+    return fetch('https://api-rest-botic.herokuapp.com/api/goals/putgoal',{
+        method: 'PUT',
+        body: JSON.stringify({ddescription, quantity, frequency, dueDate }),
+        headers: {'Content-Type':'application/json',}
+    });
+}
 
 /**
  * Actualizo información medica del paciente, valor del findrisk y si es diabetico
