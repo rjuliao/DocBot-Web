@@ -75,10 +75,7 @@ const TableContent = props => {
                         <TableCell>Estado</TableCell>
                         <TableCell>Cantidad</TableCell>
                         <TableCell>Frecuencia</TableCell>
-                        <TableCell>Tipo de Frencuencia</TableCell>
-                        <TableCell>Tipo de Mensaje</TableCell>
                         <TableCell>Progreso de la meta</TableCell>
-                        <TableCell>Intensidad</TableCell>
                         </TableRow>
                     </TableHead>
                     
@@ -104,15 +101,10 @@ const TableContent = props => {
                             <TableCell>{goal.quantity} </TableCell>
                             <TableCell>
                               {goal.frequency==='1'? "Cada Hora":
-                              (goal.typeFrequency==='2'?"Diariamente":
-                              (goal.typeFrequency==='3'?"Semanalmente":"Mensualmente"))} 
+                              (goal.frequency==='2'?"Diariamente":
+                              (goal.frequency==='3'?"Semanalmente":"Mensualmente"))} 
                             </TableCell>
-                            <TableCell>
-                              {goal.typeFrequency === '1'?"Alta": (goal.typeFrequency==='2'?"Media": "Baja")} 
-                            </TableCell>
-                            <TableCell>{goal.typeMessage==='1'?"Amable":"Asertivo"} </TableCell>
                             <TableCell>{(goal.progress/goal.quantity)*100}%</TableCell>
-                            <TableCell>{goal.intensityLevel === '1'?"Alta": (goal.intensityLevel==='2'?"Media": "Baja")}</TableCell>
                         </TableRow>
                         ))}
                     </TableBody>

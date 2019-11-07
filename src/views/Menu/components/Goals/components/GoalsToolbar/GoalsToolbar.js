@@ -61,59 +61,6 @@ const freq = [
   }
 ];
 
-const typefreq = [
-  {
-    value: 0,
-    label: ''
-  },
-  {
-    value: 1,
-    label: 'Alta'
-  },
-  {
-    value: 2,
-    label: 'Media'
-  },
-  {
-    value: 3,
-    label: 'Baja'
-  }
-];
-
-const typeMessage = [
-  {
-    value: 0,
-    label: ''
-  },
-  {
-    value: 'kind',
-    label: 'Amable'
-  },
-  {
-    value: 'assertive',
-    label: 'Asertivo'
-  },
-];
-
-const intensidad = [
-  {
-    value: 0,
-    label: ''
-  },
-  {
-    value: 1,
-    label: 'Alta'
-  },
-  {
-    value: 2,
-    label: 'Media'
-  },
-  {
-    value: 3,
-    label: 'Baja'
-  }
-];
-
 const schema = {
   description: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
@@ -215,11 +162,11 @@ const GoalsToolbar = props => {
 
 
   //-------------------------------------------------------------------------------------------
-  const writeGoal = (description, status, quantity, typeFrequency, 
-    frequency, intensityLevel, typeMessage, idpatien, dueDate, progress, tag, nMes, cDate) =>{
+  const writeGoal = (description, status, quantity, 
+    frequency, typeMessage, idpatien, dueDate, progress, tag, nMes, cDate) =>{
     
-    setGoal(description, status, quantity, typeFrequency, frequency, 
-      intensityLevel, typeMessage, idpatien, dueDate, progress, tag, nMes, cDate)
+    setGoal(description, status, quantity, frequency,
+       idpatien, dueDate, progress, tag, nMes, cDate)
     .then(response => {
       return response.json();
     })  
@@ -232,8 +179,7 @@ const GoalsToolbar = props => {
 
   const handleGoal = event =>{
     writeGoal(formState.values.description, formState.values.status, formState.values.quantity,
-       formState.values.freqtype, formState.values.freq, formState.values.intensidad,
-        formState.values.typeMessage, localStorage.getItem('p_id'), formState.values.dueDate, 0, 
+      formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
         "No Predeterminada", "", ""  )
 
     handleClose()
@@ -247,12 +193,17 @@ const GoalsToolbar = props => {
     >
       <div className={classes.row}>
         
-        <span className={classes.spacer} />
-  
-          <Fab  variant="extended" onClick={handleClickOpen} className={classes.addButton}>
-            <Add className={classes.addIcon}/>
-            Añadir meta
-          </Fab>
+      <span className={classes.spacer} />
+      <Fab  variant="extended" onClick={handleClickOpen} className={classes.addButton}>
+        <Add className={classes.addIcon}/>
+        Añadir meta predefinida
+      </Fab>
+      
+      <span className={classes.spacer} />
+      <Fab  variant="extended" onClick={handleClickOpen} className={classes.addButton}>
+        <Add className={classes.addIcon}/>
+        Añadir meta
+      </Fab>
           
       </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -401,89 +352,6 @@ const GoalsToolbar = props => {
                       ))}
                     </TextField>
                   </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
-                    <TextField
-                      fullWidth
-                      select
-                      label="Tipo de frecuencia"
-                      margin="dense"
-                      name="freqtype"
-                      onChange={handleChange}
-                      value={formState.values.freqtype || ''}
-                      required
-                      select
-                      // eslint-disable-next-line react/jsx-sort-props
-                      SelectProps={{ native: true }}
-                      
-                      variant="outlined"
-                    >
-                      {typefreq.map(option => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </TextField>
-                  </Grid>
-                  
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
-                    <TextField
-                      fullWidth
-                      select
-                      label="Tipo de mensaje"
-                      margin="dense"
-                      name="typeMessage"
-                      onChange={handleChange}
-                      value={formState.values.typeMessage || ''}
-                      required
-                      select
-                      // eslint-disable-next-line react/jsx-sort-props
-                      SelectProps={{ native: true }}
-                      
-                      variant="outlined"
-                    >
-                      {typeMessage.map(option => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </TextField>
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
-                    <TextField
-                      fullWidth
-                      select
-                      label="Intensidad"
-                      margin="dense"
-                      name="intensidad"
-                      onChange={handleChange}
-                      value={formState.values.intensidad || ''}
-                      required
-                      select
-                      // eslint-disable-next-line react/jsx-sort-props
-                      SelectProps={{ native: true }}
-                      
-                      variant="outlined"
-                    >
-                      {intensidad.map(option => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </TextField>
-                  </Grid>
-                  
                 </Grid>
               </CardContent>
             </form>
