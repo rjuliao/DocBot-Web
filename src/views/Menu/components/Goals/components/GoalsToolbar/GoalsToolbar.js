@@ -24,6 +24,7 @@ import Add from '@material-ui/icons/AddCircleOutline';
 import { SearchInput } from '../../../../../../components';
 import validate from 'validate.js';
 import { setGoal } from '../../../../../../services/api';
+import moment from 'moment';
 
 
 const status = [
@@ -163,7 +164,7 @@ const GoalsToolbar = props => {
 
   //-------------------------------------------------------------------------------------------
   const writeGoal = (description, status, quantity, 
-    frequency, typeMessage, idpatien, dueDate, progress, tag, nMes, cDate) =>{
+    frequency, idpatien, dueDate, progress, tag, nMes, cDate) =>{
     
     setGoal(description, status, quantity, frequency,
        idpatien, dueDate, progress, tag, nMes, cDate)
@@ -247,16 +248,9 @@ const GoalsToolbar = props => {
                       fullWidth
                       label="Fecha de inicio"
                       margin="dense"
-                      name="date"
-                      onChange={handleChange}
-                      value={formState.values.date || ''}
-                      required
-                      type="date"
-                      defaultValue=""
+                      disabled
+                      defaultValue={moment().format('DD/MM/YYYY')}
                       variant="outlined"
-                      InputLabelProps={{
-                      shrink: true,
-                      }}
                     />
                   </Grid>
                   <Grid
