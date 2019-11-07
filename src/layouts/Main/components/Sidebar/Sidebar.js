@@ -77,7 +77,6 @@ const Sidebar = props => {
         {...rest}
         className={clsx(classes.root, className)}
       >
-        {console.log(doctor)}
         <Profile doctor={doctor}/>
         <Divider className={classes.divider} />
         <SidebarNav

@@ -14,7 +14,7 @@ import {
   TextField,
   Fab
 } from '@material-ui/core';
-import PostAddIcon from '@material-ui/icons/Queue';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import validate from 'validate.js';
 import moment from 'moment';
 import { setGoal } from '../../../../../../../../services/api';
@@ -189,8 +189,8 @@ const AddGoalBtn = props => {
        
       
       <Fab  variant="extended" onClick={handleClickOpen} className={classes.addButton}>
-        <PostAddIcon className={classes.addIcon}/>
-        Añadir meta predefinida
+        <AddCircleOutlineIcon className={classes.addIcon}/>
+        Añadir meta 
       </Fab>
           
       </div>

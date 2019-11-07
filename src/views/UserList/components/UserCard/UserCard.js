@@ -100,13 +100,11 @@ const UserCard = props => {
     localStorage.setItem('p_sex', userr.sex);
 
 
-    console.log(userr._id)
     getMedicalInfos(userr._id)
     .then(response => {
       return response.json();
     })  
     .then(json => {
-      console.log(json)
       localStorage.setItem('p_vtf', json.testFindRisk);
       localStorage.setItem('p_clinicalC', json.clinicalContext);
       localStorage.setItem('p_mecialC', json.medicalCenter);

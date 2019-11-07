@@ -194,6 +194,32 @@ const AccountDetails = props => {
     formState.touched[field] && formState.errors[field] ? true : false;
 
 
+  const medicalInfor = (contexto, centre_medico, diabetico, id) =>{
+    console.log('a')
+    medicalInfos(contexto, centre_medico,0, diabetico, id)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+  }
+
+  const modelo = (id) =>{
+    console.log('b')
+    createModel(id)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+        history.push("/pacientes");
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+  }
 
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
@@ -217,28 +243,10 @@ const AccountDetails = props => {
       return response.json();
     })
     .then(json => {
-
-      medicalInfos(contexto, centre_medico,0, diabetico, json.id)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-          
-
-          createModel(json.patient)
-          .then(response => {
-            return response.json();
-          })
-          .then(json => {
-              history.push("/pacientes");
-          })
-          .catch(error => {
-            console.log(error.message);
-          });
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+      var id = json.id
+      console.log(json)
+      medicalInfor(contexto, centre_medico, diabetico, id) 
+      modelo (id)
 
     })
     .catch(error => {

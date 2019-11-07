@@ -122,7 +122,6 @@ const UserTable = props => {
       return response.json();
     })  
     .then(json => {
-      console.log(json)
       localStorage.setItem('p_vtf', json["testFindRisk"]);
       localStorage.setItem('p_clinicalC', json["clinicalContext"]);
       localStorage.setItem('p_mecialC', json["medicalCenter"]);
