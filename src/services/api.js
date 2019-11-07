@@ -65,9 +65,10 @@ export function getCode(email){
  * @param {*} medicalCenter 
  * @param {*} doc
  * @param {*} avatar
+ * @param {*} dateAssociation
  */
 export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber, weight, height,
-     sex, password,email, doc, avatar){
+     sex, password,email, doc, avatar, dateAssociation){
     
     return fetch('https://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
@@ -124,11 +125,11 @@ export function getMedicalInfos(patient){
  * @param {*} id 
  * @param {*} weight 
  */
-export function updateWeight(id, weight){
+export function updateWeight(id, weight, date){
    
     return fetch('https://api-rest-botic.herokuapp.com/api/patients/updateweight',{
         method: 'PUT',
-        body: JSON.stringify({weight, id}),
+        body: JSON.stringify({weight, id, date}),
         headers: {'Content-Type':'application/json',}
     });
     
@@ -208,13 +209,14 @@ export function detelePatient(id){
  * @param {*} value 
  * @param {*} comment 
  * @param {*} file 
- * @param {*} patient 
+ * @param {*} patient
+ * @param {*} date
  */
-export function setParaclinico(type, value, comment,  patient){
+export function setParaclinico(type, value, comment,  patient, date){
 
     return fetch('https://api-rest-botic.herokuapp.com/api/paraclinicals/',{
         method: 'POST',
-        body: JSON.stringify({type, value, comment,  patient}),
+        body: JSON.stringify({type, value, comment,  patient, date}),
         headers: {'Content-Type':'application/json',}
     });
 }
@@ -226,7 +228,7 @@ export function setParaclinico(type, value, comment,  patient){
  */
 export function getParaclinico(patient){
     return fetch('https://api-rest-botic.herokuapp.com/api/paraclinicals/buscar',{
-        headers: {'Content-Type':patient,}
+        headers: {'Content-Type':'application/json','patient':patient,}
     });
 }
 
