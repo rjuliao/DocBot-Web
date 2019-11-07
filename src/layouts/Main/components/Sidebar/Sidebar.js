@@ -54,7 +54,7 @@ const Sidebar = props => {
 
     {
       title: 'Configuraciones',
-      href: '/settings',
+      href: '/pacientes',
       icon: <SettingsIcon />
     }
   ];

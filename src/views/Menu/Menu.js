@@ -140,7 +140,7 @@ const Menu = props => {
             const p5 = []
             const p6 = []
 
-            console.log(json)
+
 
             for(var x = 0; x < json.length; x++){
                 var i = json[x]
