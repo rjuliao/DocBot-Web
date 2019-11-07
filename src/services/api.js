@@ -248,12 +248,12 @@ export function getParaclinico(patient){
  * @param {*} nMessages 
  * @param {*} complianceDate 
  */
-export function setGoal(description, state, quantity, typeFrequency, frequency, 
-    intensityLevel, typeMessage, pat, dueDate, progress, tag, nMessages, complianceDate){
+export function setGoal(description, state, quantity,  frequency, 
+     pat, dueDate, progress, tag, nMessages, complianceDate){
     return fetch('https://api-rest-botic.herokuapp.com/api/goals/',{
         method: 'POST',
-        body: JSON.stringify({description, state, quantity, typeFrequency, 
-            frequency, intensityLevel, typeMessage, pat, dueDate, progress, tag,nMessages, complianceDate }),
+        body: JSON.stringify({description, state, quantity,  
+            frequency, pat, dueDate, progress, tag,nMessages, complianceDate }),
         headers: {'Content-Type':'application/json',}
     });
 }
