@@ -193,14 +193,12 @@ const GoalsToolbar = props => {
       className={clsx(classes.root, className)}
     >
       <div className={classes.row}>
-        
-      <span className={classes.spacer} />
+       
       <Fab  variant="extended" onClick={handleClickOpen} className={classes.addButton}>
         <Add className={classes.addIcon}/>
         Añadir meta predefinida
       </Fab>
       
-      <span className={classes.spacer} />
       <Fab  variant="extended" onClick={handleClickOpen} className={classes.addButton}>
         <Add className={classes.addIcon}/>
         Añadir meta
