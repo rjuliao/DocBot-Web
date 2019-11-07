@@ -280,7 +280,7 @@ export function getGoals(pat){
 export function editGoal(description, quantity, frequency, dueDate){
     return fetch('https://api-rest-botic.herokuapp.com/api/goals/putgoal',{
         method: 'PUT',
-        body: JSON.stringify({ddescription, quantity, frequency, dueDate }),
+        body: JSON.stringify({description, quantity, frequency, dueDate }),
         headers: {'Content-Type':'application/json',}
     });
 }
