@@ -297,7 +297,7 @@ export function getGoalsP(){
 }
 
 /**
- * Borrar una meta--- ese id es el de la meta. Ok?
+ * Borrar una meta--- ese id es el de la meta.
  * @param {*} id  
  */
 export function deleteGoal(id){
