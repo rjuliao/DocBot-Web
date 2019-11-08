@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import validate from 'validate.js';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -16,6 +16,7 @@ import {
   InputAdornment
 } from '@material-ui/core';
 import { regPaciente, medicalInfos, getSinglePatient, createModel } from '../../../../services/api';
+import moment from 'moment';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -195,7 +196,7 @@ const AccountDetails = props => {
 
 
   const medicalInfor = (contexto, centre_medico, diabetico, id) =>{
-    console.log('a')
+ 
     medicalInfos(contexto, centre_medico,0, diabetico, id)
     .then(response => {
       return response.json();
@@ -208,7 +209,6 @@ const AccountDetails = props => {
   }
 
   const modelo = (id) =>{
-    console.log('b')
     createModel(id)
     .then(response => {
       return response.json();
@@ -227,31 +227,32 @@ const AccountDetails = props => {
  
 
     regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
-      sexo, psw, email, idDoctor, "")
+      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYY'))
     .then(response => {
       return response.json();
     })
     .then(json => {
+
+      getSinglePatient(idCard)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        medicalInfor(contexto, centre_medico, diabetico, json.id) 
+        modelo(json.id)
+  
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+
     })
     .catch(error => {
       console.log(error.message);
     });
 
 
-    getSinglePatient(idCard)
-    .then(response => {
-      return response.json();
-    })
-    .then(json => {
-      var id = json.id
-      console.log(json)
-      medicalInfor(contexto, centre_medico, diabetico, id) 
-      modelo (id)
-
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
+   
 
   }
 
