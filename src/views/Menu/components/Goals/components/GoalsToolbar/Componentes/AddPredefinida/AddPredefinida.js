@@ -24,7 +24,7 @@ import PostAddIcon from '@material-ui/icons/Queue';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import validate from 'validate.js';
 import moment from 'moment';
-import { setGoal } from '../../../../../../../../services/api';
+import { setGoal, getGoalsP } from '../../../../../../../../services/api';
 
 
 const status = [
@@ -129,9 +129,22 @@ const AddPredefinida = props => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
+  const [state, setState] = React.useState({
+    data: [],
+  });
 
   const handleClickOpen = () => {
+    getGoalsP()
+    .then(response => {
+      return response.json();
+    })  
+    .then(json => {
+      state.data = json;
       setOpen(true);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
   };
 
   const handleClose = () => {
@@ -241,7 +254,7 @@ const AddPredefinida = props => {
         <DialogTitle id="form-dialog-title">Añadir una meta</DialogTitle>
         <DialogContent>
         <List className={classes.root}>
-            {metas.map(value => {
+            {state.data.map(value => {
                 const labelId = `checkbox-list-label-${value.id}`;
 
                 return (
