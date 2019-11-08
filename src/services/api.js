@@ -286,7 +286,26 @@ export function editGoal(description, quantity, frequency, dueDate){
         headers: {'Content-Type':'application/json',}
     });
 }
+/**
+ * Obtengo las metas predefinidas
+ */
+export function getGoalsP(){
+    return fetch('https://api-rest-botic.herokuapp.com/api/goalps',{
+        method: 'GET',
+        headers: {'Content-Type':'application/json',}
+    });
+}
 
+/**
+ * Borrar una meta--- ese id es el de la meta. Ok?
+ * @param {*} id  
+ */
+export function deleteGoal(id){
+    return fetch('https://api-rest-botic.herokuapp.com/api/goals/delete',{
+        method: 'DELETE',
+        headers: {'Content-Type':'application/json','id':id}
+    });
+}
 /**
  * Actualizo información medica del paciente, valor del findrisk y si es diabetico
  * @param {*} testFindrisk 
