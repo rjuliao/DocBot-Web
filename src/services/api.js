@@ -287,7 +287,7 @@ export function editGoal(description, quantity, frequency, dueDate){
     });
 }
 /**
- * Obtengo las metas predefinidas
+ * Obtengo TODAS las metas predefinidas
  */
 export function getGoalsP(){
     return fetch('https://api-rest-botic.herokuapp.com/api/goalps',{
