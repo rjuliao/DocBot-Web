@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader,
     DialogActions,
     TextField} from '@material-ui/core';
 import { updateWeight, getWeight } from '../../../../../../services/api';
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -86,7 +87,7 @@ const Information = props => {
         event.preventDefault();
         localStorage.setItem("p_weight", formState.values.peso)
 
-        updateWeight(localStorage.getItem("p_id"), formState.values.peso)
+        updateWeight(localStorage.getItem("p_id"), formState.values.peso, moment().format('DD/MM/YYYY'))
         .then(response => {
             return response.json();
         })  

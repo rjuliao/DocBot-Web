@@ -160,7 +160,7 @@ const AddGoalBtn = props => {
     frequency, idpatien, dueDate, progress, tag, nMes, cDate) =>{
     
     setGoal(description, status, quantity, frequency,
-       idpatien, dueDate, progress, tag, nMes, cDate)
+       idpatien, dueDate, progress, tag, nMes, cDate,)
     .then(response => {
       return response.json();
     })  
@@ -173,8 +173,8 @@ const AddGoalBtn = props => {
 
   const handleGoal = event =>{
     writeGoal(formState.values.description, formState.values.status, formState.values.quantity,
-      formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
-        "No Predeterminada", "", ""  )
+        formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
+        "No Predeterminada", "", moment().format('DD/MM/YYYY'))
 
     handleClose()
   }

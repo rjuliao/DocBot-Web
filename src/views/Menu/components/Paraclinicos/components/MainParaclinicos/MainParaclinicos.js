@@ -14,6 +14,7 @@ import { Card,
 import AddButton from '@material-ui/icons/AddCircleOutline';
 import { makeStyles } from '@material-ui/styles';
 import { setParaclinico } from '../../../../../../services/api';
+import moment from 'moment';
 
 const schema = {
   tipo:{
@@ -131,7 +132,7 @@ const MainParaclinicos = props =>{
 
   const sendParaclinicos = (type, value, comment, id) => {
   
-    setParaclinico(type, value, comment, id )
+    setParaclinico(type, value, comment, id, moment().format('DD/MM/YYYY') )
     .then(response => {
       return response.json();
     })  
@@ -153,6 +154,31 @@ const MainParaclinicos = props =>{
 
     sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, localStorage.getItem('p_id'));
     
+    if(formState.values.type === 'trigliceridos'){
+   
+      localStorage.setItem("tri", formState.values.value)
+      localStorage.setItem("tri_C", formState.values.comment)
+    }
+    if(formState.values.type === 'glicemia'){
+      
+        localStorage.setItem("gli", formState.values.value)
+        localStorage.setItem("gli_C",  formState.values.comment)
+    }
+
+    if(formState.values.type === 'hemoglobina_glicosilada'){
+      
+        localStorage.setItem("hg", formState.values.value)
+        localStorage.setItem("hg_C",  formState.values.comment)
+    }
+    if(formState.values.type === 'colesterol_total'){
+     
+        localStorage.setItem("clt", formState.values.value)
+        localStorage.setItem("clt_C",  formState.values.comment)
+    }
+    if(formState.values.type === 'Glucosa'){
+        localStorage.setItem("glu", formState.values.value)
+    }
+
     formState.values.type = "";
     formState.values.value = "";
     formState.values.comment = "";

@@ -218,8 +218,8 @@ const AddPredefinida = props => {
   const handleGoal = event =>{
 
     writeGoal(localStorage.getItem('temp'), formState.values.status, formState.values.quantity,
-      formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
-        "No Predeterminada", "", ""  );
+        formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
+        "No Predeterminada", "", moment().format('DD/MM/YYYY')  );
     handleCloseGoal();
   }
 
