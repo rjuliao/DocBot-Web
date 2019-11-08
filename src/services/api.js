@@ -73,7 +73,7 @@ export function regPaciente(name, lastName, birthdate, age, documentType, docume
     return fetch('https://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
         body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
-            sex, password, email, doc, avatar}),
+            sex, password, email, doc, avatar, dateAssociation}),
         headers: {'Content-Type':'application/json',}
     });
     
