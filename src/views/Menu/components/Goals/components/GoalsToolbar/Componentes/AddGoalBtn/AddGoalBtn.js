@@ -275,7 +275,6 @@ const AddGoalBtn = props => {
                       onChange={handleChange}
                       value={formState.values.status || ''}
                       required
-                      select
                       // eslint-disable-next-line react/jsx-sort-props
                       SelectProps={{ native: true }}
                       
@@ -320,7 +319,6 @@ const AddGoalBtn = props => {
                       onChange={handleChange}
                       value={formState.values.freq || ''}
                       required
-                      select
                       // eslint-disable-next-line react/jsx-sort-props
                       SelectProps={{ native: true }}
                       

@@ -9,8 +9,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  Avatar,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
@@ -21,7 +19,7 @@ import {
   Fab
 } from '@material-ui/core';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
-import { getFindriskVal, getMedicalInfos } from '../../../../services/api';
+import {  getMedicalInfos } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -51,23 +49,11 @@ const UserTable = props => {
 
   const classes = useStyles();
 
-  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectedUsers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
 
-  const handleSelectAll = event => {
-    const { users } = props;
-
-    let selectedUsers;
-
-    if (event.target.checked) {
-      selectedUsers = users.map(user => user.id);
-    } else {
-      selectedUsers = [];
-    }
-
-    setSelectedUsers(selectedUsers);
-  };
+  
 
     /**
    * Esto debe ser cambiado!!
@@ -94,13 +80,13 @@ const UserTable = props => {
 
     var l = userr.weight.length
     var w = userr.weight[l-1]
-
+    var oldv = 0
     if (l>1){
       var old = userr.weight[l-2];
-      var oldv = old.value
+      oldv = old.value
     }
     if (l <= 1){
-      var oldv = 0
+      oldv = 0
       
     }
 
@@ -132,25 +118,6 @@ const UserTable = props => {
     });
   }
 
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedUsers.indexOf(id);
-    let newSelectedUsers = [];
-
-    if (selectedIndex === -1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
-    } else if (selectedIndex === 0) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(1));
-    } else if (selectedIndex === selectedUsers.length - 1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedUsers = newSelectedUsers.concat(
-        selectedUsers.slice(0, selectedIndex),
-        selectedUsers.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelectedUsers(newSelectedUsers);
-  };
 
   const handlePageChange = (event, page) => {
     setPage(page);

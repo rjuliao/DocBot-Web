@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
-import { Card, CardContent, CardHeader, 
+import {  withRouter } from 'react-router-dom';
+import { Card, CardContent, 
     Divider, 
     Typography, 
     Grid,
@@ -10,7 +10,6 @@ import { Card, CardContent, CardHeader,
     Dialog,
     DialogTitle,
     DialogContent,
-    DialogContentText,
     DialogActions,
     TextField} from '@material-ui/core';
 import { updateWeight, getWeight } from '../../../../../../services/api';
@@ -45,7 +44,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Information = props => {
-    const { history, user } = props
     const classes = useStyles(); 
     const [open, setOpen] = React.useState(false);
 
@@ -169,7 +167,7 @@ const Information = props => {
                         className={classes.info}    
                         variant="h6"
                     >
-                        Sexo: {localStorage.getItem('p_sex')== 'f' ? "Mujer":"Hombre"}
+                        Sexo: {localStorage.getItem('p_sex')=== 'f' ? "Mujer":"Hombre"}
                     </Typography>
                     <Typography
                         className={classes.info}    

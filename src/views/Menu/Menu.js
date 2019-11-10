@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React  from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -9,15 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {
     InformationCard,
-    MenuButtons,
     Goals,
     Dashboard,
     Paraclinicos,
     Messages
 } from './components';
-import InfoIcon from '@material-ui/icons/Info';
-import { createStore } from 'redux';
-import { withStyles } from '@material-ui/styles';
 import { getGoals, getParaclinico, getWeight, getMessages } from '../../services/api';
 import palette from '../../theme/palette';
 import moment from 'moment';
@@ -67,12 +63,11 @@ const useStyles = makeStyles(theme => ({
 
 
 const Menu = props => {
-    const { location, savePatient } = props;
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
     
-    const [state, setState] = React.useState({
+    const [state] = React.useState({
         goals: [],
         data: [],
         messages: [],
@@ -199,20 +194,20 @@ const Menu = props => {
             labels.push(moment(i.date).format('DD/MM'))
             data1.push(i.value)
         }
-        for(var x = 0; x < p2.length; x++){
-            var i = p2[x]
-            labels.push(moment(i.date).format('DD/MM'))
-            data2.push(i.value)
+        for(var y = 0; y < p2.length; y++){
+            var j = p2[y]
+            labels.push(moment(j.date).format('DD/MM'))
+            data2.push(j.value)
         }
-        for(var x = 0; x < p3.length; x++){
-            var i = p3[x]
-            labels.push(moment(i.date).format('DD/MM'))
-            data3.push(i.value)
+        for(var z = 0; z < p3.length; z++){
+            var k = p3[z]
+            labels.push(moment(k.date).format('DD/MM'))
+            data3.push(k.value)
         }
-        for(var x = 0; x < p4.length; x++){
-            var i = p4[x]
-            labels.push(moment(i.date).format('DD/MM'))
-            data4.push(i.value)
+        for(var w = 0; w < p4.length; w++){
+            var l = p4[w]
+            labels.push(moment(l.date).format('DD/MM'))
+            data4.push(l.value)
         }
 
         const info = {

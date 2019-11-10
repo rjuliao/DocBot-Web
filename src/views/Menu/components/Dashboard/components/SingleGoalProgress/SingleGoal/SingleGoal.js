@@ -10,7 +10,6 @@ import {
   Grid,
   Divider,
   CardActionArea,
-  CardMedia
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment';

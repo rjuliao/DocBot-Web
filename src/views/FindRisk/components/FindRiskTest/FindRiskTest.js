@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import validate from 'validate.js';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -208,7 +207,7 @@ const FindRiskTest = props => {
                 Perímetro de cintura medido por debajo de las costillas (normalmente a nivel del ombligo)
               </Typography>
             </Grid>
-            {localStorage.getItem('p_sex')== 'f' ? 
+            {localStorage.getItem('p_sex')=== 'f' ? 
             <Grid
               item
               md={6}

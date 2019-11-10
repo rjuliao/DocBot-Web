@@ -595,7 +595,6 @@ const AccountDetails = props => {
                   fullWidth
                   error={hasError('contexto')}
                   label="Contexto clínico en el ingreso actual"
-                  margin="dense"
                   multiline
                   rowsMax="6"
                   name="contexto"

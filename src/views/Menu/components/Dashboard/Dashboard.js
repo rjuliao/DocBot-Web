@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
@@ -8,7 +8,6 @@ import {
   GoalsProgress,
   GlucoseLevel,
   SingleGoalProgress,
-  UsersByDevice,
   WeightHistory,
 } from './components';
 
@@ -21,14 +20,6 @@ const Dashboard = props => {
   const {data, goals, goalP} = props
   const classes = useStyles();
 
-  const [state, setState] = React.useState({
-    showSteps: true,
-    showWeight: false,
-    showGoals: false,
-    showGlucose: false,
-  });
-
-  
 
   return (
     <div className={classes.root}>

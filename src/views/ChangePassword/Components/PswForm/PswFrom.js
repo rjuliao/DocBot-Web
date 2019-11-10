@@ -4,19 +4,14 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Grid,
   Button,
-  IconButton,
   TextField,
   Link,
   Typography,
-  Card,
-  CardMedia,
-  CardContent
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import getDoctor from '../../../../redux/actions/getDoctor';
-import { signIn, changePass } from '../../../../services/api';
+import { changePass } from '../../../../services/api';
 
 
 const schema = {
@@ -133,7 +128,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PswForm = props => {
-  const { doctor, history, logVal} = props;
+  const {  history} = props;
 
   const classes = useStyles();
 
@@ -154,9 +149,6 @@ const PswForm = props => {
     }));
   }, [formState.values]);
 
-  const handleBack = () => {
-    history.goBack();
-  };
 
   /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {

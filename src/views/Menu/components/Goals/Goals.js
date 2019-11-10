@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { GoalsCard, TableContent } from './components';
+import { TableContent } from './components';
 import GoalsToolbar from './components/GoalsToolbar';
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Users = props => {
-  const {goals, showinfo} = props;
+  const {goals} = props;
   const classes = useStyles();
 
 

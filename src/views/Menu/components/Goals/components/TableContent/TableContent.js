@@ -1,4 +1,4 @@
-import React, { useState,forwardRef } from 'react';
+import React, { useState} from 'react';
 import clsx from 'clsx';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -48,7 +48,7 @@ const TableContent = props => {
 
     const classes = useStyles();
 
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedUsers] = useState([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [page, setPage] = useState(0);
     const handlePageChange = (event, page) => {

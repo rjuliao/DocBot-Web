@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
   Typography,
-  Card,
-  CardMedia,
-  CardContent
 } from '@material-ui/core';
-import bcimage from '../../assets/logos/background.jpg';
-import botic from '../../assets/logos/name.jpeg';
-import { signIn } from '../../services/api';
 import { connect } from 'react-redux';
 import getDoctor from '../../redux/actions/getDoctor';
 import { EmailForm } from './Components';
@@ -119,7 +112,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EmailFormPs = props => {
-  const { doctor, history, logVal} = props;
 
   const classes = useStyles();
 

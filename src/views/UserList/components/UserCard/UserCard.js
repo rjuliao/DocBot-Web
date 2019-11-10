@@ -15,7 +15,7 @@ import {
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment';
 import logo from '../../../../assets/logos/logo.png';
-import { getFindriskVal, getMedicalInfos } from '../../../../services/api';
+import { getMedicalInfos } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -76,13 +76,14 @@ const UserCard = props => {
 
     var l = userr.weight.length
     var w = userr.weight[l-1]
+    var oldv = 0
 
     if (l>1){
       var old = userr.weight[l-2];
-      var oldv = old.value
+      oldv = old.value
     }
     if (l <= 1){
-      var oldv = 0
+       oldv = 0
       
     }
 

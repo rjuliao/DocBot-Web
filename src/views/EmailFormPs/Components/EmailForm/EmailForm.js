@@ -4,15 +4,10 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Grid,
   Button,
-  IconButton,
   TextField,
   Link,
   Typography,
-  Card,
-  CardMedia,
-  CardContent
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import getDoctor from '../../../../redux/actions/getDoctor';
@@ -121,7 +116,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EmailForm = props => {
-  const { doctor, history, logVal} = props;
+  const { history} = props;
 
   const classes = useStyles();
 
@@ -142,9 +137,6 @@ const EmailForm = props => {
     }));
   }, [formState.values]);
 
-  const handleBack = () => {
-    history.goBack();
-  };
 
   /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {
@@ -170,20 +162,6 @@ const EmailForm = props => {
     formState.touched[field] && formState.errors[field] ? true : false;
 
 
-  /**
-   * El médico se loguea 
-   * @param {*} email 
-   * @param {*} password 
-   */
-  const login = (email, password) =>{
-
-  };
-
-  /****************Acá se toma la información del usuario*********************/
-  const handleChangePws = event => {
-    event.preventDefault();
-    //login(formState.values.email, formState.values.password);
-  };
 
 
 

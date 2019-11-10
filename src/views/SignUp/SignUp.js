@@ -6,19 +6,12 @@ import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
   Button,
-  IconButton,
   TextField,
   Link,
   FormHelperText,
   Checkbox,
   Typography,
-  Card,
-  CardMedia,
-  CardContent
 } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import bcimage from '../../assets/logos/background.jpg';
-import botic from '../../assets/logos/name.jpeg';
 import { singUp } from '../../services/api';
 
 const schema = {
@@ -198,9 +191,7 @@ const SignUp = props => {
     }));
   };
 
-  const handleBack = () => {
-    history.goBack();
-  };
+
 
   /**
    * Se debe comparar que el correo no exista
@@ -215,7 +206,7 @@ const SignUp = props => {
         return response.json();
       })
       .then(json => {
-        if (json["email"] == email) {
+        if (json["email"] === email) {
           window.confirm("Bienvenido a Botic, por favor inice sesión para continuar")
           history.push('/sign-in');
 

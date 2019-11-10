@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
-import { Card, CardContent, CardHeader, 
-    Divider, 
-    Typography, 
+import { 
     Grid, 
     Button, 
     Fab, 
@@ -12,14 +9,11 @@ import { Card, CardContent, CardHeader,
     DialogTitle,
     DialogContent,
     DialogContentText,
-    DialogActions,
-    TextField} from '@material-ui/core';
+    DialogActions} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import CreateIcon from '@material-ui/icons/Create';
 import TestIcon from '@material-ui/icons/FormatListBulleted'
 import { detelePatient } from '../../../../services/api';
 import { Information, EditInfo } from './componentes';
-import validate from 'validate.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -47,54 +41,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const schema = {
-    name: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 32
-      }
-    },
-    lastName: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 32
-      }
-    },
-    centro_medico: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 32
-      }
-    },
-    idCard: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 15
-      }
-    },
-    age: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 2
-      }
-    },
-    peso: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
-    },
-    altura: {
-      presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
-    }
-};
 
 
 const InformationCard = props => {
-    const { history, user } = props
     const classes = useStyles(); 
 
     //----------------------------------------------------------------------------------------

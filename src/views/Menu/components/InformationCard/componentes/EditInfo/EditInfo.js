@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { Card, CardContent,  
     Grid, 
     Button, 
@@ -66,24 +66,7 @@ const id = [
     }
 ];
   
-const sexo = [
-    {
-      value: "empty"
-    },
-    {
-      value: 'm',
-      label: 'Masculino'
-    },
-    {
-      value: 'f',
-      label: 'Femenino'
-    },
-    {
-      value: 'o',
-      label: 'Otro'
-    }
-];
-  
+
 const schema = {
     name: {
       presence: { allowEmpty: false, message: 'Obligatorio' },
@@ -131,7 +114,6 @@ const schema = {
 
 
 const EditInfo = props => {
-    const { history, user } = props
     const classes = useStyles(); 
 
 

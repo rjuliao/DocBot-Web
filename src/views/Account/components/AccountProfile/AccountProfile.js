@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import moment from 'moment';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
   CardActions,
   CardContent,
   Avatar,
-  Typography,
   Divider,
   Button,
-  LinearProgress,
   Grid
 } from '@material-ui/core';
 import logo  from '../../../../assets/logos/logo.png';
@@ -41,13 +38,7 @@ const AccountProfile = props => {
 
   const classes = useStyles();
 
-  const user = {
-    name: 'Shen Zhi',
-    city: 'Los Angeles',
-    country: 'USA',
-    timezone: 'GTM-7',
-    avatar: '/images/avatars/avatar_11.png'
-  };
+  
 
   return (
     <Card

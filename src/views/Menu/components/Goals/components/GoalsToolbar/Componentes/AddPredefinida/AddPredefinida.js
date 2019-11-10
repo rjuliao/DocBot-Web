@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Card,
   CardContent,
   Button,
   Dialog,
@@ -16,7 +15,6 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  Checkbox,
   ListItemText,
   Typography
 } from '@material-ui/core';
@@ -77,28 +75,7 @@ const schema = {
   }
 };
 
-const metas = [
-    {
-        id: 1,
-        description: "Con esta meta comes verga :D",
-    },
-    {
-        id: 2,
-        description: "Con esta meta comes verga :D",
-    }, 
-    {
-        id: 3,
-        description: "Con esta meta comes verga :D",
-    },
-    {
-        id: 4,
-        description: "Con esta meta comes verga :D",
-    },
-    {   
-        id: 5,
-        description: "Con esta meta comes verga :D",
-    }
-]
+
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -129,7 +106,7 @@ const AddPredefinida = props => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
-  const [state, setState] = React.useState({
+  const [state] = React.useState({
     data: [],
   });
 
@@ -368,7 +345,6 @@ const AddPredefinida = props => {
                       onChange={handleChange}
                       value={formState.values.status || ''}
                       required
-                      select
                       // eslint-disable-next-line react/jsx-sort-props
                       SelectProps={{ native: true }}
                       
@@ -413,7 +389,6 @@ const AddPredefinida = props => {
                       onChange={handleChange}
                       value={formState.values.freq || ''}
                       required
-                      select
                       // eslint-disable-next-line react/jsx-sort-props
                       SelectProps={{ native: true }}
                       

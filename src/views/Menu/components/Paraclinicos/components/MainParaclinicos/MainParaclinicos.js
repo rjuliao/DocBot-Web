@@ -9,7 +9,6 @@ import { Card,
         Grid, 
         CardActions, 
         TextField, 
-        Button,
         Fab} from '@material-ui/core';
 import AddButton from '@material-ui/icons/AddCircleOutline';
 import { makeStyles } from '@material-ui/styles';
@@ -81,7 +80,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MainParaclinicos = props =>{
-  const { history, user, className, ...rest } = props;
+  const { history } = props;
   const classes = useStyles();
 
   const [formState, setFormState] = useState({
@@ -125,10 +124,6 @@ const MainParaclinicos = props =>{
   const hasError = field =>
       formState.touched[field] && formState.errors[field] ? true : false;
 
-
-  const clear = ()=>{
-    
-  }
 
   const sendParaclinicos = (type, value, comment, id) => {
   

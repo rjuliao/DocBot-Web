@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { FormParaclinicos, Hemoglobina, Trigliceridos, Glicemia, Colesterol, ParaChart } from './components';
@@ -6,7 +6,7 @@ import { FormParaclinicos, Hemoglobina, Trigliceridos, Glicemia, Colesterol, Par
 
 
 const Paraclinicos = props => {
-    const { user, p1, p2, p3, p4, p5, p6, data } = props;
+    const { user, p1, p2,  p4, p5, data } = props;
 
 
     return(

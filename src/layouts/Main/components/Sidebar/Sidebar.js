@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer, Button, Fab } from '@material-ui/core';
+import { Divider, Drawer, Fab } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link as RouterLink } from 'react-router-dom';

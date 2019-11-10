@@ -9,10 +9,7 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import {  options } from './chart';
 

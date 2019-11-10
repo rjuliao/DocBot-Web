@@ -6,15 +6,10 @@ import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
   Button,
-  IconButton,
   TextField,
   Link,
   Typography,
-  Card,
-  CardMedia,
-  CardContent
 } from '@material-ui/core';
-import bcimage from '../../assets/logos/background.jpg';
 import botic from '../../assets/logos/logoT.png';
 import { signIn } from '../../services/api';
 import { connect } from 'react-redux';
@@ -138,7 +133,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignIn = props => {
-  const { doctor, history, logVal} = props;
+  const {  history} = props;
 
   const classes = useStyles();
 
@@ -159,9 +154,6 @@ const SignIn = props => {
     }));
   }, [formState.values]);
 
-  const handleBack = () => {
-    history.goBack();
-  };
 
   /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {
@@ -198,7 +190,7 @@ const SignIn = props => {
         return response.json();
       })
       .then(json => {
-        if (json["login"] == true) {
+        if (json["login"] === true) {
           props.getDoctor(json);
           localStorage.setItem('name', json["name"])
           localStorage.setItem('lastName', json["lastName"]);

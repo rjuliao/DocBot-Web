@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SingleGoalProgress = props => {
-  const { className, goals, ...rest } = props;
+  const { goals } = props;
 
   const classes = useStyles();
 

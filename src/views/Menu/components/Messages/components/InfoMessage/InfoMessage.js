@@ -9,11 +9,10 @@ import { Card,
         Grid, 
         CardActions, 
         TextField, 
-        Button,
         Fab} from '@material-ui/core';
 import Send from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/styles';
-import { setParaclinico, setMessages } from '../../../../../../services/api';
+import { setMessages } from '../../../../../../services/api';
 
 const schema = {
 
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InfoMessage = props =>{
-  const { history, user, className, ...rest } = props;
+  const { history} = props;
   const classes = useStyles();
 
   const [formState, setFormState] = useState({
@@ -81,11 +80,6 @@ const InfoMessage = props =>{
     
   const hasError = field =>
       formState.touched[field] && formState.errors[field] ? true : false;
-
-
-  const clear = ()=>{
-    
-  }
 
   const handleMessage = (idP, idDoc, nombre, mensaje, asunto, date) => {
     
