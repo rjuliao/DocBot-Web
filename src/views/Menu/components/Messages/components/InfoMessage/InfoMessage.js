@@ -13,6 +13,7 @@ import { Card,
 import Send from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/styles';
 import { setMessages } from '../../../../../../services/api';
+import moment from 'moment';
 
 const schema = {
 
@@ -93,8 +94,6 @@ const InfoMessage = props =>{
       console.log(error.message);
     });
 
-   
-
   }
 
   /**
@@ -104,25 +103,10 @@ const InfoMessage = props =>{
   const handleData = event =>{
     event.preventDefault();
 
-    var date = new Date();
-    var dd = date.getDate();
-    var mm = date.getMonth()+1; //hoy es 0!
-    var yyyy = date.getFullYear();
-    
-    if(dd<10) {
-        dd='0'+dd
-    } 
-    
-    if(mm<10) {
-        mm='0'+mm
-    } 
-    
-    date = mm+'/'+dd+'/'+yyyy;
-
     var nombre = localStorage.getItem("name") + " " + localStorage.getItem("lastName") 
     
     handleMessage(localStorage.getItem("p_id"), localStorage.getItem("id"),
-     nombre,formState.values.message,  formState.values.subject,  date)
+     nombre,formState.values.message,  formState.values.subject,  moment().format('DD/MM/YYYY'))
     
     formState.values.message=""
     formState.values.subject=""
