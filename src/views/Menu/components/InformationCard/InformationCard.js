@@ -34,6 +34,10 @@ const useStyles = makeStyles(theme => ({
     info: {
         margin: '10px',
         padding: 'initial'
+    },    
+    Button: {
+        backgroundColor: theme.palette.error.main,
+        color: theme.palette.white
     },
     icons: {
         marginRight: theme.spacing(2),
@@ -126,11 +130,11 @@ const InformationCard = props => {
                     <RouterLink
                         to={'/pacientes'}
                     >
-                        <Button onClick={() => handleDelete()} color="primary">
+                        <Button className={classes.Button} variant="contained" onClick={() => handleDelete()} color="primary">
                             Eliminar
                         </Button>
                     </RouterLink>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleClose} variant="contained" color="primary">
                         Cancelar
                     </Button>
                 </DialogActions>

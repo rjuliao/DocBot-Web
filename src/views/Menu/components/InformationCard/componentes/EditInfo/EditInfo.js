@@ -11,7 +11,7 @@ import { Card, CardContent,
     DialogContentText,
     DialogActions,
     TextField} from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Create from '@material-ui/icons/Create';
 import validate from 'validate.js';
 
 const useStyles = makeStyles(theme => ({
@@ -36,6 +36,10 @@ const useStyles = makeStyles(theme => ({
     },
     icons: {
         marginRight: theme.spacing(2),
+    },
+    Button: {
+        backgroundColor: theme.palette.success.main,
+        color: theme.palette.white
     }
 }));
 
@@ -181,8 +185,8 @@ const EditInfo = props => {
         <div className={classes.root}>
 
             <Fab variant="extended"  color="primary" aria-label="add" onClick={handleClickOpenD} className={classes.margin}>
-                <DeleteIcon className={classes.icons} />
-                    Eliminar Paciente
+                <Create className={classes.icons} />
+                    Editar información
             </Fab>
             <Dialog 
                 open={openD} 
@@ -347,10 +351,10 @@ const EditInfo = props => {
                     </Card>
                 </DialogContent>
                 <DialogActions>
-                    <Button color="primary" onClick={handleEdit}>
+                    <Button className={classes.Button} variant="contained" onClick={handleEdit}>
                         Editar
                     </Button>
-                    <Button onClick={handleCloseD} color="primary">
+                    <Button onClick={handleCloseD} variant="contained" color="primary">
                         Cancelar
                     </Button>
                 </DialogActions>
