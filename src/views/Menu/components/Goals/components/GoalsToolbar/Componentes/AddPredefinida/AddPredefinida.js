@@ -246,7 +246,7 @@ const AddPredefinida = props => {
                     </ListItemIcon>
                     <ListItemText 
                         id={labelId} 
-                        primary={`Meta: ${value.id}`} 
+                        primary={`Meta: `} 
                         secondary={
                             <React.Fragment>
                                 <Typography
