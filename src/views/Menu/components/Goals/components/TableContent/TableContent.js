@@ -14,7 +14,13 @@ import { Card,
     TableBody,  
     CardActions,
     TablePagination,
-    IconButton} from '@material-ui/core';
+    IconButton,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    Typography,
+    DialogActions,
+    Button} from '@material-ui/core';
 import { deleteGoal } from '../../../../../../services/api';
 
 
@@ -36,8 +42,14 @@ const useStyles = makeStyles(theme => ({
     avatar: {
       marginRight: theme.spacing(2)
     },
+    Button: {
+      backgroundColor: theme.palette.error.main,
+      color: theme.palette.white
+    },
     actions: {
       justifyContent: 'flex-end'
+    },
+    tableRow: {
     }
 }));
 
@@ -59,20 +71,34 @@ const TableContent = props => {
       setRowsPerPage(event.target.value);
     };
 
-    const handleDelete = id =>{
-      deleteGoal(id)
+    const handleDelete = () =>{
+      deleteGoal( localStorage.getItem('temp2'))
       .then(response => {
         return response.json();
       })  
       .then(json => {
-        history.push('./menu')
+        window.location.reload(false);
       })
       .catch(error => {
         console.log(error.message);
       });
     }
-    
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = (desc, id) => {
+      localStorage.setItem('temp1', desc)
+      localStorage.setItem('temp2', id)
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+      
     return (
+      <div>
         <Card
             {...rest}
             className={clsx(classes.root, className)}
@@ -102,31 +128,31 @@ const TableContent = props => {
                           key={goal.id}
                           selected={selectedUsers.indexOf(goal.id) !== -1}
                         >
-                          <TableCell>              
-                            {moment(goal.cretationDate).format('DD/MM/YYYY')}
+                          <TableCell align="center">              
+                            {moment(goal.creationDate).format('DD/MM/YYYY')}
                           </TableCell>
-                          <TableCell>              
+                          <TableCell align="center">              
                             {moment(goal.dueDate).format('DD/MM/YYYY')}
                           </TableCell>
-                          <TableCell component="th" scope="row">
+                          <TableCell component="th"  align="center" scope="row">
                             {goal.description}
                           </TableCell>
-                          <TableCell>
+                          <TableCell align="center">
                             {goal.state==='2'?"Asigando":"Cumplida"} 
                           </TableCell>
-                          <TableCell>
+                          <TableCell align="center">
                             {goal.quantity}
                           </TableCell>
-                          <TableCell>
+                          <TableCell align="center">
                             {goal.frequency==='1'? "Cada Hora":
                             (goal.frequency==='2'?"Diariamente":
                             (goal.frequency==='3'?"Semanalmente":"Mensualmente"))} 
                           </TableCell>
-                          <TableCell>
+                          <TableCell align="center">
                             {(goal.progress/goal.quantity)*100}%
                           </TableCell>
-                          <TableCell>
-                            <IconButton aria-label="delete" onClick={()=>handleDelete(goal._id)}>
+                          <TableCell  align="center">
+                            <IconButton aria-label="delete" onClick={()=>handleClickOpen(goal.description, goal._id)}>
                               <DeleteForeverIcon fontSize="large" />
                             </IconButton>
                           </TableCell>
@@ -149,6 +175,25 @@ const TableContent = props => {
             />
             </CardActions>
       </Card>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Eliminar meta
+        </DialogTitle>
+        <DialogContent dividers>
+          <Typography variant="h4" gutterBottom>
+            ¿Esta seguro que desea eliminar la meta: {localStorage.getItem('temp1')}?
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus variant="contained" className={classes.Button} onClick={()=>handleDelete()} >
+            Eliminar
+          </Button>
+          <Button autoFocus variant="contained"  color="primary" onClick={handleClose} >
+            Cancelar
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
     );
   };
   
