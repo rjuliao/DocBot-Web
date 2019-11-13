@@ -125,9 +125,9 @@ const MainParaclinicos = props =>{
       formState.touched[field] && formState.errors[field] ? true : false;
 
 
-  const sendParaclinicos = (type, value, comment, id) => {
+  const sendParaclinicos = (type, value, comment, id, date) => {
   
-    setParaclinico(type, value, comment, id, moment().format('DD/MM/YYYY') )
+    setParaclinico(type, value, comment, id, date)
     .then(response => {
       return response.json();
     })  
@@ -147,31 +147,41 @@ const MainParaclinicos = props =>{
   const handleData = event =>{
     event.preventDefault();
 
-    sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, localStorage.getItem('p_id'));
+    
     
     if(formState.values.type === 'trigliceridos'){
    
       localStorage.setItem("tri", formState.values.value)
       localStorage.setItem("tri_C", formState.values.comment)
+      sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, 
+        localStorage.getItem('p_id'), moment().format('DD/MM/YYYY'));
     }
     if(formState.values.type === 'glicemia'){
       
-        localStorage.setItem("gli", formState.values.value)
-        localStorage.setItem("gli_C",  formState.values.comment)
+      localStorage.setItem("gli", formState.values.value)
+      localStorage.setItem("gli_C",  formState.values.comment)
+      sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment,
+          localStorage.getItem('p_id'), moment().format('DD/MM/YYYY'));
     }
 
     if(formState.values.type === 'hemoglobina_glicosilada'){
       
-        localStorage.setItem("hg", formState.values.value)
-        localStorage.setItem("hg_C",  formState.values.comment)
+      localStorage.setItem("hg", formState.values.value)
+      localStorage.setItem("hg_C",  formState.values.comment)
+      sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, 
+        localStorage.getItem('p_id'), moment().format('DD/MM/YYYY'));
     }
     if(formState.values.type === 'colesterol_total'){
      
-        localStorage.setItem("clt", formState.values.value)
-        localStorage.setItem("clt_C",  formState.values.comment)
+      localStorage.setItem("clt", formState.values.value)
+      localStorage.setItem("clt_C",  formState.values.comment)
+      sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, 
+        localStorage.getItem('p_id'), moment().format('DD/MM/YYYY'));
     }
     if(formState.values.type === 'Glucosa'){
-        localStorage.setItem("glu", formState.values.value)
+      localStorage.setItem("glu", formState.values.value)
+      sendParaclinicos(formState.values.type,formState.values.value, formState.values.comment, 
+        localStorage.getItem('p_id'), moment().format('DD/MM/YYYY h:mm:ss a'));
     }
 
     formState.values.type = "";

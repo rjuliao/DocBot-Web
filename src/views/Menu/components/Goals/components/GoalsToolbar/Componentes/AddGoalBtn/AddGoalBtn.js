@@ -173,7 +173,7 @@ const AddGoalBtn = props => {
 
   const handleGoal = event =>{
     writeGoal(formState.values.description, formState.values.status, formState.values.quantity,
-        formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
+        formState.values.freq,  localStorage.getItem('p_id'), moment(formState.values.dueDate).format("DD/MM/YYYY"), 0, 
         "No Predeterminada", "", moment().format('DD/MM/YYYY'))
 
     handleClose()
