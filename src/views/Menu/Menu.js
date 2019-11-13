@@ -70,6 +70,7 @@ const Menu = props => {
     const [state] = React.useState({
         goals: [],
         data: [],
+        dataG: [],
         messages: [],
         progress: 0,
         p1 : [],
@@ -162,7 +163,7 @@ const Menu = props => {
                     localStorage.setItem("clt", i.value)
                     localStorage.setItem("clt_C", i.comment)
                 }
-                if(i.type === 'glucosa'){
+                if(i.type === 'Glucosa'){
                     p6.push(i)
                     localStorage.setItem("glu", i.value)
                 }
@@ -175,11 +176,34 @@ const Menu = props => {
                 state.p5 = p5
                 state.p6 = p6
                 createData(p1, p2, p4, p5);
+                createGlucoseChart(p6)
             }
         })
         .catch(error => {
             console.log(error.message);
         });
+    }
+
+    const createGlucoseChart = (p) =>{
+        const label=[];
+        const data=[];
+        for(var x = 0; x < p.length; x++){
+            var i = p[x]
+            label.push(moment(i.date).format('DD/MM'))
+            data.push(i.value)
+        }
+        const info = {
+            labels: label,
+            datasets:[
+                {
+                    label: 'Glucosa',
+                    borderColor: palette.success.main,
+                    data: data,
+                    fill: false,
+                } 
+            ]
+        }
+        state.dataG = info;
     }
 
     const createData = (p1, p2, p3, p4) =>{
@@ -265,7 +289,7 @@ const Menu = props => {
                 labels: labels,
                 datasets:[
                     {
-                        borderColor: palette.warning.main,
+                        borderColor: palette.secondary.main,
                         data: data,
                         fill: false,
                     }   
@@ -307,10 +331,10 @@ const Menu = props => {
                 aria-label="full width tabs example"
                 >
                     <Tab label="Información" {...a11yProps(0)} />
-                    <Tab label="Metas" {...a11yProps(1)} onClick={()=>handleSetGoal()} />
-                    <Tab label="Graficos y avances" {...a11yProps(2)} onClick={()=>handleGraficos()} />
-                    <Tab label="Paraclínicos" {...a11yProps(3)} onClick={()=>handleParaclinicos()}/>
-                    <Tab label="DocBot" {...a11yProps(4)} onClick={()=>handleMessages()} />
+                    <Tab label="Metas" {...a11yProps(1)} onClick={window.onload = handleSetGoal()} />
+                    <Tab label="Graficos y avances" {...a11yProps(2)} onClick={window.onload =handleGraficos()} />
+                    <Tab label="Paraclínicos" {...a11yProps(3)} onClick={window.onload =handleParaclinicos()}/>
+                    <Tab label="DocBot" {...a11yProps(4)} onClick={window.onload =handleMessages()} />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -330,6 +354,7 @@ const Menu = props => {
                         data={state.data} 
                         goalP={state.progress} 
                         goals={state.goals}
+                        dataG={state.dataG}
                     />
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
