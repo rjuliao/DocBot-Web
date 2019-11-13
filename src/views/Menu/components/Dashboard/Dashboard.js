@@ -10,6 +10,7 @@ import {
   SingleGoalProgress,
   WeightHistory,
 } from './components';
+import GlucoseHistory from './components/GlucoseHistory';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Dashboard = props => {
-  const {data, goals, goalP} = props
+  const {data, goals, goalP, dataG} = props
   const classes = useStyles();
 
 
@@ -71,6 +72,16 @@ const Dashboard = props => {
           xs={12}
         >
           <WeightHistory data = {data}/>
+        </Grid>
+        
+        <Grid
+          item
+          lg={12}
+          md={12}
+          xl={12}
+          xs={12}
+        >
+          <GlucoseHistory data = {dataG}/>
         </Grid>
         <Grid
           item
