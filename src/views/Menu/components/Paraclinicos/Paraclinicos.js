@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
-import { FormParaclinicos, Hemoglobina, Trigliceridos, Glicemia, Colesterol, ParaChart } from './components';
+import { FormParaclinicos, 
+    Hemoglobina, 
+    Trigliceridos, 
+    Glicemia, 
+    Colesterol,
+    Charts
+ } from './components';
 
 
 
@@ -64,7 +70,7 @@ const Paraclinicos = props => {
                     xl={12}
                     xs={12}
                 >
-                    <ParaChart data={data}/>
+                    <Charts />
                 </Grid>
             </Grid>
         </div>
