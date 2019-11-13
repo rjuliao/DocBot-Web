@@ -55,7 +55,7 @@ const Users = props => {
 
   return (
     <div className={classes.root} > 
-      {handleUsers()} 
+      {window.onload = handleUsers()} 
       <UserListToolbar/>
       <div className={classes.content} >
         <FormControlLabel
