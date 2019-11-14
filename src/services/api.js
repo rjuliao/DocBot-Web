@@ -66,14 +66,15 @@ export function getCode(email){
  * @param {*} doc
  * @param {*} avatar
  * @param {*} dateAssociation
+ * @param {*} steps
  */
 export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber, weight, height,
-     sex, password,email, doc, avatar, dateAssociation){
+     sex, password,email, doc, avatar, dateAssociation, steps){
     
     return fetch('https://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
         body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
-            sex, password, email, doc, avatar, dateAssociation}),
+            sex, password, email, doc, avatar, dateAssociation, steps}),
         headers: {'Content-Type':'application/json',}
     });
     
@@ -296,6 +297,17 @@ export function getGoalsP(){
     });
 }
 
+/**
+ * Creo una meta predefinida
+ * @param {*} description 
+ */
+export function setGoalsP(description){
+    return fetch('https://api-rest-botic.herokuapp.com/api/goalps',{
+        method: 'POST',
+        body: JSON.stringify({ description}),
+        headers: {'Content-Type':'application/json',}
+    });
+}
 /**
  * Borrar una meta--- ese id es el de la meta.
  * @param {*} id  
