@@ -12,7 +12,7 @@ import { FormParaclinicos,
 
 
 const Paraclinicos = props => {
-    const { user, p1, p2,  p4, p5, data } = props;
+    const { user, p1, p2,  p4, p5, c1, c2, c3, c4 } = props;
 
 
     return(
@@ -70,7 +70,7 @@ const Paraclinicos = props => {
                     xl={12}
                     xs={12}
                 >
-                    <Charts />
+                    <Charts dataC={c1} dataHG={c2} dataT={c3} dataG={c4}/>
                 </Grid>
             </Grid>
         </div>
@@ -83,15 +83,3 @@ Paraclinicos.propTypes = {
 
 export default Paraclinicos;
 
-/**
- * 
-                <Grid
-                    item
-                    lg={12}
-                    sm={12}
-                    xl={12}
-                    xs={12}
-                >
-                    <ParaChart data={data}/>
-                </Grid>
- */

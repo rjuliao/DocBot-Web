@@ -61,12 +61,6 @@ const schema = {
     length: {
       maximum: 120
     }
-  },
-  quantity: {
-    presence:{ allowEmpty: false, message: 'Obligatorio'},
-    length:{
-      maximum: 2
-    }
   }
 };
 
@@ -90,6 +84,10 @@ const useStyles = makeStyles(theme => ({
   },
   searchInput: {
     marginRight: theme.spacing(1)
+  },
+  Button: {
+      backgroundColor: theme.palette.success.main,
+      color: theme.palette.white
   }
 }));
 
@@ -118,11 +116,11 @@ const AddGoalBtn = props => {
   useEffect(() => {
     const errors = validate(formState.values, schema);
 
-  setFormState(formState => ({
-      ...formState,
-      isValid: errors ? false : true,
-      errors: errors || {}
-  }));
+    setFormState(formState => ({
+        ...formState,
+        isValid: errors ? false : true,
+        errors: errors || {}
+    }));
   }, [formState.values]);
 
 
@@ -172,9 +170,13 @@ const AddGoalBtn = props => {
   }
 
   const handleGoal = event =>{
+
+  
     writeGoal(formState.values.description, formState.values.status, formState.values.quantity,
         formState.values.freq,  localStorage.getItem('p_id'), moment(formState.values.dueDate).format("DD/MM/YYYY"), 0, 
         "No Predeterminada", "", moment().format('DD/MM/YYYY'))
+    
+
 
     handleClose()
   }
@@ -220,6 +222,7 @@ const AddGoalBtn = props => {
                       margin="dense"
                       name="description"
                       onChange={handleChange}
+                      type="text"
                       value={formState.values.description || ''}
                       required
                       variant="outlined"
@@ -337,10 +340,20 @@ const AddGoalBtn = props => {
         </Card>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleGoal} color="primary">
+          <Button 
+            className={classes.Button}
+            onClick={handleGoal} 
+            disabled={!formState.isValid}
+            color="primary"
+            variant="contained"
+          >
             Agregar meta
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button 
+            onClick={handleClose} 
+            color="primary"
+            variant="contained"
+          >
               Cancelar
           </Button>
         </DialogActions>

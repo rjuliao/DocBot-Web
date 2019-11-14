@@ -51,8 +51,6 @@ const Users = props => {
     });
   }
 
-  
-
   return (
     <div className={classes.root} > 
       {window.onload = handleUsers()} 

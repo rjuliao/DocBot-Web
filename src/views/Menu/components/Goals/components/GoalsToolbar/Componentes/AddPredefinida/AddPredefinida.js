@@ -97,6 +97,10 @@ const useStyles = makeStyles(theme => ({
   },
   searchInput: {
     marginRight: theme.spacing(1)
+  },
+  Button: {
+      backgroundColor: theme.palette.success.main,
+      color: theme.palette.white
   }
 }));
 
@@ -266,7 +270,9 @@ const AddPredefinida = props => {
         </List>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose}  
+            variant="contained"
+            color="primary">
               Cancelar
           </Button>
         </DialogActions>
@@ -406,10 +412,19 @@ const AddPredefinida = props => {
             </form>
         </DialogContent>
         <DialogActions>
-            <Button onClick={handleGoal} color="primary">
+            <Button 
+            className={classes.Button}
+              onClick={handleGoal} 
+              color="primary" 
+              variant="contained"
+            >
                 Añadir meta al paciente
             </Button>
-            <Button onClick={handleCloseGoal} color="primary">
+            <Button 
+              onClick={handleCloseGoal} 
+              color="primary"
+              variant="contained" 
+            >
                 Cancelar
             </Button>
         </DialogActions>

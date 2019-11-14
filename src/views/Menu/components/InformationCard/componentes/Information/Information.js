@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {  withRouter } from 'react-router-dom';
@@ -14,6 +14,7 @@ import { Card, CardContent,
     TextField} from '@material-ui/core';
 import { updateWeight, getWeight } from '../../../../../../services/api';
 import moment from 'moment';
+import { validate } from '@babel/types';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,8 +41,22 @@ const useStyles = makeStyles(theme => ({
     },
     icons: {
         marginRight: theme.spacing(1),
+    },
+    Button: {
+        backgroundColor: theme.palette.success.main,
+        color: theme.palette.white
     }
 }));
+
+const schema = {
+    peso: {
+      presence: { allowEmpty: false, message: 'Obligatorio' },
+      length: {
+        maximum: 4
+      }
+    }
+};
+  
 
 const Information = props => {
     const classes = useStyles(); 
@@ -62,6 +77,17 @@ const Information = props => {
         touched: {},
         errors: {}
     });
+    
+    useEffect(() => {
+        const errors = validate(formState.values, schema);
+    
+        setFormState(formState => ({
+            ...formState,
+            isValid: errors ? false : true,
+            errors: errors || {}
+        }));
+    }, [formState.values]);
+    
     const handleChange = event => {
         event.persist();
     
@@ -80,6 +106,10 @@ const Information = props => {
             }
         }));
     };
+
+    const hasError = field =>
+      formState.touched[field] && formState.errors[field] ? true : false;
+
 
     const handleWeight = event =>{
         event.preventDefault();
@@ -313,6 +343,7 @@ const Information = props => {
                                 >
                                     <TextField
                                         fullWidth
+                                        error={hasError('peso')}
                                         label="Peso"
                                         margin="dense"
                                         name="peso"
@@ -329,10 +360,21 @@ const Information = props => {
                 </Card>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleWeight} color="primary">
+                <Button 
+                    className={classes.Button}
+                    onClick={handleWeight} 
+                    color="primary"
+                    disabled={!formState.isValid}
+                    variant="contained"
+                >
                     Aceptar
                 </Button>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button 
+                    onClick={handleClose} 
+                    color="primary" 
+                    variant="contained" 
+                    autoFocus
+                >
                     Cancelar
                 </Button>
                 </DialogActions>

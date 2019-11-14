@@ -11,7 +11,7 @@ import {
 
 
 const Charts = props => {
-    const { user, p1, p2,  p4, p5, data } = props;
+    const { dataC, dataT, dataG, dataHG } = props;
 
 
     return(
@@ -20,7 +20,6 @@ const Charts = props => {
                 container
                 spacing={3}
             >
-
                 <Grid
                     item
                     lg={12}
@@ -28,7 +27,7 @@ const Charts = props => {
                     xl={12}
                     xs={12}
                 >
-                    <ClsChart data={data}/>
+                    <HGChart data={dataHG}/>
                 </Grid>
                 <Grid
                     item
@@ -37,7 +36,7 @@ const Charts = props => {
                     xl={12}
                     xs={12}
                 >
-                    <TrgChart data={data}/>
+                    <TrgChart data={dataT}/>
                 </Grid>
                 <Grid
                     item
@@ -46,7 +45,7 @@ const Charts = props => {
                     xl={12}
                     xs={12}
                 >
-                    <HGChart data={data}/>
+                    <GlcChart data={dataG}/>
                 </Grid>
                 <Grid
                     item
@@ -55,7 +54,7 @@ const Charts = props => {
                     xl={12}
                     xs={12}
                 >
-                    <GlcChart data={data}/>
+                    <ClsChart data={dataC}/>
                 </Grid>
 
             </Grid>
