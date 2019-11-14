@@ -11,13 +11,14 @@ import {
   Button,
   TextField
 } from '@material-ui/core';
+import { changePass } from '../../../../services/api';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
 const Password = props => {
-  const { className, ...rest } = props;
+  const { className,history, ...rest } = props;
 
   const classes = useStyles();
 
@@ -33,6 +34,33 @@ const Password = props => {
     });
   };
 
+  
+  /****************Acá se toma la información del usuario*********************/
+  const handleChangePws = event => {
+  
+      if(values.password === values.confirm){
+
+        changePass(localStorage.getItem('email'), values.password)
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+
+          localStorage.removeItem("token")
+          history.push('/sign-in')
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+
+      }else{
+        window.confirm("Las constraseñas NO coinciden")
+      }
+  
+
+
+  };
+
   return (
     <Card
       {...rest}
@@ -40,14 +68,14 @@ const Password = props => {
     >
       <form>
         <CardHeader
-          subheader="Update password"
-          title="Password"
+          subheader="Cambiar contraseña"
+          title="Contraseña"
         />
         <Divider />
         <CardContent>
           <TextField
             fullWidth
-            label="Password"
+            label="Contraseña"
             name="password"
             onChange={handleChange}
             type="password"
@@ -56,7 +84,7 @@ const Password = props => {
           />
           <TextField
             fullWidth
-            label="Confirm password"
+            label="Confirmar contraseña"
             name="confirm"
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
@@ -70,8 +98,9 @@ const Password = props => {
           <Button
             color="primary"
             variant="outlined"
+            onClick={handleChangePws()}
           >
-            Update
+            Actualizar
           </Button>
         </CardActions>
       </form>

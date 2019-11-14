@@ -192,6 +192,7 @@ const SignIn = props => {
       .then(json => {
         if (json["login"] === true) {
           props.getDoctor(json);
+          localStorage.setItem('email', email)
           localStorage.setItem('name', json["name"])
           localStorage.setItem('lastName', json["lastName"]);
           localStorage.setItem('medicalCenter', json["medicalCenter"])
