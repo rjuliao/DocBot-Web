@@ -79,7 +79,10 @@ const Menu = props => {
         p4 : [],
         p5 : [],
         p6 : [],
-        dataP: []
+        c1 : [],
+        c2 : [],
+        c3 : [],
+        c4 : [],
     });
 
     const handleChange = (event, newValue) => {
@@ -207,7 +210,10 @@ const Menu = props => {
     }
 
     const createData = (p1, p2, p3, p4) =>{
-        const labels=[];
+        const labels1=[];
+        const labels2=[];
+        const labels3=[];
+        const labels4=[];
         const data1=[];
         const data2=[];
         const data3=[];
@@ -215,55 +221,76 @@ const Menu = props => {
         
         for(var x = 0; x < p1.length; x++){
             var i = p1[x]
-            labels.push(moment(i.date).format('DD/MM'))
+            labels1.push(moment(i.date).format('DD/MM'))
             data1.push(i.value)
         }
         for(var y = 0; y < p2.length; y++){
             var j = p2[y]
-            labels.push(moment(j.date).format('DD/MM'))
+            labels2.push(moment(j.date).format('DD/MM/YYYY'))
             data2.push(j.value)
         }
         for(var z = 0; z < p3.length; z++){
             var k = p3[z]
-            labels.push(moment(k.date).format('DD/MM'))
+            labels3.push(moment(k.date).format('DD/MM'))
             data3.push(k.value)
         }
         for(var w = 0; w < p4.length; w++){
             var l = p4[w]
-            labels.push(moment(l.date).format('DD/MM'))
+            labels4.push(moment(l.date).format('DD/MM'))
             data4.push(l.value)
         }
 
         const info = {
-            labels: [...new Set(labels)],
+            labels: labels4,
             datasets:[
                 {
-                    label: 'Trigliceridos',
+                    label: 'Colesterol total',
+                    borderColor: palette.valueH.main,
+                    data: data4,
+                    fill: false,
+                }
+            ]
+        }
+        state.c1 = info
+
+        const infos = {
+            labels: labels1,
+            datasets:[
+                {
+                    label: 'Triglicéridos',
                     borderColor: palette.success.main,
                     data: data1,
                     fill: false,
-                },
-                {
-                    label: 'Glicemia',
-                    borderColor: palette.primary.main,
-                    data: data2,
-                    fill: false,
-                },
+                }
+            ]
+        }
+        state.c3 = infos
+
+        const inffo = {
+            labels: labels3,
+            datasets:[
                 {
                     label: 'Hemoglobina Glicosilada',
                     borderColor: palette.error.main,
                     data: data3,
                     fill: false,
-                },
-                {
-                    label: 'Colesterol',
-                    borderColor: palette.valueH.main,
-                    data: data4,
-                    fill: false,
-                }   
+                }
             ]
         }
-        state.dataP = info;
+        state.c2 = inffo
+
+        const iinfo = {
+            labels: labels2,
+            datasets:[
+                {
+                    label: 'Glicemia',
+                    borderColor: palette.info.main,
+                    data: data2,
+                    fill: false,
+                }
+            ]
+        }
+        state.c4 = iinfo
     }
 
 
@@ -332,9 +359,9 @@ const Menu = props => {
                 >
                     <Tab label="Información" {...a11yProps(0)} />
                     <Tab label="Metas" {...a11yProps(1)} onClick={window.onload = handleSetGoal()} />
-                    <Tab label="Graficos y avances" {...a11yProps(2)} onClick={window.onload =handleGraficos()} />
-                    <Tab label="Paraclínicos" {...a11yProps(3)} onClick={window.onload =handleParaclinicos()}/>
-                    <Tab label="DocBot" {...a11yProps(4)} onClick={window.onload =handleMessages()} />
+                    <Tab label="Graficos y avances" {...a11yProps(2)} onClick={window.onload = handleGraficos()} />
+                    <Tab label="Paraclínicos" {...a11yProps(3)} onClick={window.onload = handleParaclinicos()}/>
+                    <Tab label="DocBot" {...a11yProps(4)} onClick={window.onload = handleMessages()} />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -365,7 +392,10 @@ const Menu = props => {
                         p4={state.p4}
                         p5={state.p5}
                         p6={state.p6}
-                        data={state.dataP}
+                        c1={state.c1}
+                        c2={state.c2}
+                        c3={state.c3}
+                        c4={state.c4}
                     />
                 </TabPanel> 
                 <TabPanel value={value} index={4} dir={theme.direction}>
