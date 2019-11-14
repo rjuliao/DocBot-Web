@@ -84,35 +84,27 @@ const schema = {
         maximum: 32
       }
     },
-    centro_medico: {
+    age: {
       presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 32
-      }
+      type: 'number',
+      
     },
-    idCard: {
+    idnum: {
       presence: { allowEmpty: false, message: 'Obligatorio' },
       length: {
         maximum: 15
       }
     },
-    age: {
+    phone: {
       presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 2
-      }
     },
-    peso: {
+    date: {
       presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
+
     },
-    altura: {
+    idtipo: {
       presence: { allowEmpty: false, message: 'Obligatorio' },
-      length: {
-        maximum: 5
-      }
+
     }
 };
 
@@ -273,6 +265,7 @@ const EditInfo = props => {
                                     >
                                     <TextField
                                         fullWidth
+                                        error={hasError('age')}
                                         label="Edad"
                                         margin="dense"
                                         name="age"
@@ -290,6 +283,7 @@ const EditInfo = props => {
                                     >
                                         <TextField
                                             fullWidth
+                                            error={hasError('phone')}
                                             label="Número de celular"
                                             margin="dense"
                                             name="phone"
@@ -306,6 +300,7 @@ const EditInfo = props => {
                                     >
                                         <TextField
                                             fullWidth
+                                            error={hasError('idtipo')}
                                             label="Tipo de doc. indentidad"
                                             margin="dense"
                                             name="tipoid"
@@ -336,6 +331,7 @@ const EditInfo = props => {
                                         <TextField
                                             fullWidth
                                             label="No. documento de identidad"
+                                            error={hasError('idnum')}
                                             margin="dense"
                                             name="idnumber"
                                             onChange={handleChange}
@@ -351,7 +347,12 @@ const EditInfo = props => {
                     </Card>
                 </DialogContent>
                 <DialogActions>
-                    <Button className={classes.Button} variant="contained" onClick={handleEdit}>
+                    <Button 
+                        className={classes.Button} 
+                        variant="contained" 
+                        onClick={handleEdit}
+                        disabled={!formState.isValid}
+                    >
                         Editar
                     </Button>
                     <Button onClick={handleCloseD} variant="contained" color="primary">

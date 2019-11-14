@@ -106,7 +106,6 @@ const Menu = props => {
             return response.json();
         })  
         .then(json => {
-
             state.goals = json;
             var l = json.length
             var s = 0;
@@ -192,7 +191,7 @@ const Menu = props => {
         const data=[];
         for(var x = 0; x < p.length; x++){
             var i = p[x]
-            label.push(moment(i.date).format('DD/MM'))
+            label.push(i.date)
             data.push(i.value)
         }
         const info = {
@@ -221,22 +220,22 @@ const Menu = props => {
         
         for(var x = 0; x < p1.length; x++){
             var i = p1[x]
-            labels1.push(moment(i.date).format('DD/MM'))
+            labels1.push(i.date)
             data1.push(i.value)
         }
         for(var y = 0; y < p2.length; y++){
             var j = p2[y]
-            labels2.push(moment(j.date).format('DD/MM/YYYY'))
+            labels2.push(j.date)
             data2.push(j.value)
         }
         for(var z = 0; z < p3.length; z++){
             var k = p3[z]
-            labels3.push(moment(k.date).format('DD/MM'))
+            labels3.push(k.date)
             data3.push(k.value)
         }
         for(var w = 0; w < p4.length; w++){
             var l = p4[w]
-            labels4.push(moment(l.date).format('DD/MM'))
+            labels4.push(l.date)
             data4.push(l.value)
         }
 
@@ -309,7 +308,7 @@ const Menu = props => {
             
             for(var x = 0; x < json.weight.length; x++){
                 var i = json.weight[x]
-                labels.push(moment(i.date).format('DD/MM'))
+                labels.push(i.date)
                 data.push(i.value)
             }
             const info = {

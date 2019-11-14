@@ -129,10 +129,10 @@ const TableContent = props => {
                           selected={selectedUsers.indexOf(goal.id) !== -1}
                         >
                           <TableCell align="center">              
-                            {moment(goal.creationDate).format('DD/MM/YYYY')}
+                            {goal.creationDate}
                           </TableCell>
                           <TableCell align="center">              
-                            {moment(goal.dueDate).format('DD/MM/YYYY')}
+                            {goal.dueDate}
                           </TableCell>
                           <TableCell component="th"  align="center" scope="row">
                             {goal.description}
