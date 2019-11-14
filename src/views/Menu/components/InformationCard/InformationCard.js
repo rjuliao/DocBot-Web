@@ -91,7 +91,10 @@ const InformationCard = props => {
                 </Grid>
                 <Grid
                     item
-                    xs={4}
+                    lg={4}
+                    sm={6}
+                    xl={4}
+                    xs={12}
                 >
                     <Fab variant="extended"  color="primary" aria-label="add" onClick={handleClickOpen} className={classes.margin}>
                         <DeleteIcon className={classes.icons} />
@@ -100,13 +103,19 @@ const InformationCard = props => {
                 </Grid>
                 <Grid
                     item
-                    xs={4}
+                    lg={4}
+                    sm={6}
+                    xl={4}
+                    xs={12}
                 >
                    <EditInfo/>
                 </Grid>
                 <Grid
                     item
-                    xs={4}
+                    lg={4}
+                    sm={6}
+                    xl={4}
+                    xs={12}
                 >
                     <RouterLink 
                         to={"/findrisk"}

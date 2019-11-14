@@ -209,7 +209,10 @@ const MainParaclinicos = props =>{
           >
             <Grid
                 item
-                xs={4}
+                lg={3}
+                sm={6}
+                xl={3}
+                xs={12}
             >
               <TextField
                 fullWidth
@@ -233,7 +236,10 @@ const MainParaclinicos = props =>{
             
             <Grid
               item
-              xs={3}
+              lg={3}
+              sm={6}
+              xl={3}
+              xs={12}
             >
               <TextField
                 fullWidth
@@ -249,8 +255,11 @@ const MainParaclinicos = props =>{
               />
             </Grid>
             <Grid
-              item
-              xs={5}
+              item    
+              lg={6}
+              md={6}
+              xl={3}
+              xs={12}
             >
               <TextField
                 fullWidth
