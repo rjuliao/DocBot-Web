@@ -138,7 +138,7 @@ const TableContent = props => {
                             {goal.description}
                           </TableCell>
                           <TableCell align="center">
-                            {goal.state==='2'?"Asigando":"Cumplida"} 
+                            {goal.state==='2'?"Asignado":"Cumplida"} 
                           </TableCell>
                           <TableCell align="center">
                             {goal.quantity}

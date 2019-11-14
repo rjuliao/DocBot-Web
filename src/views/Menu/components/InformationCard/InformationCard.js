@@ -131,7 +131,7 @@ const InformationCard = props => {
                 <DialogTitle id="form-dialog-title">Eliminar Paciente</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        ¿Esta seguro que desea eliminar a  {localStorage.getItem('p_Name')} {localStorage.getItem('p_lName')}
+                        ¿Esta seguro que desea eliminar a  {localStorage.getItem('p_Name')} {localStorage.getItem('p_lName')} 
                          de sus registros?
                     </DialogContentText>
                 </DialogContent>

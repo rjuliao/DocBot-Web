@@ -42,6 +42,13 @@ const useStyles = makeStyles(theme => ({
     icons: {
         marginRight: theme.spacing(1),
     },
+    val:{
+        color: theme.palette.error.main,
+        fontWeight: 500,
+        fontSize: '20px',
+        letterSpacing: '-0.06px',
+        lineHeight: '24px'
+    },
     Button: {
         backgroundColor: theme.palette.success.main,
         color: theme.palette.white
@@ -224,7 +231,7 @@ const Information = props => {
                         className={classes.info}    
                         variant="h6"
                     >
-                        ICM: {(localStorage.getItem('p_weight')/Math.pow(localStorage.getItem('p_height'),2)).toFixed(3)}
+                        IMC: {(localStorage.getItem('p_weight')/Math.pow(localStorage.getItem('p_height'),2)).toFixed(3)}
                     </Typography>
                 </Grid>
             </Grid>
@@ -302,13 +309,27 @@ const Information = props => {
                     </Typography>:
                     <Typography
                         className={classes.info}    
-                        variant="body1"
                     >
                         {
                         parseInt(localStorage.getItem('p_vtf'),10) > 14 ? 
-                        "Su puntaje es: " + localStorage.getItem('p_vtf') +" ¡OJO! Esta por encima en riesgo de desarrollar diabetes"
+                        <Typography
+                            className={classes.info}
+                            variant="h4"
+                        >
+                            Su puntaje es: 
+   
+                                {localStorage.getItem('p_vtf')} 
+                         
+                            ¡OJO! Esta por encima en riesgo de desarrollar diabetes"
+                        </Typography>
                         :
-                        "Su puntaje es: " + localStorage.getItem('p_vtf') +" Esta por debajo del índice de riesgo para desarrollar diabetes"
+                        <Typography
+                            className={classes.info}
+                            variant="h4"
+                        >
+                            Su puntaje es: 
+                            {localStorage.getItem('p_vtf')} Esta por debajo del índice de riesgo para desarrollar diabetes
+                        </Typography>
                         }
                     </Typography>}
                     <Typography

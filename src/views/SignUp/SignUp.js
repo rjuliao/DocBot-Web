@@ -269,14 +269,14 @@ const SignUp = props => {
                   className={classes.title}
                   variant="h1"
                 >
-                  Regristarme
+                  Registrarme
                 </Typography>
                 <Typography
                   color="textSecondary"
                   gutterBottom
                   alignItems='center'
                 >
-                  Usa tu e-mail para crear una nueva cuenta en Botic
+                  Usa tu e-mail para crear una nueva cuenta en DocBot
                 </Typography>
                 <TextField
                   className={classes.textField}
