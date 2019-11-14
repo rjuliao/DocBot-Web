@@ -227,7 +227,7 @@ const AccountDetails = props => {
  
 
     regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
-      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYY'))
+      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYY'),"0")
     .then(response => {
       return response.json();
     })
