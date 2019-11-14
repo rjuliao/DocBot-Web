@@ -17,7 +17,7 @@ import {
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import validate from 'validate.js';
 import moment from 'moment';
-import { setGoal } from '../../../../../../../../services/api';
+import { setGoal, setGoalsP } from '../../../../../../../../services/api';
 
 
 const status = [
@@ -163,6 +163,15 @@ const AddGoalBtn = props => {
       return response.json();
     })  
     .then(json => {
+      setGoalsP(description)
+      .then(response => {
+        return response.json();
+      })  
+      .then(json => {
+      })
+      .catch(error => {
+          console.log(error.message);
+      });
     })
     .catch(error => {
         console.log(error.message);
@@ -175,9 +184,7 @@ const AddGoalBtn = props => {
     writeGoal(formState.values.description, formState.values.status, formState.values.quantity,
         formState.values.freq,  localStorage.getItem('p_id'), moment(formState.values.dueDate).format("DD/MM/YYYY"), 0, 
         "No Predeterminada", "", moment().format('DD/MM/YYYY'))
-    
-
-
+  
     handleClose()
   }
 

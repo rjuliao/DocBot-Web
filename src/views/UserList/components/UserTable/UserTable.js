@@ -173,7 +173,7 @@ const UserTable = props => {
                         <TableCell>{user.email}</TableCell>
                         <TableCell>{user.age} años</TableCell>
                         <TableCell>
-                          {moment(user.dateAssociation).format('DD/MM/YYYY')}
+                          {user.dateAssociation}
                         </TableCell>
                     </TableRow>
                     ))}
