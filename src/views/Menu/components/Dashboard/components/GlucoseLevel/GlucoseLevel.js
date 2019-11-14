@@ -52,7 +52,7 @@ const GlucoseLevel = props => {
               gutterBottom
               variant="body2"
             >
-              Nivel de glucosa
+              Glucometría
             </Typography>
             <Typography
               color="inherit"

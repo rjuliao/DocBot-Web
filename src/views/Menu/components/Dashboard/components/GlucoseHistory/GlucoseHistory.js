@@ -35,7 +35,7 @@ const GlucoseHistory = props => {
       className={clsx(classes.root, className)}
     >
       <CardHeader
-        title="Historico de tomas de glucosa"
+        title="Historico Glucometría"
       />
       <Divider />
       <CardContent>
