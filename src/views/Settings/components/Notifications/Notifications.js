@@ -35,8 +35,7 @@ const Notifications = props => {
     >
       <form>
         <CardHeader
-          subheader="Manage the notifications"
-          title="Notifications"
+          
         />
         <Divider />
         <CardContent>
@@ -44,12 +43,7 @@ const Notifications = props => {
         </CardContent>
         <Divider />
         <CardActions>
-          <Button
-            color="primary"
-            variant="outlined"
-          >
-            Save
-          </Button>
+         
         </CardActions>
       </form>
     </Card>
