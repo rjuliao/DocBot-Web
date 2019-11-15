@@ -13,7 +13,6 @@ import {
   CardActionArea
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import moment from 'moment';
 import logo from '../../../../assets/logos/logo.png';
 import { getMedicalInfos } from '../../../../services/api';
 
@@ -170,7 +169,7 @@ const UserCard = props => {
               display="inline"
               variant="body2"
             >
-              Ingresado el: {moment(user.dateAssociation).format('DD/MM/YYYY')}
+              Ingresado el: {user.dateAssociation}
             </Typography>
           </Grid>
         </Grid>

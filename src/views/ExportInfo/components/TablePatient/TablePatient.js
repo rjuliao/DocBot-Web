@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -16,11 +14,8 @@ import {
   TableRow,
   Typography,
   TablePagination,
-  Fab,
   Checkbox
 } from '@material-ui/core';
-import AccessibilityIcon from '@material-ui/icons/Accessibility';
-import {  getMedicalInfos } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},

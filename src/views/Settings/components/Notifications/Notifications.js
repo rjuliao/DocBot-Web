@@ -7,12 +7,8 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  Grid,
   Divider,
-  FormControlLabel,
-  Checkbox,
-  Typography,
-  Button
+
 } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({

@@ -16,7 +16,6 @@ import {
 } from './components';
 import { getGoals, getParaclinico, getWeight, getMessages } from '../../services/api';
 import palette from '../../theme/palette';
-import moment from 'moment';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

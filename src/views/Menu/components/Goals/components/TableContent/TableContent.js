@@ -1,6 +1,5 @@
 import React, { useState} from 'react';
 import clsx from 'clsx';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
