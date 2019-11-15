@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer, Fab } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
 import SettingsIcon from '@material-ui/icons/Settings';
+import SaveData from '@material-ui/icons/SaveAlt';
 import { Link as RouterLink } from 'react-router-dom';
 import { Profile, SidebarNav } from './components';
 import { connect } from 'react-redux';
@@ -51,7 +52,11 @@ const Sidebar = props => {
       href: '/pacientes',
       icon: <PeopleIcon/>
     },
-
+    {
+      title: 'Exportar Datos',
+      href: '/export-info',
+      icon: <SaveData />
+    },
     {
       title: 'Configuraciones',
       href: '/settings',

@@ -14,7 +14,8 @@ import {
   Menu as PacientMenu,
   FindRisk as FindRiskTest,
   ChangePassword as ChangePasswordView,
-  EmailForm as EmailFormView
+  EmailForm as EmailFormView,
+  ExportInfo as ExportInfoView
 } from './views';
 
 const Routes = () => {
@@ -54,6 +55,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/settings"
+      />
+      <RouteWithLayout
+        component={ExportInfoView}
+        exact
+        layout={MainLayout}
+        path="/export-info"
       />
       <RouteWithLayout
         component={SignUpView}
