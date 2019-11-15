@@ -198,7 +198,7 @@ const AddPredefinida = props => {
     frequency, idpatien, dueDate, progress, tag, nMes, cDate) =>{
     
     setGoal(description, status, quantity, frequency,
-       idpatien, dueDate, progress, tag, nMes, cDate)
+       idpatien, dueDate, progress, tag, nMes, cDate, "")
     .then(response => {
       return response.json();
     })  
@@ -213,7 +213,7 @@ const AddPredefinida = props => {
 
     writeGoal(localStorage.getItem('temp'), formState.values.status, formState.values.quantity,
         formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
-        "No Predeterminada", "", moment().format('DD/MM/YYYY')  );
+        "No Predeterminada", "", moment().format('DD/MM/YYYY') );
     handleCloseGoal();
   }
 

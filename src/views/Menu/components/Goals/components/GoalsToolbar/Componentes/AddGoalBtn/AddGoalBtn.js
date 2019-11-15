@@ -158,7 +158,7 @@ const AddGoalBtn = props => {
     frequency, idpatien, dueDate, progress, tag, nMes, cDate) =>{
     
     setGoal(description, status, quantity, frequency,
-       idpatien, dueDate, progress, tag, nMes, cDate,)
+       idpatien, dueDate, progress, tag, nMes, cDate,"")
     .then(response => {
       return response.json();
     })  
