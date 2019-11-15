@@ -8,3 +8,4 @@ export { default as Menu } from './Menu';
 export { default as FindRisk } from './FindRisk';
 export { default as ChangePassword } from './ChangePassword';
 export { default as EmailForm } from './EmailFormPs';
+export { default as ExportInfo } from './ExportInfo';
