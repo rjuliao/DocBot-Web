@@ -68,35 +68,21 @@ const UserCard = props => {
     localStorage.removeItem('p_clinicalContext');
     localStorage.removeItem('p_sex');
     localStorage.removeItem('p_vtf');
-    localStorage.removeItem('p_vtf');
     localStorage.removeItem('p_clinicalC');
     localStorage.removeItem('p_mecialC');
     localStorage.removeItem('p_isDiabetic');
 
-    var l = userr.weight.length
-    var w = userr.weight[l-1]
-    var oldv = 0
-
-    if (l>1){
-      var old = userr.weight[l-2];
-      oldv = old.value
-    }
-    if (l <= 1){
-       oldv = 0
-      
-    }
+    
 
     localStorage.setItem('p_id', userr._id);
     localStorage.setItem('p_Name', userr.name);
     localStorage.setItem('p_lName', userr.lastName);
     localStorage.setItem('p_age', userr.age);
+    localStorage.setItem('p_email', userr.email);
     localStorage.setItem('p_dateAssociation', userr.dateAssociation);
     localStorage.setItem('p_birthdate', userr.birthdate);
     localStorage.setItem('p_documentType', userr.documentType);
     localStorage.setItem('p_documentNumber', userr.documentNumber);
-    localStorage.setItem('p_weight', w.value);
-    localStorage.setItem('p_wold', oldv);
-    localStorage.setItem('p_height', userr.height);
     localStorage.setItem('p_sex', userr.sex);
 
 
@@ -105,10 +91,26 @@ const UserCard = props => {
       return response.json();
     })  
     .then(json => {
+      
+      var l = json.weight.length
+      var w = json.weight[l-1]
+      var oldv = 0
+
+      if (l>1){
+        var old = json.weight[l-2];
+        oldv = old.value
+      }
+      if (l <= 1){
+        oldv = 0
+        
+      }
       localStorage.setItem('p_vtf', json.testFindRisk);
       localStorage.setItem('p_clinicalC', json.clinicalContext);
       localStorage.setItem('p_mecialC', json.medicalCenter);
-      localStorage.setItem('p_isDiabetic', json.isDiabetic);
+      localStorage.setItem('p_isDiabetic', json.isDiabetic);  
+      localStorage.setItem('p_wold', oldv);
+      localStorage.setItem('p_height', json.height);
+      localStorage.setItem('p_weight', w.value);
     })
     .catch(error => {
       console.log(error.message);

@@ -63,14 +63,16 @@ export function getCode(email){
  * @param {*} avatar
  * @param {*} dateAssociation
  * @param {*} steps
+ * @param {*} smoking
+ * @param {*} token
  */
 export function regPaciente(name, lastName, birthdate, age, documentType, documentNumber,
-     sex, password,email, doc, avatar, dateAssociation, steps){
+     sex, password,email, doc, avatar, dateAssociation, steps, smoking, token){
     
     return fetch('https://api-rest-botic.herokuapp.com/api/patients/',{
         method: 'POST',
-        body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, weight, height, 
-            sex, password, email, doc, avatar, dateAssociation, steps}),
+        body: JSON.stringify({name, lastName, birthdate, age, documentType, documentNumber, 
+            sex, password, email, doc, avatar, dateAssociation, steps, smoking, token}),
         headers: {'Content-Type':'application/json',}
     });
     
@@ -98,11 +100,14 @@ export function getSinglePatient(documentnumber){
  * @param {*} height 
  * @param {*} abdominalperimeter
  * @param {*} patient 
+ * @param {*} date 
  */
-export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDiabetic, weight, height,abdominalperimeter, patient){
+export function medicalInfos(clinicalContext, medicalCenter, testFindRisk, isDiabetic, 
+    weight, height, abdominalperimeter, patient, date){
     return fetch('https://api-rest-botic.herokuapp.com/api/medicalInfos',{
         method: 'POST',
-        body: JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, patient}),
+        body: JSON.stringify({clinicalContext, medicalCenter, testFindRisk, isDiabetic, 
+            patient, weight, height, abdominalperimeter, date}),
         headers: {'Content-Type':'application/json',}
     });
 }

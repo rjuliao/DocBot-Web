@@ -36,6 +36,20 @@ const diabtic = [
   },
 ]
 
+const fumador = [
+  {
+    value: "empty"
+  },
+  {
+    value: 1,
+    label: 'SI'
+  },
+  {
+    value: 0,
+    label: 'NO'
+  },
+]
+
 const id = [
   {
     value: "empty"
@@ -94,12 +108,6 @@ const schema = {
       maximum: 64
     }
   },
-  phoneNumber: {
-    presence: { allowEmpty: false, message: 'Obligatorio' },
-    length: {
-      maximum: 10
-    }
-  },
   lastName: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
@@ -112,39 +120,12 @@ const schema = {
       maximum: 32
     }
   },
-  idCard: {
-    presence: { allowEmpty: false, message: 'Obligatorio' },
-    length: {
-      maximum: 15
-    }
-  },
-  age: {
-    presence: { allowEmpty: false, message: 'Obligatorio' },
-    length: {
-      maximum: 2
-    }
-  },
-  peso: {
-    presence: { allowEmpty: false, message: 'Obligatorio' },
-    length: {
-      maximum: 5
-    }
-  },
-  altura: {
-    presence: { allowEmpty: false, message: 'Obligatorio' },
-    length: {
-      maximum: 5
-    }
-  },
   contexto: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
       maximum: 100
     }
   },
-  selection: {
-    presence: { allowEmpty: false, message: 'Obligatorio' },
-  }
 };
 
 const AccountDetails = props => {
@@ -195,9 +176,9 @@ const AccountDetails = props => {
     formState.touched[field] && formState.errors[field] ? true : false;
 
 
-  const medicalInfor = (contexto, centre_medico, diabetico, id) =>{
+  const medicalInfor = (contexto, centre_medico, diabetico,peso, altura, perimetroAbd, id) =>{
  
-    medicalInfos(contexto, centre_medico,0, diabetico, id)
+    medicalInfos(contexto, centre_medico,0, diabetico,peso, altura, perimetroAbd, id, moment().format('DD/MM/YYYY'))
     .then(response => {
       return response.json();
     })
@@ -223,11 +204,11 @@ const AccountDetails = props => {
 
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
-    contexto, centre_medico, email, diabetico, idDoctor) =>{
+    contexto, centre_medico, email, diabetico, idDoctor, perimetroAbd) =>{
  
 
-    regPaciente(name, lastName, b_date, age, idtipo, idCard, peso, altura,
-      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYYY'),"0")
+    regPaciente(name, lastName, b_date, age, idtipo, idCard, 
+      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYYY'),"0",0,"")
     .then(response => {
       return response.json();
     })
@@ -238,9 +219,13 @@ const AccountDetails = props => {
         return response.json();
       })
       .then(json => {
-        medicalInfor(contexto, centre_medico, diabetico, json.id) 
-        modelo(json.id)
-  
+        setTimeout(function(){
+
+          medicalInfor(contexto, centre_medico, diabetico, peso, altura, perimetroAbd, json.id) 
+        
+          modelo(json.id)
+
+        }, 500);
       })
       .catch(error => {
         console.log(error.message);
@@ -250,10 +235,6 @@ const AccountDetails = props => {
     .catch(error => {
       console.log(error.message);
     });
-
-
-   
-
   }
 
 
@@ -350,7 +331,6 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                error={hasError('selection')}
                 label="Fecha de Nacimiento"
                 margin="dense"
                 name="b_day"
@@ -373,7 +353,6 @@ const AccountDetails = props => {
               <TextField
                 fullWidth
                 label="Edad"
-                error={hasError('age')}
                 margin="dense"
                 name="age"
                 onChange={handleChange}
@@ -390,25 +369,6 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                error={hasError('phoneNumber')}
-                label="Número de celular"
-                margin="dense"
-                name="phone"
-                onChange={handleChange}
-                value={formState.values.phone || ''}
-                type="number"
-                required
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                error={hasError('selection')}
                 label="Tipo de doc. indentidad"
                 margin="dense"
                 name="tipoid"
@@ -438,7 +398,7 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                error={hasError('idCard')}
+                error={hasError('docnum')}
                 label="No. documento de identidad"
                 margin="dense"
                 name="idnumber"
@@ -484,7 +444,6 @@ const AccountDetails = props => {
             >
               <TextField
                 fullWidth
-                error={hasError('selection')}
                 label="¿Es diabético?"
                 margin="dense"
                 name="isDiabetic"
@@ -514,7 +473,6 @@ const AccountDetails = props => {
               >
                 <TextField
                   fullWidth
-                  error={hasError('peso')}
                   label="Peso"
                   margin="dense"
                   name="peso"
@@ -535,7 +493,6 @@ const AccountDetails = props => {
               >
                 <TextField
                   fullWidth
-                  error={hasError('altura')}
                   label="Altura"
                   margin="dense"
                   name="altura"
@@ -554,9 +511,28 @@ const AccountDetails = props => {
                 md={6}
                 xs={12}
               >
+                <TextField
+                  fullWidth
+                  label="Perímetro Abdominal"
+                  margin="dense"
+                  name="perimetroAbd"
+                  onChange={handleChange}
+                  value={formState.values.perimetroAbd || ''}
+                  required
+                  type="number"
+                  variant="outlined"
+                  InputProps={{
+                    startAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                  }}
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
               <TextField
                 fullWidth
-                error={hasError('selection')}
                 label="Sexo"
                 margin="dense"
                 name="sexo"
@@ -613,6 +589,7 @@ const AccountDetails = props => {
               variant="contained"
               fullWidth
               onClick={handleRegister}
+              disabled={!formState.isValid}
               size="large"
             >
               Crear Paciente
