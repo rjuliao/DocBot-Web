@@ -7,14 +7,14 @@ import { getPatients } from '../../services/api';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: theme.spacing(4)
+        padding: theme.spacing(3)
     },
     title: {
         marginBottom: '10px',
         color: theme.palette.primary.main
     },
     content: {
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(1)
     },
 }));
 
