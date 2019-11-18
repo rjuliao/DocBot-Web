@@ -14,8 +14,10 @@ import {
   TableRow,
   Typography,
   TablePagination,
-  Checkbox
+  Checkbox,
+  Button
 } from '@material-ui/core';
+import { getFile } from '../../../../services/api';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -37,7 +39,16 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     justifyContent: 'flex-end'
-  }
+  },
+  spacer: {
+    flexGrow: 1
+  },
+  row: {
+    height: '42px',
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: theme.spacing(1)
+  },
 }));
 
 const TablePatient = props => {
@@ -81,6 +92,7 @@ const TablePatient = props => {
       );
     }
 
+
     setSelectedUsers(newSelectedUsers);
   };
 
@@ -94,78 +106,114 @@ const TablePatient = props => {
     setRowsPerPage(event.target.value);
   };
 
+  const handleSelectedUsers = () =>{
+    console.log(selectedUsers)
+    const users = selectedUsers;
+    let newSelectedUsers = [];
+
+    for( var i = 0; i < users.length; i++){
+      var obj = {id : users[i]}
+      newSelectedUsers.push(obj)
+    }
+   
+    getFile(newSelectedUsers)
+    .then(response => {
+      return response.blob();
+    })  
+    .then(json => {
+     
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+ 
+  }
+
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
-      <CardContent className={classes.content}>
-        <PerfectScrollbar>
-          <div className={classes.inner}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                    <TableCell padding="checkbox"> 
-                        <Checkbox
-                        checked={selectedUsers.length === users.length}
-                        color="primary"
-                        indeterminate={
-                            selectedUsers.length > 0 &&
-                            selectedUsers.length < users.length
-                        }
-                        onChange={handleSelectAll}
-                        />
-                    </TableCell>
-                    <TableCell>Nombre</TableCell>
-                    <TableCell>Correo electronico</TableCell>
-                    <TableCell>Edad</TableCell>
-                    <TableCell>Fecha de Registro</TableCell>
-                    </TableRow>
-                </TableHead>
-                
-                <TableBody>
-                    {users.slice(0, rowsPerPage).map(user => (
-                    <TableRow
-                        className={classes.tableRow}
-                        hover
-                        key={user.id}
-                        selected={selectedUsers.indexOf(user.id) !== -1}
-                    >
-                        <TableCell padding="checkbox">
+    <div>
+      <div className={classes.row}>
+        <span className={classes.spacer} />
+        <Button
+          variant="outlined" color="primary"
+          onClick={()=>handleSelectedUsers()}
+        >
+          Exportar datos
+        </Button>
+      </div>
+      <div >
+        <Card
+          {...rest}
+          className={clsx(classes.root, className)}
+        >
+          <CardContent className={classes.content}>
+            <PerfectScrollbar>
+              <div className={classes.inner}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                        <TableCell padding="checkbox"> 
                             <Checkbox
-                                checked={selectedUsers.indexOf(user.id) !== -1}
-                                color="primary"
-                                onChange={event => handleSelectOne(event, user.id)}
-                                value="true"
+                            checked={selectedUsers.length === users.length}
+                            color="primary"
+                            indeterminate={
+                                selectedUsers.length > 0 &&
+                                selectedUsers.length < users.length
+                            }
+                            onChange={handleSelectAll}
                             />
                         </TableCell>
-                        <TableCell>              
-                          <Typography variant="body1">{user.name} {user.lastName}</Typography>
-                        </TableCell>
-                        <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.age} años</TableCell>
-                        <TableCell>
-                          {user.dateAssociation}
-                        </TableCell>
-                    </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-          </div>
-        </PerfectScrollbar>
-      </CardContent>
-      <CardActions className={classes.actions}>
-        <TablePagination
-          component="div"
-          count={users.length}
-          onChangePage={handlePageChange}
-          onChangeRowsPerPage={handleRowsPerPageChange}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[5, 10, 25]}
-        />
-      </CardActions>
-    </Card>
+                        <TableCell>Nombre</TableCell>
+                        <TableCell>Correo electronico</TableCell>
+                        <TableCell>Edad</TableCell>
+                        <TableCell>Fecha de Registro</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    
+                    <TableBody>
+                        {users.slice(0, rowsPerPage).map(user => (
+                        <TableRow
+                            className={classes.tableRow}
+                            hover
+                            key={user._id}
+                            selected={selectedUsers.indexOf(user._id) !== -1}
+                        >
+                            <TableCell padding="checkbox">
+                                <Checkbox
+                                    checked={selectedUsers.indexOf(user._id) !== -1}
+                                    color="primary"
+                                    onChange={event => handleSelectOne(event, user._id)}
+                                    value="true"
+                                />
+                            </TableCell>
+                            <TableCell>              
+                              <Typography variant="body1">{user.name} {user.lastName}</Typography>
+                            </TableCell>
+                            <TableCell>{user.email}</TableCell>
+                            <TableCell>{user.age} años</TableCell>
+                            <TableCell>
+                              {user.dateAssociation}
+                            </TableCell>
+                        </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+              </div>
+            </PerfectScrollbar>
+          </CardContent>
+          <CardActions className={classes.actions}>
+            <TablePagination
+              component="div"
+              count={users.length}
+              onChangePage={handlePageChange}
+              onChangeRowsPerPage={handleRowsPerPageChange}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              rowsPerPageOptions={[5, 10, 25]}
+            />
+          </CardActions>
+        </Card>
+      </div>
+    </div>
   );
 };
 
