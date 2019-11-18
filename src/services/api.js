@@ -389,7 +389,7 @@ export function createModel(patient){
 export function getFile(ids){
     console.log(ids);
     return fetch('https://api-rest-botic.herokuapp.com/api/patients/document',{
-        method: 'GET',
-        headers: {'Content-Type':'application/json','ids': ids}
+        method: 'POST',
+        body: JSON.stringify({ids}),
     });
 }
