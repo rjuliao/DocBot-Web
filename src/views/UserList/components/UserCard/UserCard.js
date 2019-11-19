@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UserCard = props => {
-  const { className, user, ...rest } = props;
+  const { className, history, user, ...rest } = props;
 
   const classes = useStyles();
 
@@ -71,8 +71,8 @@ const UserCard = props => {
     localStorage.removeItem('p_clinicalC');
     localStorage.removeItem('p_mecialC');
     localStorage.removeItem('p_isDiabetic');
-
-    
+    localStorage.removeItem('p_smoking');
+    localStorage.removeItem('p_wold');
 
     localStorage.setItem('p_id', userr._id);
     localStorage.setItem('p_Name', userr.name);
@@ -84,37 +84,42 @@ const UserCard = props => {
     localStorage.setItem('p_documentType', userr.documentType);
     localStorage.setItem('p_documentNumber', userr.documentNumber);
     localStorage.setItem('p_sex', userr.sex);
+    localStorage.setItem('p_smoking', userr.smoking);
 
+    setTimeout(function(){
 
-    getMedicalInfos(userr._id)
-    .then(response => {
-      return response.json();
-    })  
-    .then(json => {
-      
-      var l = json.weight.length
-      var w = json.weight[l-1]
-      var oldv = 0
+      getMedicalInfos(userr._id)
+      .then(response => {
+        return response.json();
+      })  
+      .then(json => {
+        console.log(json)
+        var l = json.weight.length
+        var w = json.weight[l-1]
+        var oldv = 0
+  
+        if (l>1){
+          var old = json.weight[l-2];
+          oldv = old.value
+        }
+        if (l <= 1){
+          oldv = 0
+          
+        }
+        localStorage.setItem('p_vtf', json.testFindRisk);
+        localStorage.setItem('p_clinicalC', json.clinicalContext);
+        localStorage.setItem('p_mecialC', json.medicalCenter);
+        localStorage.setItem('p_isDiabetic', json.isDiabetic);  
+        localStorage.setItem('p_wold', oldv);
+        localStorage.setItem('p_height', json.height);
+        localStorage.setItem('p_weight', w.value);
+        history.push('/menu')
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
 
-      if (l>1){
-        var old = json.weight[l-2];
-        oldv = old.value
-      }
-      if (l <= 1){
-        oldv = 0
-        
-      }
-      localStorage.setItem('p_vtf', json.testFindRisk);
-      localStorage.setItem('p_clinicalC', json.clinicalContext);
-      localStorage.setItem('p_mecialC', json.medicalCenter);
-      localStorage.setItem('p_isDiabetic', json.isDiabetic);  
-      localStorage.setItem('p_wold', oldv);
-      localStorage.setItem('p_height', json.height);
-      localStorage.setItem('p_weight', w.value);
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
+    }, 500);
 
   }
 
@@ -123,39 +128,32 @@ const UserCard = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <RouterLink 
-        to={{
-          pathname:"/menu",
-          info:{ nombre: user}
-        }}
-      >
-        <CardActionArea onClick={()=>handleUser(user)}>
-          <CardContent>
-            <div className={classes.imageContainer}>
-              <img
-                alt="Product"
-                className={classes.image}
-                src={logo}
-              />
-            </div>
-            <Typography 
-              align="center"
-              gutterBottom
-              variant="h4"
-              className={classes.quote}
-            >
-              {user.name} {user.lastName}
-            </Typography>
-            <Typography
-              align="center"
-              variant="body1"
-            >
-              Correo electronico: {user.email}
-            </Typography>
-            
-          </CardContent>
-        </CardActionArea>
-      </RouterLink>
+      <CardActionArea onClick={()=>handleUser(user)}>
+        <CardContent>
+          <div className={classes.imageContainer}>
+            <img
+              alt="Product"
+              className={classes.image}
+              src={logo}
+            />
+          </div>
+          <Typography 
+            align="center"
+            gutterBottom
+            variant="h4"
+            className={classes.quote}
+          >
+            {user.name} {user.lastName}
+          </Typography>
+          <Typography
+            align="center"
+            variant="body1"
+          >
+            Correo electronico: {user.email}
+          </Typography>
+          
+        </CardContent>
+      </CardActionArea>
       <Divider />
       <CardActions>
         <Grid
@@ -186,4 +184,4 @@ UserCard.propTypes = {
   user: PropTypes.any.isRequired
 };
 
-export default UserCard;
+export default withRouter(UserCard);

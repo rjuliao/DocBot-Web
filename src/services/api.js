@@ -381,15 +381,3 @@ export function createModel(patient){
         body: JSON.stringify({"r": 0, "s": 0, patient})
     });
 }
-
-/**
- * Obtener documento excel
- * @param {*} ids 
- */
-export function getFile(ids){
-    console.log(ids);
-    return fetch('https://api-rest-botic.herokuapp.com/api/patients/document',{
-        method: 'POST',
-        body: JSON.stringify({ids}),
-    });
-}

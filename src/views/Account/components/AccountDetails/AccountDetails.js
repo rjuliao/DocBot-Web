@@ -204,11 +204,11 @@ const AccountDetails = props => {
 
   const registro = (name, lastName, b_date, age,
     idtipo, idCard, peso, altura, sexo, psw, 
-    contexto, centre_medico, email, diabetico, idDoctor, perimetroAbd) =>{
+    contexto, centre_medico, email, diabetico, idDoctor, perimetroAbd, fumador) =>{
  
 
     regPaciente(name, lastName, b_date, age, idtipo, idCard, 
-      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYYY'),"0",0,"")
+      sexo, psw, email, idDoctor, "",  moment().format('DD/MM/YYYY'),"0",fumador,"")
     .then(response => {
       return response.json();
     })
@@ -248,7 +248,8 @@ const AccountDetails = props => {
       formState.values.b_day, formState.values.age, formState.values.tipoid, formState.values.idnumber,
       formState.values.peso, formState.values.altura,
       formState.values.sexo, formState.values.idnumber, formState.values.contexto,
-      formState.values.centro_medico, formState.values.email, formState.values.isDiabetic, localStorage.getItem("id"));
+      formState.values.centro_medico, formState.values.email, formState.values.isDiabetic,
+       localStorage.getItem("id"), formState.values.fumador);
 
   }
 
@@ -546,6 +547,35 @@ const AccountDetails = props => {
                 variant="outlined"
               >
                 {sexo.map(option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+              <TextField
+                fullWidth
+                label="¿Es fumador?"
+                margin="dense"
+                name="fumador"
+                onChange={handleChange}
+                value={formState.values.fumador || ''}
+                required
+                select
+                // eslint-disable-next-line react/jsx-sort-props
+                SelectProps={{ native: true }}
+                
+                variant="outlined"
+              >
+                {fumador.map(option => (
                   <option
                     key={option.value}
                     value={option.value}

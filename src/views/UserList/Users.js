@@ -44,6 +44,7 @@ const Users = props => {
       return response.json();
     })  
     .then(json => {
+      console.log(json)
       state.data = json;
     })
     .catch(error => {
@@ -77,16 +78,16 @@ const Users = props => {
             container
             spacing={3}
           >
-              {state.data.map(user => (
-                <Grid
-                  item
-                  key={user.id}
-                  lg={4}
-                  md={6}
-                  xs={12}
-                > 
-                  <UserCard user={user} />
-                </Grid>))}
+            {state.data.map(user => (
+              <Grid
+                item
+                key={user.id}
+                lg={4}
+                md={6}
+                xs={12}
+              > 
+                <UserCard user={user} />
+              </Grid>))}
           </Grid>:
           <UserTable users={state.data} />
         }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { Link as RouterLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UserTable = props => {
-  const { className, users, ...rest } = props;
+  const { className, history, users, ...rest } = props;
 
   const classes = useStyles();
 
@@ -54,9 +54,9 @@ const UserTable = props => {
 
   
 
-    /**
+ /**
    * Esto debe ser cambiado!!
-   * @param {*} user 
+   * @param {*} userr 
    */
   const handleUser = userr =>{
     localStorage.removeItem('p_id');
@@ -72,51 +72,59 @@ const UserTable = props => {
     localStorage.removeItem('p_clinicalContext');
     localStorage.removeItem('p_sex');
     localStorage.removeItem('p_vtf');
-    localStorage.removeItem('p_vtf');
     localStorage.removeItem('p_clinicalC');
     localStorage.removeItem('p_mecialC');
     localStorage.removeItem('p_isDiabetic');
 
-    var l = userr.weight.length
-    var w = userr.weight[l-1]
-    var oldv = 0
-    if (l>1){
-      var old = userr.weight[l-2];
-      oldv = old.value
-    }
-    if (l <= 1){
-      oldv = 0
-      
-    }
+    
 
     localStorage.setItem('p_id', userr._id);
     localStorage.setItem('p_Name', userr.name);
     localStorage.setItem('p_lName', userr.lastName);
     localStorage.setItem('p_age', userr.age);
+    localStorage.setItem('p_email', userr.email);
     localStorage.setItem('p_dateAssociation', userr.dateAssociation);
     localStorage.setItem('p_birthdate', userr.birthdate);
     localStorage.setItem('p_documentType', userr.documentType);
     localStorage.setItem('p_documentNumber', userr.documentNumber);
-    localStorage.setItem('p_weight', w.value);
-    localStorage.setItem('p_wold', oldv);
-    localStorage.setItem('p_height', userr.height);
     localStorage.setItem('p_sex', userr.sex);
 
-    getMedicalInfos(userr._id)
-    .then(response => {
-      return response.json();
-    })  
-    .then(json => {
-      localStorage.setItem('p_vtf', json["testFindRisk"]);
-      localStorage.setItem('p_clinicalC', json["clinicalContext"]);
-      localStorage.setItem('p_mecialC', json["medicalCenter"]);
-      localStorage.setItem('p_isDiabetic', json["isDiabetic"]);
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
-  }
+    setTimeout(function(){
 
+      getMedicalInfos(userr._id)
+      .then(response => {
+        return response.json();
+      })  
+      .then(json => {
+        console.log(json)
+        var l = json.weight.length
+        var w = json.weight[l-1]
+        var oldv = 0
+  
+        if (l>1){
+          var old = json.weight[l-2];
+          oldv = old.value
+        }
+        if (l <= 1){
+          oldv = 0
+          
+        }
+        localStorage.setItem('p_vtf', json.testFindRisk);
+        localStorage.setItem('p_clinicalC', json.clinicalContext);
+        localStorage.setItem('p_mecialC', json.medicalCenter);
+        localStorage.setItem('p_isDiabetic', json.isDiabetic);  
+        localStorage.setItem('p_wold', oldv);
+        localStorage.setItem('p_height', json.height);
+        localStorage.setItem('p_weight', w.value);
+        history.push('/menu')
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+
+    }, 500);
+
+  }
 
   const handlePageChange = (event, page) => {
     setPage(page);
@@ -154,17 +162,9 @@ const UserTable = props => {
                         selected={selectedUsers.indexOf(user.id) !== -1}
                     >
                         <TableCell>
-                          <RouterLink 
-                              to={{
-                              pathname:"/menu",
-                              info:{ nombre: user}
-                              }}
-                            >
-                              <Fab size="small" color="primary" aria-label="add" onClick={()=>handleUser(user)} className={classes.margin}>
-                                
-                                  <AccessibilityIcon />
-                              </Fab>
-                          </RouterLink>
+                            <Fab size="small" color="primary" aria-label="add" onClick={()=>handleUser(user)} className={classes.margin}>                              
+                              <AccessibilityIcon />
+                            </Fab>
                         </TableCell>
                         <TableCell>              
                           <Typography variant="body1">{user.name} {user.lastName}</Typography>
@@ -201,4 +201,4 @@ UserTable.propTypes = {
   users: PropTypes.array.isRequired
 };
 
-export default UserTable;
+export default withRouter(UserTable);

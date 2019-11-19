@@ -212,6 +212,13 @@ const Information = props => {
                     >
                         Fecha de Nacimiento: {localStorage.getItem('p_birthdate')}                        
                     </Typography>
+
+                    <Typography
+                        className={classes.info}    
+                        variant="h6"
+                    >
+                        Correo Electrónico: {localStorage.getItem('p_email')}                        
+                    </Typography>
                 </Grid>
                 <Grid
                     item
@@ -273,6 +280,30 @@ const Information = props => {
                         variant="h2"
                     >
                         Información Médica
+                    </Typography>
+                </Grid>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <Typography
+                        className={classes.infoTop}
+                        variant="h2"
+                    >
+                        El paciente es fumador:
+                    </Typography>
+                </Grid>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <Typography
+                        className={classes.info}
+                        variant="h3"
+                    >
+                        {
+                            !localStorage.getItem("p_smoking") ? "SI":"NO"
+                        }
                     </Typography>
                 </Grid>
                 <Grid

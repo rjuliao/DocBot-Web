@@ -336,7 +336,7 @@ const Menu = props => {
             return response.json();
         })  
         .then(json => {
-            console.log(json);
+            
             state.messages = json
         })
         .catch(error => {

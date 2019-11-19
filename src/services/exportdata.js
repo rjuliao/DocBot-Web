@@ -7,7 +7,7 @@ export function getFile(ids){
     var baseUrl= `https://api-rest-botic.herokuapp.com/api/`;
     var method= 'POST';
     var body= ids;
-    var headers= { 'Content-Type':'application/json', };
+    //var headers= { 'Content-Type':'application/json', };
     // A new Excel Work Book
     var workbook = new Excel.Workbook();
     // Some information about the Excel Work Book.
@@ -73,7 +73,10 @@ export function getFile(ids){
         { header: 'Valor', key: 'value' },
         { header: 'Comentario', key: 'comment' }
     ]
-    request(baseUrl+`patients/exportData`, method,ids, headers).then(users => {
+    request(baseUrl+`patients/exportData`, method,ids).then(response => {
+        console.log(response)
+        return response.json();
+    }).then(users => {
       for(var i in user){
         var user = users[i];
         sheet1.addRow({id: user.id, fullname: user.name +' '+user.lastName, birthdate: user.birthdate, age: user.age,
@@ -84,8 +87,11 @@ export function getFile(ids){
     
     }).catch(error => {
         console.log(error.message);
-      });
-    request(baseUrl+`medicalInfos/exportData`, method,ids, headers).then(infoms => {
+    });
+    request(baseUrl+`medicalInfos/exportData`, method,ids).then(response => {
+        console.log(response)
+        return response.json();
+    }).then(infoms => {
       
       for(var i in infoms){
         var infom = infoms[i];
@@ -101,7 +107,10 @@ export function getFile(ids){
     }).catch(error => {
         console.log(error.message);
      });
-    request(baseUrl+`goals/exportData`, method,ids, headers).then(goals => {
+    request(baseUrl+`goals/exportData`, method,ids).then(response => {
+        console.log(response)
+        return response.json();
+      }).then(goals => {
       
       for(var i in goals){
         var goal = goals[i];
@@ -114,7 +123,10 @@ export function getFile(ids){
         console.log(error.message);
      });
   
-    request(baseUrl+`paraclinicals/exportData`, method,ids, headers).then(pcs => {
+    request(baseUrl+`paraclinicals/exportData`, method,ids).then(response => {
+        console.log(response)
+        return response.json();
+      }).then(pcs => {
       
       for(var i in pcs){
         var pc = pcs[i];
@@ -133,12 +145,13 @@ export function getFile(ids){
     
 }
 
-export function request(url, method, body, headers){
-    fetch(url,{ 
+export function request(url, method, body){
+    console.log(url)
+    console.log(method)
+    console.log(body)
+    return fetch(url,{ 
         method: method, 
         body: body, 
-        headers:  headers
-    }).then(response => {
-        return response.json();
-      })
+        headers:  { 'Content-Type':'application/json', }
+    });
 }
