@@ -92,7 +92,6 @@ export function getFile(ids){
         console.log(response)
         return response.json();
     }).then(infoms => {
-      
       for(var i in infoms){
         var infom = infoms[i];
         sheet2.addRow({idPat: infom.patient, clinicalContext: infom.clinicalContext , testFindRisk: infom.testFindRisk,
@@ -107,30 +106,35 @@ export function getFile(ids){
     }).catch(error => {
         console.log(error.message);
      });
-    request(baseUrl+`goals/exportData`, method,ids).then(response => {
+    request(baseUrl+`goals/`, 'GET',).then(response => {
         console.log(response)
         return response.json();
       }).then(goals => {
-      
-      for(var i in goals){
-        var goal = goals[i];
-        sheet4.addRow({idP: goal.patient, creationDate: goal.creationDate, dueDate: goal.dueDate, complianceDate: goal.complianceDate,
-        description: goal.description, quantity: goal.quantity, quantityType: '', frequency: goal.frequency, state:goal.state,
-        progress: goal.progress, nMessages: goal.nMessages }); 
+      for(var j in ids){
+          for(var i in goals){
+            var goal = goals[i];
+            if(ids[j].id == goal.patient){
+                sheet4.addRow({idP: goal.patient, creationDate: goal.creationDate, dueDate: goal.dueDate, complianceDate: goal.complianceDate,
+                description: goal.description, quantity: goal.quantity, quantityType: '', frequency: goal.frequency, state:goal.state,
+                progress: goal.progress, nMessages: goal.nMessages }); 
+            }
+          }
       }
-    
     }).catch(error => {
         console.log(error.message);
      });
   
-    request(baseUrl+`paraclinicals/exportData`, method,ids).then(response => {
+    request(baseUrl+`paraclinicals/`, 'GET',).then(response => {
         console.log(response)
         return response.json();
       }).then(pcs => {
-      
-      for(var i in pcs){
-        var pc = pcs[i];
-        sheet5.addRow({idP: pc.patient, date: pc.date, type: pc.type, value: pc.value, comment: pc.comment});
+      for(var j in ids){
+          for(var i in pcs){
+            var pc = pcs[i];
+             if(ids[j].id == pc.patient){
+                sheet5.addRow({idP: pc.patient, date: pc.date, type: pc.type, value: pc.value, comment: pc.comment});
+            }
+          }
       }
     
     }).catch(error => {
