@@ -1,5 +1,5 @@
 {
-  "name": "botic-web",
+  "name": "docbot-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,6 @@
     "@material-ui/styles": "^4.3.3",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",
-    "exceljs": "^3.4.0",
     "history": "^4.9.0",
     "material-table": "^1.51.0",
     "moment": "^2.24.0",

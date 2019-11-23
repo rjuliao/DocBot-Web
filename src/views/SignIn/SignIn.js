@@ -320,7 +320,7 @@ const SignIn = props => {
                   color="#D92588"
                   variant="body1"
                 >
-                  Nuevo en DocBot?{' '}
+                  ¿Nuevo en DocBot?{' '}
                   <Link
                     component={RouterLink}
                     to="/sign-up"

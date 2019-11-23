@@ -17,7 +17,6 @@ import {
   Checkbox,
   Button
 } from '@material-ui/core';
-import { getFile } from '../../../../services/exportdata';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -107,15 +106,7 @@ const TablePatient = props => {
   };
 
   const handleSelectedUsers = () =>{
-    const users = selectedUsers;
-    let newSelectedUsers = [];
 
-    for( var i = 0; i < users.length; i++){
-      var obj = {id : users[i]}
-      newSelectedUsers.push(obj)
-    }
-    console.log(newSelectedUsers)
-    getFile(JSON.stringify(newSelectedUsers))
  
   }
 

@@ -1,8 +1,9 @@
+/*
 import Excel from 'exceljs';
 /**
  * Creación del file
  * 
- */
+ 
 export function getFile(ids){ 
     var baseUrl= `https://api-rest-botic.herokuapp.com/api/`;
     var method= 'POST';
@@ -159,3 +160,6 @@ export function request(url, method, body){
         headers:  { 'Content-Type':'application/json', }
     });
 }
+
+
+*/

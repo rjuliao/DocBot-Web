@@ -53,11 +53,6 @@ const Sidebar = props => {
       icon: <PeopleIcon/>
     },
     {
-      title: 'Exportar Datos',
-      href: '/export-info',
-      icon: <SaveData />
-    },
-    {
       title: 'Configuraciones',
       href: '/settings',
       icon: <SettingsIcon />
