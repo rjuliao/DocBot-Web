@@ -17,19 +17,11 @@ import {
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import validate from 'validate.js';
 import moment from 'moment';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  KeyboardDatePicker, MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
 import { setGoal, setGoalsP } from '../../../../../../../../services/api';
-
-
-const status = [
-  {
-    value: 0,
-    label: ''
-  },
-  {
-    value: '2',
-    label: 'Asignado'
-  }
-];
 
 const freq = [
   {
@@ -92,8 +84,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddGoalBtn = props => {
-  const { className, ...rest } = props;
-  
+  const { history, className, ...rest } = props;
+  const [startDate, setStartDate] = useState(null);
+
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -152,7 +145,11 @@ const AddGoalBtn = props => {
       console.log(formState.values.name)
   }
 
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
   //-------------------------------------------------------------------------------------------
   const writeGoal = (description, status, quantity, 
     frequency, idpatien, dueDate, progress, tag, nMes, cDate) =>{
@@ -168,6 +165,7 @@ const AddGoalBtn = props => {
         return response.json();
       })  
       .then(json => {
+        history.push('/menu')
       })
       .catch(error => {
           console.log(error.message);
@@ -180,8 +178,7 @@ const AddGoalBtn = props => {
 
   const handleGoal = event =>{
 
-  
-    writeGoal(formState.values.description, formState.values.status, formState.values.quantity,
+    writeGoal(formState.values.description, '2', formState.values.quantity,
         formState.values.freq,  localStorage.getItem('p_id'), moment(formState.values.dueDate).format("DD/MM/YYYY"), 0, 
         "No Predeterminada", "", moment().format('DD/MM/YYYY'))
   
@@ -255,47 +252,24 @@ const AddGoalBtn = props => {
                     md={6}
                     xs={12}
                   >
-                    <TextField
-                      fullWidth
-                      label="Fecha de fin"
-                      margin="dense"
-                      name="dueDate"
-                      onChange={handleChange}
-                      value={formState.values.dueDate || ''}
-                      required
-                      type="date"
-                      defaultValue=""
-                      variant="outlined"
-                      InputLabelProps={{
-                      shrink: true,
-                      }}
-                    />
-                  </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
-                    <TextField
-                      fullWidth
-                      select
-                      label="Estado de la meta"
-                      margin="dense"
-                      name="status"
-                      onChange={handleChange}
-                      value={formState.values.status || ''}
-                      required
-                      // eslint-disable-next-line react/jsx-sort-props
-                      SelectProps={{ native: true }}
-                      
-                      variant="outlined"
-                    >
-                      {status.map(option => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </TextField>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <Grid container justify="space-around">
+                        <KeyboardDatePicker
+                          disableToolbar
+                          format="dd/MM/yyyy"
+                          margin="normal"
+                          id="date-picker-inline"
+                          label="Fecha de finalización"
+                          value={selectedDate}
+                          onChange={handleDateChange}
+                          minDate={new Date()}
+                          variant="outlined"
+                          KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                          }}
+                        />
+                      </Grid>
+                    </MuiPickersUtilsProvider>
                   </Grid>
                   <Grid
                     item

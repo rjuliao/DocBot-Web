@@ -23,6 +23,8 @@ import AddAlertIcon from '@material-ui/icons/AddAlert';
 import validate from 'validate.js';
 import moment from 'moment';
 import { setGoal, getGoalsP } from '../../../../../../../../services/api';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 
 const status = [
@@ -164,6 +166,12 @@ const AddPredefinida = props => {
   }, [formState.values]);
 
 
+
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
   /***************Esta funcioón toma los valores en los textfields****************/
   const handleChange = event => {
   event.persist();
@@ -211,8 +219,8 @@ const AddPredefinida = props => {
 
   const handleGoal = event =>{
 
-    writeGoal(localStorage.getItem('temp'), formState.values.status, formState.values.quantity,
-        formState.values.freq,  localStorage.getItem('p_id'), formState.values.dueDate, 0, 
+    writeGoal(localStorage.getItem('temp'), "2", formState.values.quantity,
+        formState.values.freq,  localStorage.getItem('p_id'), moment(formState.values.dueDate).format("DD/MM/YYYY"), 0, 
         "No Predeterminada", "", moment().format('DD/MM/YYYY') );
     handleCloseGoal();
   }
@@ -321,48 +329,26 @@ const AddPredefinida = props => {
                     md={6}
                     xs={12}
                   >
-                    <TextField
-                      fullWidth
-                      label="Fecha de fin"
-                      margin="dense"
-                      name="dueDate"
-                      onChange={handleChange}
-                      value={formState.values.dueDate || ''}
-                      required
-                      type="date"
-                      defaultValue=""
-                      variant="outlined"
-                      InputLabelProps={{
-                      shrink: true,
-                      }}
-                    />
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <Grid container justify="space-around">
+                        <KeyboardDatePicker
+                          disableToolbar
+                          format="dd/MM/yyyy"
+                          margin="normal"
+                          id="date-picker-inline"
+                          label="Fecha de finalización"
+                          value={selectedDate}
+                          onChange={handleDateChange}
+                          minDate={new Date()}
+                          variant="outlined"
+                          KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                          }}
+                        />
+                      </Grid>
+                    </MuiPickersUtilsProvider>
                   </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
-                    <TextField
-                      fullWidth
-                      select
-                      label="Estado de la meta"
-                      margin="dense"
-                      name="status"
-                      onChange={handleChange}
-                      value={formState.values.status || ''}
-                      required
-                      // eslint-disable-next-line react/jsx-sort-props
-                      SelectProps={{ native: true }}
-                      
-                      variant="outlined"
-                    >
-                      {status.map(option => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </TextField>
-                  </Grid>
+                  
                   <Grid
                     item
                     md={6}
