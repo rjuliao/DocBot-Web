@@ -68,8 +68,8 @@ const SingleGoal = props => {
                     <CircularProgressbar
                         strokeWidth={3}
                         className={classes.circular}
-                        value={(goal.progress/goal.quantity)*100}
-                        text={`${(goal.progress/goal.quantity)*100}%`}
+                        value={((goal.progress[goal.progress.length-1].value/goal.quantity)*100).toFixed(1)}
+                        text={`${((goal.progress[goal.progress.length-1].value/goal.quantity)*100).toFixed(1)}%`}
                         circleRatio={0.75}
                         styles={buildStyles({
                             rotation: 1 / 2 + 1 / 8,
@@ -107,7 +107,7 @@ const SingleGoal = props => {
                 display="inline"
                 variant="body2"
                 >
-                Vence el: {moment(goal.dueDate).format('DD/MM/YYYY')}
+                Vence el: {goal.dueDate}
                 </Typography>
             </Grid>
             </Grid>
