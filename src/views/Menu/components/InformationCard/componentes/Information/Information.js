@@ -267,7 +267,7 @@ const Information = props => {
                         variant="h3"
                     >
                         {
-                            !localStorage.getItem("p_isDiabetic") ? "SI":"NO"
+                            localStorage.getItem("p_isDiabetic") ? "SI":"NO"
                         }
                     </Typography>
                 </Grid>
@@ -302,7 +302,7 @@ const Information = props => {
                         variant="h3"
                     >
                         {
-                            !localStorage.getItem("p_smoking") ? "SI":"NO"
+                            localStorage.getItem("p_smoking") ? "SI":"NO"
                         }
                     </Typography>
                 </Grid>

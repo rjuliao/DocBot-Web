@@ -93,7 +93,6 @@ const UserCard = props => {
         return response.json();
       })  
       .then(json => {
-        console.log(json)
         var l = json.weight.length
         var w = json.weight[l-1]
         var oldv = 0
