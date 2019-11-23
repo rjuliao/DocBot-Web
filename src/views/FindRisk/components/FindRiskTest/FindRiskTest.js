@@ -20,7 +20,8 @@ import {
   Radio,
   FormControlLabel,
 } from '@material-ui/core';
-import { setFindriskVal } from '../../../../services/api';
+import { setFindriskVal, updateWeight } from '../../../../services/api';
+import moment from 'moment';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -69,7 +70,7 @@ const FindRiskTest = props => {
   };
   
 
-  const getValue = (sum) =>{
+  const getValue = (sum, peso) =>{
 
     setFindriskVal(sum, localStorage.getItem('p_medicalCenter'), localStorage.getItem('p_id'))
     .then(response => {
@@ -80,6 +81,17 @@ const FindRiskTest = props => {
     })
     .catch(error => {
       console.log(error.message);
+    });
+
+    updateWeight(localStorage.getItem("p_id"), peso, moment().format('DD/MM/YYYY'))
+    .then(response => {
+        return response.json();
+    })  
+    .then(json => {
+
+    })
+    .catch(error => {
+        console.log(error.message);
     });
 
     history.push('/menu');
@@ -117,7 +129,8 @@ const FindRiskTest = props => {
     sum += parseInt(formState.values.pv7,10);
     sum += parseInt(formState.values.pv8,10);
     localStorage.setItem('p_vtf', sum);
-    getValue(sum)
+    localStorage.setItem('p_weight', formState.values.peso);
+    getValue(sum, formState.values.peso)
   }
 
   return (
