@@ -123,7 +123,7 @@ const schema = {
   contexto: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
-      maximum: 100
+      maximum: 500
     }
   },
 };
@@ -245,7 +245,7 @@ const AccountDetails = props => {
   
 
     registro(formState.values.name, formState.values.lastName, 
-      formState.values.b_day, formState.values.age, formState.values.tipoid, formState.values.idnumber,
+      moment(formState.values.b_day).format("DD/MM/YYYY"), formState.values.age, formState.values.tipoid, formState.values.idnumber,
       formState.values.peso, formState.values.altura,
       formState.values.sexo, formState.values.idnumber, formState.values.contexto,
       formState.values.centro_medico, formState.values.email, formState.values.isDiabetic,

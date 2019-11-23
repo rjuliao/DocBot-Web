@@ -85,7 +85,6 @@ const useStyles = makeStyles(theme => ({
 
 const AddGoalBtn = props => {
   const { history, className, ...rest } = props;
-  const [startDate, setStartDate] = useState(null);
 
   const classes = useStyles();
 

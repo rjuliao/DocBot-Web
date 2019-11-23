@@ -16,25 +16,12 @@ import { setParaclinico } from '../../../../../../services/api';
 import moment from 'moment';
 
 const schema = {
-  tipo:{
-    presence: {allowEmpty: false, message: 'Obligatorio'},
-    length:{
-      maximum: 4
-    }
-  },
-  value:{
-    presence: {allowEmpty: false, message: 'Obligatorio'},
-    length:{
-      maximum: 4
-    }
-  },
   comentario: {
     presence: { allowEmpty: false, message: 'Obligatorio' },
     length: {
-      maximum: 5
+      maximum: 500
     }
   }
-    
 };
 
 
@@ -128,7 +115,6 @@ const MainParaclinicos = props =>{
       return response.json();
     })  
     .then(json => {
-      //console.log(JSON.stringify(json));
     })
     .catch(error => {
       console.log(error.message);
@@ -200,7 +186,6 @@ const MainParaclinicos = props =>{
             >
               <TextField
                 fullWidth
-                error={hasError('tipo')}
                 select
                 label="Tipo de paraclinico"
                 margin="dense"
@@ -227,7 +212,6 @@ const MainParaclinicos = props =>{
             >
               <TextField
                 fullWidth
-                error={hasError('value')}
                 label="Valor"
                 margin="dense"
                 name="value"
@@ -253,6 +237,7 @@ const MainParaclinicos = props =>{
                 name="comment"
                 onChange={handleChange}
                 value={formState.values.comment || ''}
+                type="text"
                 required
                 variant="outlined"
               />
@@ -262,7 +247,6 @@ const MainParaclinicos = props =>{
         <CardActions>
           <Fab  
             color="primary"
-            
             variant="contained"
             type="submit"
           >
