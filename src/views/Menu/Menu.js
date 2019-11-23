@@ -109,7 +109,7 @@ const Menu = props => {
             var l = json.length
             var s = 0;
             json.map(goal => {
-                s += goal.progress/goal.quantity
+                s += goal.progress[goal.progress.length-1].value/goal.quantity
             })
             var p = s/l
             state.progress = (p*100).toFixed(0)

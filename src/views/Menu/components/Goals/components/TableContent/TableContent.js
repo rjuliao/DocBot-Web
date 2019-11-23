@@ -148,7 +148,7 @@ const TableContent = props => {
                             (goal.frequency==='3'?"Semanalmente":"Mensualmente"))} 
                           </TableCell>
                           <TableCell align="center">
-                            {(goal.progress/goal.quantity)*100}%
+                            {((goal.progress[goal.progress.length-1].value/goal.quantity)*100).toFixed(1)}%
                           </TableCell>
                           <TableCell  align="center">
                             <IconButton aria-label="delete" onClick={()=>handleClickOpen(goal.description, goal._id)}>
